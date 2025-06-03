@@ -1,0 +1,217 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules for Payload Theme Global Plugin
+
+You are an expert in TypeScript, Payload CMS, Next.js, and modern web development best practices.
+
+## Project Context
+This is a Payload CMS plugin that provides theme management capabilities as a global configuration. The plugin allows users to manage primary color, secondary color, and typography settings from the Payload admin panel. The plugin follows Payload's plugin architecture and integrates seamlessly with Next.js applications. The theme system is designed to be simple initially but extensible for future complexity.
+
+## Code Style & Structure
+
+### TypeScript
+- Use strict TypeScript configuration with proper type definitions
+- Prefer `interface` over `type` for object shapes unless union types are needed
+- Use proper generic constraints and conditional types where appropriate
+- Export types alongside implementations using `export type` syntax
+- Use `const assertions` for readonly data structures
+- Prefer explicit return types for public functions
+
+### Payload CMS Patterns
+- Follow Payload's GlobalConfig interface specifications
+- Use proper field type definitions from `payload/types`
+- Implement proper validation using Payload's built-in validators
+- Use hooks (beforeValidate, afterChange, etc.) when needed for complex logic
+- Organize field schemas logically with proper grouping and conditional fields
+- Use proper access control patterns with user-based permissions
+- Implement proper label and description properties for admin UI clarity
+
+### File Organization
+```
+src/
+├── components/theme/     # Theme-related React components
+├── exports/             # Plugin exports and entry points
+├── globals/theme/       # Global configuration definitions
+├── types/              # TypeScript type definitions
+├── hooks/              # Payload hooks (beforeChange, afterValidate, etc.)
+├── utilities/          # Helper functions and utilities
+└── validators/         # Custom field validators
+```
+
+### Plugin Architecture
+- Export main plugin function with proper TypeScript generics
+- Support configuration options through plugin parameters
+- Provide sensible defaults while allowing customization
+- Use proper plugin lifecycle hooks
+- Implement proper error handling and validation
+
+## Payload Global Best Practices
+
+### Field Definitions
+- Use descriptive field names that reflect their purpose (primaryColor, secondaryColor, typography)
+- Implement proper field validation with clear error messages
+- Use conditional fields (`admin.condition`) for dynamic forms
+- Group related fields using tabs or collapsible groups (Colors, Typography)
+- Provide helpful descriptions and labels for admin users
+- Use appropriate field types:
+  - `text` for color values (with color picker components)
+  - `group` for typography settings organization
+  - `select` for predefined font families or sizes
+  - `number` for font weights and line heights
+
+### Admin Configuration
+- Configure proper admin UI options (description, position, etc.)
+- Use custom components for color pickers and typography previews
+- Implement live preview functionality for theme changes in admin panel
+- Group fields logically: Colors tab (primary, secondary) and Typography tab
+- Provide helpful descriptions for each field explaining its usage
+- Consider admin performance - theme changes should be lightweight
+
+## TypeScript Patterns
+
+### Type Safety
+```typescript
+// Theme configuration interface
+interface ThemeConfig {
+  primaryColor: string
+  secondaryColor: string
+  typography: TypographyConfig
+}
+
+// Typography configuration
+interface TypographyConfig {
+  fontFamily: string
+  fontSize: {
+    base: string
+    headings: {
+      h1: string
+      h2: string
+      h3: string
+      h4: string
+      h5: string
+      h6: string
+    }
+  }
+  fontWeight: {
+    normal: number
+    bold: number
+  }
+  lineHeight: {
+    tight: number
+    normal: number
+    relaxed: number
+  }
+}
+
+// Proper generic constraints for extensibility
+interface ThemeField<T extends Record<string, any> = Record<string, any>> {
+  name: keyof T
+  value: T[keyof T]
+}
+```
+
+### Error Handling
+- Use Result types or proper error boundaries
+- Implement graceful fallbacks for theme loading failures
+- Provide clear error messages for configuration issues
+
+## Next.js Integration
+
+### App Router Patterns
+- Use proper route organization under `dev/app/`
+- Implement server components where appropriate
+- Use client components only when necessary (interactivity, browser APIs)
+- Proper data fetching patterns with Payload's REST/GraphQL APIs
+
+### Performance
+- Implement proper caching strategies for theme data
+- Use dynamic imports for non-critical theme components
+- Optimize bundle size by tree-shaking unused theme utilities
+
+## Code Quality
+
+### Documentation
+- Use JSDoc comments for all exported functions and interfaces
+- Document complex theme configuration patterns
+- Provide usage examples in README files
+- Include migration guides for breaking changes
+
+### Testing
+- Write unit tests for theme utilities and validators
+- Test Payload global configuration with proper mocks
+- Include integration tests for theme application
+- Test admin UI components with React Testing Library
+
+### Naming Conventions
+- Use descriptive names that reflect business domain (theme, styling, appearance)
+- Prefix plugin-specific exports to avoid naming conflicts
+- Use PascalCase for components and interfaces
+- Use camelCase for functions and variables
+- Use SCREAMING_SNAKE_CASE for constants
+- Use kebab-case for file names (color-input.tsx, typography-selector.tsx)
+
+## Development Patterns
+
+### Component Development
+- Create reusable theme provider components
+- Implement proper prop drilling avoidance with context
+- Use compound component patterns for complex theme interfaces
+- Implement proper accessibility (ARIA labels, focus management)
+
+### State Management
+- Use React Context for theme state when needed
+- Theme data comes from Payload Global, not user preferences
+- Consider server state vs client state appropriately
+- Cache theme data for optimal performance across page loads
+
+### API Design
+- Design plugin APIs that are intuitive and well-documented
+- Provide both high-level convenience methods and low-level customization
+- Use proper semantic versioning for plugin releases
+- Maintain backward compatibility when possible
+
+## Security
+- Validate all theme inputs on both client and server
+- Validate color values (hex, rgb, hsl formats)
+- Sanitize typography settings to prevent XSS
+- Implement proper CSRF protection for theme updates
+- Use proper authentication checks for admin operations
+- Restrict font family inputs to safe, predefined options when possible
+
+## Performance
+- Lazy load theme assets and components
+- Implement proper caching for theme configurations
+- Use CSS-in-JS solutions that support SSR when needed
+- Minimize runtime theme calculations
+- Generate CSS custom properties for efficient theme application
+- Avoid frequent re-renders when theme values change
+
+## Theme-Specific Patterns
+
+### Color Management
+- Support standard color formats (hex, rgb, hsl)
+- Provide color picker components for admin UI
+- Validate color contrast for accessibility
+- Generate color variants (lighter/darker shades) when needed
+
+### Typography Management
+- Support web-safe font families and Google Fonts
+- Provide font preview in admin interface
+- Use rem/em units for responsive typography
+- Support font loading optimization strategies
+- Generate typography scale based on base font size
+
+### CSS Generation
+- Generate CSS custom properties from theme values
+- Support CSS-in-JS integration for component libraries
+- Provide utility functions for accessing theme values
+- Enable theme switching without page reloads
+
+
+
+
+
+When suggesting code improvements, always consider the plugin's role in the broader Payload ecosystem and ensure compatibility with various Payload configurations and Next.js deployment strategies. 

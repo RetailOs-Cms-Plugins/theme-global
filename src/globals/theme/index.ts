@@ -1,5 +1,7 @@
 import type { GlobalConfig, TextField } from 'payload'
 
+import { revalidateTag } from 'next/cache'
+
 import colorPicker from '../../fields/color-picker'
 
 export const themeGlobal: GlobalConfig = {
@@ -54,8 +56,27 @@ export const themeGlobal: GlobalConfig = {
                     { label: 'Asimon Hebrew (Local)', value: 'asimon-hebrew' },
                     { label: 'Frank Ruhl Libre (Google)', value: 'frank-ruhl-libre' },
                     { label: 'Noto Sans Hebrew (Google)', value: 'noto-sans-hebrew' },
+                    { label: 'Noto Serif Hebrew (Google)', value: 'noto-serif-hebrew' },
+                    { label: 'Noto Rashi Hebrew (Google)', value: 'noto-rashi-hebrew' },
+                    { label: 'Heebo (Google)', value: 'heebo' },
+                    { label: 'Rubik (Google)', value: 'rubik' },
+                    { label: 'Assistant (Google)', value: 'assistant' },
+                    { label: 'Secular One (Google)', value: 'secular-one' },
+                    { label: 'Suez One (Google)', value: 'suez-one' },
+                    { label: 'Alef (Google)', value: 'alef' },
+                    { label: 'Miriam Libre (Google)', value: 'miriam-libre' },
+
                     // English Fonts
                     { label: 'Inter (Google)', value: 'inter' },
+                    { label: 'Manrope (Google)', value: 'manrope' },
+                    { label: 'DM Sans (Google)', value: 'dm-sans' },
+                    { label: 'Nunito (Google)', value: 'nunito' },
+                    { label: 'Epilogue (Google)', value: 'epilogue' },
+                    { label: 'Mulish (Google)', value: 'mulish' },
+                    { label: 'Lexend (Google)', value: 'lexend' },
+                    { label: 'Public Sans (Google)', value: 'public-sans' },
+                    { label: 'Jost (Google)', value: 'jost' },
+                    { label: 'Sora (Google)', value: 'sora' },
                   ],
                 },
                 {
@@ -91,16 +112,16 @@ export const themeGlobal: GlobalConfig = {
       ],
     },
   ],
-  // hooks: {
-  //   afterChange: [
-  //     async ({ doc, req }) => {
-  //       try {
-  //         revalidateTag('theme')
-  //         req.payload.logger.info('Theme updated, cache invalidated')
-  //       } catch (error) {
-  //         req.payload.logger.error('Failed to revalidate theme cache:', error)
-  //       }
-  //     },
-  //   ],
-  // },
+  hooks: {
+    afterChange: [
+      async ({ doc, req }) => {
+        try {
+          revalidateTag('theme')
+          req.payload.logger.info('Theme updated, cache invalidated')
+        } catch (error) {
+          req.payload.logger.error('Failed to revalidate theme cache:', error)
+        }
+      },
+    ],
+  },
 }

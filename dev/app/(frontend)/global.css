@@ -22,7 +22,7 @@
     --color-secondary-700: var(--secondary-color);
     --color-secondary-800: var(--secondary-color);
     --font-family: var(--theme-font-family);
-    --font-direction: var(--theme-font-direction);
+    --font-direction: ltr;
 
 
 }
@@ -30,6 +30,4 @@
 :root{
     --primary-color: #000000;
     --secondary-color: #000000;
-    --font-family: 'Inter', sans-serif;
-    --font-direction: ltr;
 }

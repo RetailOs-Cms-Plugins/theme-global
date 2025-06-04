@@ -86,3 +86,7 @@ export const englishFonts: FontDefinition[] = [
 ]
 
 export const allFonts = [...hebrewFonts, ...englishFonts]
+
+export const getFontDefinition = (fontName: string): FontDefinition | undefined => {
+  return allFonts.find((font) => font.name === fontName)
+}

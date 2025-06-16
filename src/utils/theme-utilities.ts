@@ -26,10 +26,11 @@ export async function getThemeFromPayload(
     const themeData: ThemeData = {
       primaryColor: rawTheme?.primaryColor || '#3b82f6',
       secondaryColor: rawTheme?.secondaryColor || '#64748b',
+      // TODO: Add more color variables
       typography: {
+        // TODO: Add more font variables
         fallbackFonts: rawTheme?.typography?.fallbackFonts || ['inter'],
         fontFamily: rawTheme?.typography?.fontFamily || 'inter',
-        W,
       },
     }
 

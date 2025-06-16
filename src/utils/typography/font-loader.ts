@@ -30,13 +30,13 @@ export class FontLoader {
     document.fonts.add(fontFace)
   }
 
-  generateFontCSSVariables(selectedFont: string): React.CSSProperties {
+  generateFontCSSVariables(selectedFont: string, fallbackFonts: string[]): React.CSSProperties {
     const fontDef = allFonts.find((f) => f.name === selectedFont)
     if (!fontDef) {
       return {}
     }
 
-    const fontStack = [fontDef.displayName, ...fontDef.source.fallbacks].join(', ')
+    const fontStack = [fontDef.displayName, ...fallbackFonts].join(', ')
 
     return {
       '--theme-font-direction': fontDef.supports.scripts.includes('hebrew') ? 'rtl' : 'ltr',
@@ -73,13 +73,17 @@ export class FontLoader {
 
 export const fontLoader = new FontLoader()
 
-export function generateFontVariables(selectedFont: string): React.CSSProperties {
+export function generateFontVariables(
+  selectedFont: string,
+  fallbackFonts: string[],
+): React.CSSProperties {
   const fontDef = getFontDefinition(selectedFont)
   if (!fontDef) {
     return {}
   }
 
-  const fontStack = [fontDef.displayName, ...fontDef.source.fallbacks].join(', ')
+  const fontStack = [fontDef.displayName, ...fallbackFonts].join(', ')
+  console.log('🚀 ~ font-loader.ts:86 ~ fontStack:', fontStack)
 
   return {
     '--theme-font-direction': fontDef.supports.scripts.includes('hebrew') ? 'rtl' : 'ltr',
@@ -89,13 +93,13 @@ export function generateFontVariables(selectedFont: string): React.CSSProperties
   } as React.CSSProperties
 }
 
-export function generateFontCSS(selectedFont: string): string {
+export function generateFontCSS(selectedFont: string, fallbackFonts: string[]): string {
   const fontDef = getFontDefinition(selectedFont)
   if (!fontDef) {
     return ''
   }
 
-  const fontStack = [fontDef.displayName, ...fontDef.source.fallbacks].join(', ')
+  const fontStack = [fontDef.displayName, ...fallbackFonts].join(', ')
   let css = ''
 
   // 1. Google Fonts - Add @import at the top

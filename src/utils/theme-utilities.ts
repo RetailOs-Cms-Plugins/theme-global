@@ -22,11 +22,14 @@ export async function getThemeFromPayload(
   try {
     const rawTheme = await payload.findGlobal({ slug: globalSlug })
 
+    console.log('🚀 ~ theme-utilities.ts:25 ~ rawTheme:', rawTheme)
     const themeData: ThemeData = {
       primaryColor: rawTheme?.primaryColor || '#3b82f6',
       secondaryColor: rawTheme?.secondaryColor || '#64748b',
       typography: {
+        fallbackFonts: rawTheme?.typography?.fallbackFonts || ['inter'],
         fontFamily: rawTheme?.typography?.fontFamily || 'inter',
+        W,
       },
     }
 
@@ -34,9 +37,12 @@ export async function getThemeFromPayload(
       cssVariables: {
         ...generateColorScale(themeData.primaryColor, 'primary'),
         ...generateColorScale(themeData.secondaryColor, 'secondary'),
-        ...generateFontVariables(themeData.typography.fontFamily),
+        ...generateFontVariables(
+          themeData.typography.fontFamily,
+          themeData.typography.fallbackFonts,
+        ),
       },
-      fontCSS: generateFontCSS(themeData.typography.fontFamily),
+      fontCSS: generateFontCSS(themeData.typography.fontFamily, themeData.typography.fallbackFonts),
       themeData,
     }
   } catch (err) {
@@ -47,30 +53,8 @@ export async function getThemeFromPayload(
       themeData: {
         primaryColor: '#3b82f6',
         secondaryColor: '#64748b',
-        typography: { fontFamily: 'inter' },
+        typography: { fallbackFonts: ['inter'], fontFamily: 'inter' },
       },
     }
   }
 }
-
-/**
- * Create cached theme utilities for a specific project
- * Returns functions that the consuming project can use
- */
-// export async function createThemeUtilities(payload: Payload, globalSlug: string = 'theme-config') {
-//   return {
-//     getTheme: async () => getThemeFromPayload(payload, globalSlug),
-
-//     // Helper to get just CSS variables
-//     getThemeVariables: async (): Promise<React.CSSProperties> => {
-//       const { cssVariables } = await getThemeFromPayload(payload, globalSlug)
-//       return cssVariables
-//     },
-
-//     // Helper to get just font CSS
-//     getFontCSS: async (): Promise<string> => {
-//       const { fontCSS } = await getThemeFromPayload(payload, globalSlug)
-//       return fontCSS
-//     },
-//   }
-// }

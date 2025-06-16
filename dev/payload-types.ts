@@ -314,11 +314,37 @@ export interface ThemeConfig {
     /**
      * Choose a font that supports your content language
      */
-    fontFamily?: ('' | 'alef-hebrew' | 'asimon-hebrew' | 'frank-ruhl-libre' | 'noto-sans-hebrew' | 'inter') | null;
+    fontFamily?:
+      | (
+          | 'asimon-hebrew'
+          | 'frank-ruhl-libre'
+          | 'noto-sans-hebrew'
+          | 'noto-serif-hebrew'
+          | 'noto-rashi-hebrew'
+          | 'heebo'
+          | 'rubik'
+          | 'assistant'
+          | 'secular-one'
+          | 'suez-one'
+          | 'alef'
+          | 'miriam-libre'
+          | 'inter'
+          | 'manrope'
+          | 'dm-sans'
+          | 'nunito'
+          | 'epilogue'
+          | 'mulish'
+          | 'lexend'
+          | 'public-sans'
+          | 'jost'
+          | 'sora'
+        )
+      | null;
+    /**
+     * The font to use if the selected font is not available
+     */
+    fallbackFonts?: ('inter' | 'manrope' | 'dm-sans' | 'nunito')[] | null;
     direction?: ('auto' | 'ltr' | 'rtl') | null;
-    fontSize?: {
-      base?: string | null;
-    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -334,12 +360,8 @@ export interface ThemeConfigSelect<T extends boolean = true> {
     | T
     | {
         fontFamily?: T;
+        fallbackFonts?: T;
         direction?: T;
-        fontSize?:
-          | T
-          | {
-              base?: T;
-            };
       };
   updatedAt?: T;
   createdAt?: T;

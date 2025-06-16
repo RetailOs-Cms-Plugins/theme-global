@@ -38,6 +38,7 @@ const SimpleColorInput: TextFieldClientComponent = ({ field, path }) => {
       <div>
         <label htmlFor={`${path}-text`}>{`${field?.label}` || ''}</label>
         <input
+          className={styles.simpleColorTextInput}
           id={`${path}-text`}
           onChange={(e) => handleInputChange(e.target.value)}
           placeholder="#000000"

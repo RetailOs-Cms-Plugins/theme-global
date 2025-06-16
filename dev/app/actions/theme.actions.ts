@@ -119,7 +119,7 @@ const cachedTheme = cache(
     return themeUtils
   },
   ['theme-data'],
-  { revalidate: 300, tags: ['theme-config'] },
+  { revalidate: 600, tags: ['theme-config'] },
 )
 
 export const getTheme = cachedTheme

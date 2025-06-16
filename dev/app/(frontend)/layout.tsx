@@ -18,10 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <FontHead fontName={themeData.typography.fontFamily} />
         {fontCSS && <style dangerouslySetInnerHTML={{ __html: fontCSS }} />}
       </head>
-      <body>
-        {/* <ThemeProvider initialTheme={themeData}>{children}</ThemeProvider> */}
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

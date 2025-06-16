@@ -89,6 +89,7 @@
 
 .simpleColorInputWrapper {
     display: flex;
+    position: relative;
     align-items: center;
     gap: 0.5rem;
     > div{
@@ -96,8 +97,15 @@
         flex-direction: column;
         gap: 0.5rem;
     }
+    .simpleColorTextInput{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+    }
 }
 
 .simplyColorInputContainer{
+  position: relative;
   margin-block-start: auto;
 }

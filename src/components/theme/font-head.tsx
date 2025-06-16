@@ -12,14 +12,14 @@ export function FontHead({ fontName }: FontHeadProps) {
     return null
   }
 
-  if (fontDef.source.type === 'google') {
-    return (
-      <>
-        <link href="https://fonts.googleapis.com" rel="preconnect" />
-        <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
-      </>
-    )
-  }
+  // if (fontDef.source.type === 'google') {
+  //   return (
+  //     <>
+  //       <link href="https://fonts.googleapis.com" rel="preconnect" />
+  //       <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
+  //     </>
+  //   )
+  // }
 
   // For local fonts, preload the actual font files
   if (fontDef.source.type === 'local' && fontDef.source.files) {

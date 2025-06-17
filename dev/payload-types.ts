@@ -302,19 +302,125 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface ThemeConfig {
   id: number;
+  primary50?: string | null;
+  primary100?: string | null;
+  primary200?: string | null;
+  primary300?: string | null;
+  primary400?: string | null;
+  primary500?: string | null;
+  primary600?: string | null;
+  primary700?: string | null;
+  primary800?: string | null;
+  primary900?: string | null;
+  primary950?: string | null;
+  secondary50?: string | null;
+  secondary100?: string | null;
+  secondary200?: string | null;
+  secondary300?: string | null;
+  secondary400?: string | null;
+  secondary500?: string | null;
+  secondary600?: string | null;
+  secondary700?: string | null;
+  secondary800?: string | null;
+  secondary900?: string | null;
+  secondary950?: string | null;
+  colorPrimary?: string | null;
+  textOnPrimary?: string | null;
+  colorSecondary?: string | null;
+  textOnSecondary?: string | null;
+  cardBackground?: string | null;
+  textOnCard?: string | null;
+  pageBackground?: string | null;
+  textOnPage?: string | null;
   /**
-   * The primary brand color used throughout the theme
+   * Main background color (HSL format: h s% l%)
    */
-  primaryColor: string;
+  background: string;
   /**
-   * The secondary brand color for accents and highlights
+   * Main text color (HSL format: h s% l%)
    */
-  secondaryColor?: string | null;
+  foreground: string;
+  /**
+   * Primary brand color (HSL format: h s% l%)
+   */
+  basePrimary: string;
+  /**
+   * Text color for primary backgrounds
+   */
+  basePrimaryForeground?: string | null;
+  /**
+   * Secondary brand color (HSL format: h s% l%)
+   */
+  baseSecondary?: string | null;
+  /**
+   * Text color for secondary backgrounds
+   */
+  baseSecondaryForeground?: string | null;
+  /**
+   * Accent color for highlights (HSL format: h s% l%)
+   */
+  accent?: string | null;
+  /**
+   * Text color for accent backgrounds
+   */
+  accentForeground?: string | null;
+  /**
+   * Default border color (HSL format: h s% l%)
+   */
+  border?: string | null;
+  /**
+   * Input field background color
+   */
+  input?: string | null;
+  /**
+   * Border radius value (e.g., 0.5rem, 8px)
+   */
+  radius?: string | null;
+  /**
+   * Body background color (HSL format: h s% l%)
+   */
+  colorBodyBg?: string | null;
+  /**
+   * Surface/container background color
+   */
+  colorSurface?: string | null;
+  /**
+   * Card background color
+   */
+  additionalCardBg?: string | null;
+  /**
+   * Alternate section background color
+   */
+  colorSectionAlt?: string | null;
+  /**
+   * Body text color
+   */
+  colorTextBody?: string | null;
+  /**
+   * Heading text color
+   */
+  colorTextHeading?: string | null;
+  /**
+   * Muted text color
+   */
+  colorTextMuted?: string | null;
+  /**
+   * Inverse text color (for dark backgrounds)
+   */
+  colorTextInverse?: string | null;
+  /**
+   * Link text color
+   */
+  colorTextLink?: string | null;
+  /**
+   * Muted border color (HSL format: h s% l%)
+   */
+  colorBorderMuted?: string | null;
   typography?: {
     /**
-     * Choose a font that supports your content language
+     * Font family for body text
      */
-    fontFamily?:
+    fontBody?:
       | (
           | 'asimon-hebrew'
           | 'frank-ruhl-libre'
@@ -338,13 +444,98 @@ export interface ThemeConfig {
           | 'public-sans'
           | 'jost'
           | 'sora'
+          | 'poppins'
         )
       | null;
     /**
-     * The font to use if the selected font is not available
+     * Font family for headings
      */
-    fallbackFonts?: ('inter' | 'manrope' | 'dm-sans' | 'nunito')[] | null;
+    fontHeading?:
+      | (
+          | 'asimon-hebrew'
+          | 'frank-ruhl-libre'
+          | 'noto-sans-hebrew'
+          | 'noto-serif-hebrew'
+          | 'noto-rashi-hebrew'
+          | 'heebo'
+          | 'rubik'
+          | 'assistant'
+          | 'secular-one'
+          | 'suez-one'
+          | 'alef'
+          | 'miriam-libre'
+          | 'inter'
+          | 'manrope'
+          | 'dm-sans'
+          | 'nunito'
+          | 'epilogue'
+          | 'mulish'
+          | 'lexend'
+          | 'public-sans'
+          | 'jost'
+          | 'sora'
+          | 'poppins'
+        )
+      | null;
+    /**
+     * Font family for monospace text (code)
+     */
+    fontMono?: ('fira-code' | 'jetbrains-mono' | 'source-code-pro' | 'ibm-plex-mono' | 'roboto-mono') | null;
+    /**
+     * Extra small text size
+     */
+    textXs?: string | null;
+    /**
+     * Small text size
+     */
+    textSm?: string | null;
+    /**
+     * Base text size
+     */
+    textBase?: string | null;
+    /**
+     * Large text size
+     */
+    textLg?: string | null;
+    /**
+     * Extra large text size
+     */
+    textXl?: string | null;
+    /**
+     * 2X large text size
+     */
+    text2xl?: string | null;
+    /**
+     * 3X large text size
+     */
+    text3xl?: string | null;
+    /**
+     * 4X large text size
+     */
+    text4xl?: string | null;
     direction?: ('auto' | 'ltr' | 'rtl') | null;
+  };
+  spacing?: {
+    /**
+     * Extra small spacing
+     */
+    spacingXs?: string | null;
+    /**
+     * Small spacing
+     */
+    spacingSm?: string | null;
+    /**
+     * Medium spacing
+     */
+    spacingMd?: string | null;
+    /**
+     * Large spacing
+     */
+    spacingLg?: string | null;
+    /**
+     * Extra large spacing
+     */
+    spacingXl?: string | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -354,14 +545,81 @@ export interface ThemeConfig {
  * via the `definition` "theme-config_select".
  */
 export interface ThemeConfigSelect<T extends boolean = true> {
-  primaryColor?: T;
-  secondaryColor?: T;
+  primary50?: T;
+  primary100?: T;
+  primary200?: T;
+  primary300?: T;
+  primary400?: T;
+  primary500?: T;
+  primary600?: T;
+  primary700?: T;
+  primary800?: T;
+  primary900?: T;
+  primary950?: T;
+  secondary50?: T;
+  secondary100?: T;
+  secondary200?: T;
+  secondary300?: T;
+  secondary400?: T;
+  secondary500?: T;
+  secondary600?: T;
+  secondary700?: T;
+  secondary800?: T;
+  secondary900?: T;
+  secondary950?: T;
+  colorPrimary?: T;
+  textOnPrimary?: T;
+  colorSecondary?: T;
+  textOnSecondary?: T;
+  cardBackground?: T;
+  textOnCard?: T;
+  pageBackground?: T;
+  textOnPage?: T;
+  background?: T;
+  foreground?: T;
+  basePrimary?: T;
+  basePrimaryForeground?: T;
+  baseSecondary?: T;
+  baseSecondaryForeground?: T;
+  accent?: T;
+  accentForeground?: T;
+  border?: T;
+  input?: T;
+  radius?: T;
+  colorBodyBg?: T;
+  colorSurface?: T;
+  additionalCardBg?: T;
+  colorSectionAlt?: T;
+  colorTextBody?: T;
+  colorTextHeading?: T;
+  colorTextMuted?: T;
+  colorTextInverse?: T;
+  colorTextLink?: T;
+  colorBorderMuted?: T;
   typography?:
     | T
     | {
-        fontFamily?: T;
-        fallbackFonts?: T;
+        fontBody?: T;
+        fontHeading?: T;
+        fontMono?: T;
+        textXs?: T;
+        textSm?: T;
+        textBase?: T;
+        textLg?: T;
+        textXl?: T;
+        text2xl?: T;
+        text3xl?: T;
+        text4xl?: T;
         direction?: T;
+      };
+  spacing?:
+    | T
+    | {
+        spacingXs?: T;
+        spacingSm?: T;
+        spacingMd?: T;
+        spacingLg?: T;
+        spacingXl?: T;
       };
   updatedAt?: T;
   createdAt?: T;

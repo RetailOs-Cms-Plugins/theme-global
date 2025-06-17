@@ -17,6 +17,206 @@ export const themeGlobal: GlobalConfig = {
               type: 'row',
               fields: [
                 colorPicker({
+                  name: 'primary50',
+                  defaultValue: '#faf5ff',
+                  label: 'Primary 50',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary100',
+                  defaultValue: '#f3e8ff',
+                  label: 'Primary 100',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary200',
+                  defaultValue: '#e9d5ff',
+                  label: 'Primary 200',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary300',
+                  defaultValue: '#d8b4fe',
+                  label: 'Primary 300',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary400',
+                  defaultValue: '#c084fc',
+                  label: 'Primary 400',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary500',
+                  defaultValue: '#a855f7',
+                  label: 'Primary 500',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary600',
+                  defaultValue: '#9333ea',
+                  label: 'Primary 600',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary700',
+                  defaultValue: '#7e22ce',
+                  label: 'Primary 700',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary800',
+                  defaultValue: '#6b21a8',
+                  label: 'Primary 800',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary900',
+                  defaultValue: '#581c87',
+                  label: 'Primary 900',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'primary950',
+                  defaultValue: '#3b0764',
+                  label: 'Primary 950',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                colorPicker({
+                  name: 'secondary50',
+                  defaultValue: '#f0f9ff',
+                  label: 'Secondary 50',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary100',
+                  defaultValue: '#e0f2fe',
+                  label: 'Secondary 100',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary200',
+                  defaultValue: '#bae6fd',
+                  label: 'Secondary 200',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary300',
+                  defaultValue: '#7dd3fc',
+                  label: 'Secondary 300',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary400',
+                  defaultValue: '#38bdf8',
+                  label: 'Secondary 400',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary500',
+                  defaultValue: '#0ea5e9',
+                  label: 'Secondary 500',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary600',
+                  defaultValue: '#0284c7',
+                  label: 'Secondary 600',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary700',
+                  defaultValue: '#0369a1',
+                  label: 'Secondary 700',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary800',
+                  defaultValue: '#075985',
+                  label: 'Secondary 800',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary900',
+                  defaultValue: '#0c4a6e',
+                  label: 'Secondary 900',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+                colorPicker({
+                  name: 'secondary950',
+                  defaultValue: '#082f49',
+                  label: 'Secondary 950',
+                  path: '../src/components/theme/simple-color-input',
+                }),
+              ],
+            },
+          ],
+          label: 'Primitive Colors',
+        },
+        {
+          fields: [
+            colorPicker({
+              name: 'colorPrimary',
+              defaultValue: 'var(--primary-200)',
+              label: 'Primary (Semantic)',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'textOnPrimary',
+              defaultValue: '#ffffff',
+              label: 'Text on Primary',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'colorSecondary',
+              defaultValue: 'var(--secondary-400)',
+              label: 'Secondary (Semantic)',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'textOnSecondary',
+              defaultValue: 'var(--secondary-950)',
+              label: 'Text on Secondary',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'cardBackground',
+              defaultValue: 'var(--primary-50)',
+              label: 'Card Background',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'textOnCard',
+              defaultValue: 'var(--primary-950)',
+              label: 'Text on Card',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'pageBackground',
+              defaultValue: '#ffffff',
+              label: 'Page Background',
+              path: '../src/components/theme/simple-color-input',
+            }),
+            colorPicker({
+              name: 'textOnPage',
+              defaultValue: '#000000',
+              label: 'Text on Page',
+              path: '../src/components/theme/simple-color-input',
+            }),
+          ],
+          label: 'Semantic Colors',
+        },
+        {
+          fields: [
+            {
+              type: 'row',
+              fields: [
+                colorPicker({
                   name: 'background',
                   admin: {
                     description: 'Main background color (HSL format: h s% l%)',
@@ -44,7 +244,7 @@ export const themeGlobal: GlobalConfig = {
               type: 'row',
               fields: [
                 colorPicker({
-                  name: 'primary',
+                  name: 'basePrimary',
                   admin: {
                     description: 'Primary brand color (HSL format: h s% l%)',
                     width: '50%',
@@ -55,7 +255,7 @@ export const themeGlobal: GlobalConfig = {
                   required: true,
                 }),
                 colorPicker({
-                  name: 'primaryForeground',
+                  name: 'basePrimaryForeground',
                   admin: {
                     description: 'Text color for primary backgrounds',
                     width: '50%',
@@ -70,7 +270,7 @@ export const themeGlobal: GlobalConfig = {
               type: 'row',
               fields: [
                 colorPicker({
-                  name: 'secondary',
+                  name: 'baseSecondary',
                   admin: {
                     description: 'Secondary brand color (HSL format: h s% l%)',
                     width: '50%',
@@ -80,7 +280,7 @@ export const themeGlobal: GlobalConfig = {
                   path: '../src/components/theme/simple-color-input',
                 }),
                 colorPicker({
-                  name: 'secondaryForeground',
+                  name: 'baseSecondaryForeground',
                   admin: {
                     description: 'Text color for secondary backgrounds',
                     width: '50%',
@@ -117,56 +317,6 @@ export const themeGlobal: GlobalConfig = {
               ],
             },
             {
-              type: 'row',
-              fields: [
-                colorPicker({
-                  name: 'muted',
-                  admin: {
-                    description: 'Muted background color (HSL format: h s% l%)',
-                    width: '50%',
-                  },
-                  defaultValue: '#000',
-                  label: 'Muted',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'mutedForeground',
-                  admin: {
-                    description: 'Muted text color',
-                    width: '50%',
-                  },
-                  defaultValue: '#000',
-                  label: 'Muted Foreground',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-              ],
-            },
-            {
-              type: 'row',
-              fields: [
-                colorPicker({
-                  name: 'destructive',
-                  admin: {
-                    description: 'Error/destructive action color (HSL format: h s% l%)',
-                    width: '50%',
-                  },
-                  defaultValue: '#000',
-                  label: 'Destructive',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'destructiveForeground',
-                  admin: {
-                    description: 'Text color for destructive backgrounds',
-                    width: '50%',
-                  },
-                  defaultValue: '#000',
-                  label: 'Destructive Foreground',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-              ],
-            },
-            {
               type: 'collapsible',
               fields: [
                 {
@@ -190,16 +340,6 @@ export const themeGlobal: GlobalConfig = {
                       },
                       defaultValue: '#000',
                       label: 'Input',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
-                    colorPicker({
-                      name: 'ring',
-                      admin: {
-                        description: 'Focus ring color',
-                        width: '34%',
-                      },
-                      defaultValue: '#000',
-                      label: 'Ring',
                       path: '../src/components/theme/simple-color-input',
                     }),
                   ],
@@ -250,7 +390,7 @@ export const themeGlobal: GlobalConfig = {
               type: 'row',
               fields: [
                 colorPicker({
-                  name: 'colorCardBg',
+                  name: 'additionalCardBg',
                   admin: {
                     description: 'Card background color',
                     width: '50%',
@@ -347,7 +487,7 @@ export const themeGlobal: GlobalConfig = {
               path: '../src/components/theme/simple-color-input',
             }),
           ],
-          label: 'Semantic Colors',
+          label: 'Additional Colors',
         },
         {
           fields: [

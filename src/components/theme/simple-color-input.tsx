@@ -35,7 +35,16 @@ const SimpleColorInput: TextFieldClientComponent = ({ field, path }) => {
 
   return (
     <div className={styles.simpleColorInputWrapper}>
-      <div>
+       <div className={styles.simplyColorInputContainer}>
+        {/* <label htmlFor={`${path}-color`}>Color</label> */}
+        <input
+          id={`${path}-color`}
+          onChange={(e) => handleInputChange(e.target.value)}
+          type="color"
+          value={localValue || '#000000'}
+        />
+      </div>
+      <div className={styles.simplyColorColorContainer}>
         <label htmlFor={`${path}-text`}>{`${field?.label}` || ''}</label>
         <input
           className={styles.simpleColorTextInput}
@@ -44,15 +53,6 @@ const SimpleColorInput: TextFieldClientComponent = ({ field, path }) => {
           placeholder="#000000"
           type="text"
           value={localValue}
-        />
-      </div>
-      <div className={styles.simplyColorInputContainer}>
-        {/* <label htmlFor={`${path}-color`}>Color</label> */}
-        <input
-          id={`${path}-color`}
-          onChange={(e) => handleInputChange(e.target.value)}
-          type="color"
-          value={localValue || '#000000'}
         />
       </div>
     </div>

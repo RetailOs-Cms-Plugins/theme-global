@@ -54,7 +54,7 @@ const ColorSwatch = ({ label, varName }: { label: string; varName: string }) => 
     return () => window.removeEventListener('theme-update', handler)
   }, [varName])
   return (
-    <div className="flex items-center gap-4 p-2 rounded border bg-white/80 shadow-sm">
+    <div className="flex items-center gap-4 p-2 rounded border border-[#E6E6E6] bg-white shadow-[0px_2px_12px_-1px_rgba(10,9,11,0.10),0px_2px_2px_-1px_rgba(10,9,11,0.04),0px_0px_0px_1px_rgba(10,9,11,0.05)]">
       <div
         className="w-10 h-10 rounded border bg-primary-500"
         style={{ background: `var(${varName})` }}

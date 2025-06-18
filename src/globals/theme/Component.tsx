@@ -148,6 +148,12 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
     if (onChange) {
       onChange(newTheme)
     }
+    // Update CSS variables in real-time
+    Object.entries(updates).forEach(([key, val]) => {
+      if (typeof val === 'string' && val.startsWith('#')) {
+        document.documentElement.style.setProperty(`--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`, val)
+      }
+    })
   }
 
   /**
@@ -169,8 +175,31 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
         primary700: primaryPalette['--color-primary-700'],
         primary800: primaryPalette['--color-primary-800'],
         primary900: primaryPalette['--color-primary-900'],
+        primary950: primaryPalette['--color-primary-950'],
       }
       updateTheme(updates)
+      // Update color-primary CSS variable
+      document.documentElement.style.setProperty('--color-primary', color)
+    } else if (name === 'colorSecondary') {
+      // Generate secondary color palette from the new secondary color
+      const secondaryPalette = generateColorScale(color, 'secondary')
+      const updates: Partial<ThemeConfig> = {
+        colorSecondary: color,
+        secondary50: secondaryPalette['--color-secondary-50'],
+        secondary100: secondaryPalette['--color-secondary-100'],
+        secondary200: secondaryPalette['--color-secondary-200'],
+        secondary300: secondaryPalette['--color-secondary-300'],
+        secondary400: secondaryPalette['--color-secondary-400'],
+        secondary500: secondaryPalette['--color-secondary-500'],
+        secondary600: secondaryPalette['--color-secondary-600'],
+        secondary700: secondaryPalette['--color-secondary-700'],
+        secondary800: secondaryPalette['--color-secondary-800'],
+        secondary900: secondaryPalette['--color-secondary-900'],
+        secondary950: secondaryPalette['--color-secondary-950'],
+      }
+      updateTheme(updates)
+      // Update color-secondary CSS variable
+      document.documentElement.style.setProperty('--color-secondary', color)
     } else {
       updateTheme({ [name]: color })
     }

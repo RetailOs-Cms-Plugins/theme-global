@@ -444,7 +444,7 @@ export const themeGlobal: GlobalConfig = {
                   name: 'direction',
                   type: 'select',
                   defaultValue: 'auto',
-                  label: 'Text Direction',
+                  label: 'Language Direction',
                   options: [
                     { label: 'Auto (based on font)', value: 'auto' },
                     { label: 'Left to Right', value: 'ltr' },

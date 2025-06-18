@@ -6,6 +6,8 @@ import React, { useState } from 'react'
 
 import { Sidebar, SidebarBody, SidebarLink } from '../ui/sidebar'
 
+type Direction = 'auto' | 'ltr' | 'rtl'
+
 const PRIMITIVE_PRIMARY = [
   { name: '--primary-50', label: 'Primary 50' },
   { name: '--primary-100', label: 'Primary 100' },
@@ -130,90 +132,308 @@ const ColorsContent = () => {
 }
 
 const TypographyContent = () => {
+  const [themeData, setThemeData] = React.useState<any>(null)
+
+  const getTextDirection = (): Direction => {
+    return themeData?.typography?.direction || 'auto'
+  }
+
+  const getStyles = (type: 'body' | 'heading' | 'mono'): React.CSSProperties => ({
+    direction: getTextDirection() === 'auto' ? undefined : (getTextDirection() as 'ltr' | 'rtl'),
+    fontFamily: getFontFamily(type),
+    textAlign: getTextDirection() === 'rtl' ? 'right' : 'left',
+  })
+
+  const typographyDescriptionStyles: React.CSSProperties = {
+    color: 'var(--neutral-600)',
+    direction: getTextDirection() === 'auto' ? undefined : (getTextDirection() as 'ltr' | 'rtl'),
+    fontFamily: getFontFamily('body'),
+    fontSize: '1.25rem',
+    fontWeight: 500,
+    marginTop: '0.75rem',
+    textAlign: getTextDirection() === 'rtl' ? 'right' : 'left',
+  }
+
+  const getDirectionalText = (type: 'heading' | 'paragraph') => {
+    const direction = getTextDirection()
+    if (direction === 'rtl') {
+      return type === 'heading'
+        ? 'הכלב החום המהיר קופץ מעל הכלב העצלן'
+        : 'הכלב החום המהיר קופץ מעל הכלב העצלן. פסקה זו מדגימה את סגנון טקסט הגוף עם גובה שורה ומרווח מתאימים. היא משתמשת בגופן הגוף שנבחר כדי להדגים כיצד תוכן רגיל יופיע באתר שלך.'
+    }
+    return type === 'heading'
+      ? 'The Quick Brown Fox Jumps Over The Lazy Dog'
+      : 'The quick brown fox jumps over the lazy dog. This paragraph demonstrates the body text styling with proper line height and spacing. It uses the selected body font family to showcase how regular content will appear on your website.'
+  }
+
+  const getLeadParagraphText = () => {
+    const direction = getTextDirection()
+    if (direction === 'rtl') {
+      return 'פסקת פתיחה, הידועה גם כ-lede, היא הפסקה הפותחת של מאמר, חיבור או יצירה כתובה אחרת המסכמת את הנקודות העיקריות ומושכת את תשומת לב הקורא.'
+    }
+    return "A lead paragraph, also known as a lede, is the opening paragraph of an article, essay, or other written work that summarizes the main points and captures the reader's attention."
+  }
+
+  const getLargeTextExample = () => {
+    const direction = getTextDirection()
+    if (direction === 'rtl') {
+      return 'טקסט גדול יכול לשמש לציטוטים חשובים, המלצות, או תוכן אחר שצריך לבלוט מטקסט הגוף הרגיל מבלי להיות כותרת.'
+    }
+    return 'Large text can be used for important quotes, testimonials, or other content that needs to stand out from the regular body text without being a heading.'
+  }
+
+  const getSectionTitle = (key: string) => {
+    const direction = getTextDirection()
+    if (direction === 'rtl') {
+      const titles = {
+        bodyFont: 'גופן טקסט',
+        fontFamilies: 'משפחות גופנים נבחרות',
+        headingFont: 'גופן כותרות',
+        largeText: 'טקסט גדול',
+        leadParagraph: 'פסקת פתיחה',
+        monoFont: 'גופן מונוספייס',
+        typography: 'טיפוגרפיה',
+        typographyScale: 'סולם טיפוגרפי',
+      }
+      return titles[key as keyof typeof titles] || key
+    }
+    const titles = {
+      bodyFont: 'Body Font',
+      fontFamilies: 'Selected Font Families',
+      headingFont: 'Heading Font',
+      largeText: 'Large Text',
+      leadParagraph: 'Lead Paragraph',
+      monoFont: 'Monospace Font',
+      typography: 'Typography',
+      typographyScale: 'Typography Scale',
+    }
+    return titles[key as keyof typeof titles] || key
+  }
+
+  const getTypographyDescription = (type: string, font: string, size: string, weight: string) => {
+    const direction = getTextDirection()
+    if (direction === 'rtl') {
+      const descriptions = {
+        code: `קוד - גופן: ${font}, גודל: ${size}, משקל: ${weight}`,
+        h1: `כותרת ראשית - גופן: ${font}, גודל: ${size}, משקל: ${weight}`,
+        h2: `כותרת משנית - גופן: ${font}, גודל: ${size}, משקל: ${weight}`,
+        p: `טקסט גוף - גופן: ${font}, גודל: ${size}, משקל: ${weight}`,
+      }
+      return descriptions[type as keyof typeof descriptions] || type
+    }
+    const descriptions = {
+      code: `${type} - Font: ${font}, Size: ${size}, Weight: ${weight}`,
+      h1: `${type} - Font: ${font}, Size: ${size}, Weight: ${weight}`,
+      h2: `${type} - Font: ${font}, Size: ${size}, Weight: ${weight}`,
+      p: `${type} - Font: ${font}, Size: ${size}, Weight: ${weight}`,
+    }
+    return descriptions[type as keyof typeof descriptions] || type
+  }
+
+  React.useEffect(() => {
+    async function fetchTheme() {
+      try {
+        const response = await fetch('/api/globals/theme-config')
+        const data = await response.json()
+        setThemeData(data)
+      } catch (error) {
+        console.error('Error fetching theme:', error)
+      }
+    }
+
+    // Fetch theme on mount
+    void fetchTheme()
+
+    // Listen for theme updates
+    const handleThemeUpdate = () => {
+      void fetchTheme()
+    }
+
+    window.addEventListener('theme-update', handleThemeUpdate)
+
+    return () => {
+      window.removeEventListener('theme-update', handleThemeUpdate)
+    }
+  }, [])
+
+  function getFontLabel(value: null | string) {
+    if (!value) {
+      return null
+    }
+    // Convert value like 'inter' to 'Inter'
+    return value
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+
+  function getFontFamily(type: 'body' | 'heading' | 'mono') {
+    const fontMap = {
+      body: themeData?.typography?.fontBody,
+      heading: themeData?.typography?.fontHeading,
+      mono: themeData?.typography?.fontMono,
+    }
+    const value = fontMap[type]
+    if (!value) {
+      return undefined
+    }
+    // Add fallback fonts based on type
+    const fallbacks = {
+      body: 'system-ui, sans-serif',
+      heading: 'system-ui, sans-serif',
+      mono: 'monospace',
+    }
+    return `"${getFontLabel(value)}", ${fallbacks[type]}`
+  }
+
   return (
     <div className="flex flex-1">
       <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 bg-white p-4 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
-        <h1 className="text-3xl font-bold mb-8">Typography</h1>
+        <h1 className="text-3xl font-bold mb-8" style={getStyles('heading')}>
+          {getSectionTitle('typography')}
+        </h1>
 
-        <div className="space-y-8">
+        <div className="space-y-12">
+          {/* Font Family Display */}
           <section>
-            <h2 className="text-xl font-semibold mb-4">Font Families</h2>
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Body Font</label>
-                <select className="w-full p-2 border rounded">
-                  <option>Inter (Google)</option>
-                  <option>Poppins (Google)</option>
-                  <option>Fira Code (Google)</option>
-                </select>
-                <p className="text-sm text-gray-500">Font family for body text</p>
+            <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+              {getSectionTitle('fontFamilies')}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <h3
+                  className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+                  style={getStyles('heading')}
+                >
+                  {getSectionTitle('bodyFont')}
+                </h3>
+                <p className="mt-1 text-2xl" style={getStyles('body')}>
+                  {getFontLabel(themeData?.typography?.fontBody) || 'Inter'}
+                </p>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Heading Font</label>
-                <select className="w-full p-2 border rounded">
-                  <option>Poppins (Google)</option>
-                  <option>Inter (Google)</option>
-                  <option>Fira Code (Google)</option>
-                </select>
-                <p className="text-sm text-gray-500">Font family for headings</p>
+              <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <h3
+                  className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+                  style={getStyles('heading')}
+                >
+                  {getSectionTitle('headingFont')}
+                </h3>
+                <p className="mt-1 text-2xl" style={getStyles('heading')}>
+                  {getFontLabel(themeData?.typography?.fontHeading) || 'Poppins'}
+                </p>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Monospace Font</label>
-                <select className="w-full p-2 border rounded">
-                  <option>Fira Code (Google)</option>
-                  <option>Inter (Google)</option>
-                  <option>Poppins (Google)</option>
-                </select>
-                <p className="text-sm text-gray-500">Font family for monospace text (code)</p>
+              <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <h3
+                  className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+                  style={getStyles('heading')}
+                >
+                  {getSectionTitle('monoFont')}
+                </h3>
+                <p className="mt-1 text-2xl" style={getStyles('mono')}>
+                  {getFontLabel(themeData?.typography?.fontMono) || 'Fira Code'}
+                </p>
               </div>
             </div>
           </section>
 
-          <section>
-            <h2 className="text-xl font-semibold mb-4">Text Sizes</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">XS</label>
-                <input className="w-full p-2 border rounded" type="text" value="0.75rem" />
-                <p className="text-sm text-gray-500">Extra small text size</p>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">SM</label>
-                <input className="w-full p-2 border rounded" type="text" value="0.875rem" />
-                <p className="text-sm text-gray-500">Small text size</p>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Base</label>
-                <input className="w-full p-2 border rounded" type="text" value="1rem" />
-                <p className="text-sm text-gray-500">Base text size</p>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">LG</label>
-                <input className="w-full p-2 border rounded" type="text" value="1.125rem" />
-                <p className="text-sm text-gray-500">Large text size</p>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">XL</label>
-                <input className="w-full p-2 border rounded" type="text" value="1.25rem" />
-                <p className="text-sm text-gray-500">Extra large text size</p>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">2XL</label>
-                <input className="w-full p-2 border rounded" type="text" value="1.5rem" />
-                <p className="text-sm text-gray-500">2x large text size</p>
-              </div>
-            </div>
-          </section>
+          {/* Typography Scale */}
+          <section className="space-y-8">
+            <div>
+              <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+                {getSectionTitle('typographyScale')}
+              </h2>
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <h1
+                    className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+                    style={getStyles('heading')}
+                  >
+                    {getDirectionalText('heading')}
+                  </h1>
+                  <p style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'h1',
+                      getFontLabel(themeData?.typography?.fontHeading) || 'Poppins',
+                      themeData?.typography?.text3xl || '2.25rem',
+                      '800',
+                    )}
+                  </p>
+                </div>
 
-          <section>
-            <h2 className="text-xl font-semibold mb-4">Text Direction</h2>
-            <div className="space-y-2">
-              <select className="w-full p-2 border rounded">
-                <option>Auto (based on font)</option>
-                <option>Left to Right (LTR)</option>
-                <option>Right to Left (RTL)</option>
-              </select>
-              <p className="text-sm text-gray-500">Text direction for the website</p>
+                <div className="space-y-3">
+                  <h2
+                    className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0"
+                    style={getStyles('heading')}
+                  >
+                    {getDirectionalText('heading')}
+                  </h2>
+                  <p style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'h2',
+                      getFontLabel(themeData?.typography?.fontHeading) || 'Poppins',
+                      themeData?.typography?.text2xl || '1.875rem',
+                      '600',
+                    )}
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <p className="leading-7 [&:not(:first-child)]:mt-6" style={getStyles('body')}>
+                    {getDirectionalText('paragraph')}
+                  </p>
+                  <p style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'p',
+                      getFontLabel(themeData?.typography?.fontBody) || 'Inter',
+                      themeData?.typography?.textBase || '1rem',
+                      '400',
+                    )}
+                  </p>
+                </div>
+
+                {/* Code example with RTL container but LTR content */}
+                <div className="space-y-3" dir="rtl">
+                  <div className="text-left" dir="ltr">
+                    <code className="relative rounded bg-neutral-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold dark:bg-neutral-800">
+                      npm install @acme/api-client
+                    </code>
+                  </div>
+                  <p style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'code',
+                      getFontLabel(themeData?.typography?.fontMono) || 'Fira Code',
+                      themeData?.typography?.textSm || '0.875rem',
+                      '600',
+                    )}
+                  </p>
+                </div>
+
+                {/* Lead Paragraph Example */}
+                <section className="mt-8">
+                  <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+                    {getSectionTitle('leadParagraph')}
+                  </h2>
+                  <p
+                    className="text-xl text-neutral-700 dark:text-neutral-300"
+                    style={getStyles('body')}
+                  >
+                    {getLeadParagraphText()}
+                  </p>
+                </section>
+
+                {/* Large Text Example */}
+                <section className="mt-8">
+                  <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+                    {getSectionTitle('largeText')}
+                  </h2>
+                  <p
+                    className="text-lg text-neutral-700 dark:text-neutral-300"
+                    style={getStyles('body')}
+                  >
+                    {getLargeTextExample()}
+                  </p>
+                </section>
+              </div>
             </div>
           </section>
         </div>

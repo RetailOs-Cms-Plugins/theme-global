@@ -61,9 +61,9 @@ const ColorSwatch = ({ label, varName }: { label: string; varName: string }) => 
         title={hex}
       />
       <div className="flex flex-col">
-        <span className="font-mono text-xs text-gray-700">{label}</span>
-        <span className="font-mono text-xs text-gray-400">{varName}</span>
-        <span className="font-mono text-xs text-gray-900">{hex}</span>
+        <span className="font-mono text-sm text-gray-700">{label}</span>
+        <span className="font-mono text-sm text-gray-400">{varName}</span>
+        <span className="font-mono text-sm text-gray-900">{hex}</span>
       </div>
     </div>
   )

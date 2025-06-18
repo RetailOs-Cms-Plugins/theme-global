@@ -4,75 +4,75 @@ import React from 'react'
 const TYPOGRAPHY_ELEMENTS = [
   {
     name: 'h1',
-    label: 'Heading 1',
     className: 'text-4xl font-bold tracking-tight',
     description: 'Main page titles and hero sections',
+    label: 'Heading 1',
   },
   {
     name: 'h2',
-    label: 'Heading 2',
     className: 'text-3xl font-semibold tracking-tight',
     description: 'Section headers and major content divisions',
+    label: 'Heading 2',
   },
   {
     name: 'h3',
-    label: 'Heading 3',
     className: 'text-2xl font-semibold tracking-tight',
     description: 'Subsection headers and content grouping',
+    label: 'Heading 3',
   },
   {
     name: 'h4',
-    label: 'Heading 4',
     className: 'text-xl font-semibold tracking-tight',
     description: 'Minor section headers and emphasis',
+    label: 'Heading 4',
   },
   {
     name: 'h5',
-    label: 'Heading 5',
     className: 'text-lg font-medium tracking-tight',
     description: 'Small section headers and list titles',
+    label: 'Heading 5',
   },
   {
     name: 'h6',
-    label: 'Heading 6',
     className: 'text-base font-medium tracking-tight',
     description: 'Smallest headers and inline emphasis',
+    label: 'Heading 6',
   },
   {
     name: 'body',
-    label: 'Body Text',
     className: 'text-base leading-relaxed',
     description: 'Main content and readable text',
+    label: 'Body Text',
   },
   {
     name: 'small',
-    label: 'Small Text',
     className: 'text-sm leading-relaxed',
     description: 'Captions, metadata, and secondary information',
+    label: 'Small Text',
   },
   {
     name: 'muted',
-    label: 'Muted Text',
     className: 'text-sm text-muted-foreground leading-relaxed',
     description: 'Subtle text for less important information',
+    label: 'Muted Text',
   },
   {
     name: 'lead',
-    label: 'Lead Paragraph',
     className: 'text-xl leading-relaxed',
     description: 'Introductory paragraphs and summaries',
+    label: 'Lead Paragraph',
   },
   {
     name: 'large',
-    label: 'Large Text',
     className: 'text-lg leading-relaxed',
     description: 'Emphasized body text and highlights',
+    label: 'Large Text',
   },
   {
     name: 'code',
-    label: 'Inline Code',
     className: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
     description: 'Code snippets and technical terms',
+    label: 'Inline Code',
   },
 ]
 
@@ -89,7 +89,7 @@ const TypographyPreview = () => {
         </h3>
         <div className="space-y-6">
           {TYPOGRAPHY_ELEMENTS.map((element) => (
-            <div key={element.name} className="border rounded-lg p-4 bg-white/80 shadow-sm">
+            <div className="border rounded-lg p-4 bg-white/80 shadow-sm" key={element.name}>
               <div className="flex items-start justify-between mb-2">
                 <div className="flex flex-col">
                   <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
@@ -196,8 +196,8 @@ const TypographyPreview = () => {
             { name: '--line-height-relaxed', label: 'Relaxed Line Height' },
           ].map((fontVar) => (
             <div
-              key={fontVar.name}
               className="flex items-center gap-4 p-3 rounded border bg-white/80 shadow-sm"
+              key={fontVar.name}
             >
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-700">{fontVar.label}</span>

@@ -43,7 +43,7 @@ const DEFAULT_THEME: ThemeConfig = {
   primary200: '#e9d5ff',
   primary300: '#d8b4fe',
   primary400: '#c084fc',
-  primary500: '#a855f7',
+  primary500: 'var(--color-primary-500)',
   primary600: '#9333ea',
   primary700: '#7e22ce',
   primary800: '#6d28d9',
@@ -53,7 +53,7 @@ const DEFAULT_THEME: ThemeConfig = {
   secondary100: '#e0f2fe',
   secondary200: '#bae6fd',
   secondary300: '#7dd3fc',
-  secondary400: '#38bdf8',
+  secondary400: 'var(--color-secondary-400)',
   secondary500: '#0ea5e9',
   secondary600: '#0284c7',
   secondary700: '#0369a1',
@@ -337,10 +337,10 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
             <div className={styles.section}>
               <div className={styles.sectionHeader}>
                 <h3 className={styles.sectionTitle}>
-                  <span aria-label="Primitive Colors" role="img">
+                  <span aria-label="Theme Colors" role="img">
                     🎨
                   </span>
-                  Primitive Colors
+                  Theme Colors
                 </h3>
                 <ThemeSelector onChange={handleThemeChange} value={currentTheme} />
               </div>

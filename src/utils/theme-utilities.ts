@@ -22,8 +22,14 @@ export async function getThemeFromPayload(
     const rawTheme = await payload.findGlobal({ slug: globalSlug })
 
     // Generate color palettes from the primary and secondary colors
-    const primaryPalette = generateColorScale(rawTheme?.colorPrimary || '#a855f7', 'primary')
-    const secondaryPalette = generateColorScale(rawTheme?.colorSecondary || '#0ea5e9', 'secondary')
+    const primaryPalette = generateColorScale(
+      rawTheme?.colorPrimary || 'var(--color-primary-500)',
+      'primary',
+    )
+    const secondaryPalette = generateColorScale(
+      rawTheme?.colorSecondary || 'var(--color-secondary-500)',
+      'secondary',
+    )
 
     const themeData: ThemeData = {
       // Primitives - use generated palette

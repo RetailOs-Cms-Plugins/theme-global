@@ -73,18 +73,33 @@ const page = () => {
   return (
     <div className="max-w-4xl mx-auto py-10 px-4">
       <h1 className="text-3xl font-bold mb-8">Theme Color System</h1>
-      {/* Primitives */}
-      <section className="mb-12">
+
+      {/* Semantic */}
+      <section>
         <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-          <span aria-label="Primitive Colors" role="img">
+          <span aria-label="Semantic Colors" role="img">
+            ⚔️
+          </span>{' '}
+          Website Colors
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {SEMANTIC_COLORS.map((f) => (
+            <ColorSwatch key={f.name} label={f.label} varName={f.name} />
+          ))}
+        </div>
+      </section>
+      {/* Primitives */}
+      <section className="my-12">
+        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+          <span aria-label="Theme Colors" role="img">
             🎨
           </span>{' '}
-          Primitive Color Variables
+          Theme Colors
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h3 className="font-semibold mb-2">Primary Scale</h3>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               {PRIMITIVE_PRIMARY.map((f) => (
                 <ColorSwatch key={f.name} label={f.label} varName={f.name} />
               ))}
@@ -92,26 +107,12 @@ const page = () => {
           </div>
           <div>
             <h3 className="font-semibold mb-2">Secondary Scale</h3>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               {PRIMITIVE_SECONDARY.map((f) => (
                 <ColorSwatch key={f.name} label={f.label} varName={f.name} />
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      {/* Semantic */}
-      <section>
-        <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-          <span aria-label="Semantic Colors" role="img">
-            ⚔️
-          </span>{' '}
-          Semantic Color Variables
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {SEMANTIC_COLORS.map((f) => (
-            <ColorSwatch key={f.name} label={f.label} varName={f.name} />
-          ))}
         </div>
       </section>
     </div>

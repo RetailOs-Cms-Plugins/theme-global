@@ -4,9 +4,10 @@ import type { JSONFieldClient } from 'payload'
 import React, { useState } from 'react'
 
 import type { ThemeConfig } from '../../types/index.js'
+import type { TailwindTheme } from '../../utils/color-palette/color-palette'
 
 import { ColorInput, TypographySelector } from '../../components/theme/index.js'
-import { generateColorScale } from '../../utils/color-palette/color-palette'
+import { generateColorScale, TAILWIND_THEMES } from '../../utils/color-palette/color-palette'
 import styles from './Component.module.css'
 
 interface ThemeComponentProps extends JSONFieldClient {
@@ -126,6 +127,28 @@ const SEMANTIC_FIELDS: Array<{ label: string; name: keyof ThemeConfig }> = [
   { name: 'textOnPage', label: 'Text on Page' },
 ]
 
+// Add theme selector component
+const ThemeSelector: React.FC<{
+  onChange: (theme: TailwindTheme) => void
+  value: TailwindTheme
+}> = ({ onChange, value }) => {
+  return (
+    <div className={styles.themeSelector}>
+      <select
+        className={styles.themeSelect}
+        onChange={(e) => onChange(e.target.value as TailwindTheme)}
+        value={value}
+      >
+        {Object.entries(TAILWIND_THEMES).map(([key, theme]) => (
+          <option key={key} value={key}>
+            {key.charAt(0).toUpperCase() + key.slice(1)}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
 /**
  * ThemeComponent - Main component for theme configuration in Payload admin
  * Provides interface for managing colors and typography settings
@@ -137,8 +160,8 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
   value = DEFAULT_THEME,
   ...props
 }) => {
-  console.log('🚀 ~ Component.tsx:66 ~ props:', props)
   const [activeTab, setActiveTab] = useState<'colors' | 'typography'>('colors')
+  const [currentTheme, setCurrentTheme] = useState<TailwindTheme>('default')
 
   /**
    * Updates the theme configuration and calls onChange
@@ -157,6 +180,58 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
         )
       }
     })
+  }
+
+  /**
+   * Handles theme selection change
+   */
+  const handleThemeChange = (theme: TailwindTheme) => {
+    setCurrentTheme(theme)
+    const selectedTheme = TAILWIND_THEMES[theme]
+
+    // Generate primary color palette
+    const primaryPalette = generateColorScale(selectedTheme.primary, 'primary')
+    const primaryUpdates: Partial<ThemeConfig> = {
+      colorPrimary: selectedTheme.primary,
+      primary50: primaryPalette['--color-primary-50'],
+      primary100: primaryPalette['--color-primary-100'],
+      primary200: primaryPalette['--color-primary-200'],
+      primary300: primaryPalette['--color-primary-300'],
+      primary400: primaryPalette['--color-primary-400'],
+      primary500: primaryPalette['--color-primary-500'],
+      primary600: primaryPalette['--color-primary-600'],
+      primary700: primaryPalette['--color-primary-700'],
+      primary800: primaryPalette['--color-primary-800'],
+      primary900: primaryPalette['--color-primary-900'],
+      primary950: primaryPalette['--color-primary-950'],
+    }
+
+    // Generate secondary color palette
+    const secondaryPalette = generateColorScale(selectedTheme.secondary, 'secondary')
+    const secondaryUpdates: Partial<ThemeConfig> = {
+      colorSecondary: selectedTheme.secondary,
+      secondary50: secondaryPalette['--color-secondary-50'],
+      secondary100: secondaryPalette['--color-secondary-100'],
+      secondary200: secondaryPalette['--color-secondary-200'],
+      secondary300: secondaryPalette['--color-secondary-300'],
+      secondary400: secondaryPalette['--color-secondary-400'],
+      secondary500: secondaryPalette['--color-secondary-500'],
+      secondary600: secondaryPalette['--color-secondary-600'],
+      secondary700: secondaryPalette['--color-secondary-700'],
+      secondary800: secondaryPalette['--color-secondary-800'],
+      secondary900: secondaryPalette['--color-secondary-900'],
+      secondary950: secondaryPalette['--color-secondary-950'],
+    }
+
+    // Update both palettes
+    updateTheme({ ...primaryUpdates, ...secondaryUpdates })
+
+    // Update CSS variables
+    document.documentElement.style.setProperty('--color-primary', selectedTheme.primary)
+    document.documentElement.style.setProperty('--color-secondary', selectedTheme.secondary)
+
+    // Dispatch theme update event
+    window.dispatchEvent(new Event('theme-update'))
   }
 
   /**
@@ -183,6 +258,8 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
       updateTheme(updates)
       // Update color-primary CSS variable
       document.documentElement.style.setProperty('--color-primary', color)
+      // Dispatch theme update event
+      window.dispatchEvent(new Event('theme-update'))
     } else if (name === 'colorSecondary') {
       // Generate secondary color palette from the new secondary color
       const secondaryPalette = generateColorScale(color, 'secondary')
@@ -203,8 +280,12 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
       updateTheme(updates)
       // Update color-secondary CSS variable
       document.documentElement.style.setProperty('--color-secondary', color)
+      // Dispatch theme update event
+      window.dispatchEvent(new Event('theme-update'))
     } else {
       updateTheme({ [name]: color })
+      // Dispatch theme update event
+      window.dispatchEvent(new Event('theme-update'))
     }
   }
 
@@ -254,12 +335,15 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
         {activeTab === 'colors' && (
           <div className={styles.colorsTab}>
             <div className={styles.section}>
-              <h3 className={styles.sectionTitle}>
-                <span aria-label="Primitive Colors" role="img">
-                  🎨
-                </span>
-                Primitive Colors
-              </h3>
+              <div className={styles.sectionHeader}>
+                <h3 className={styles.sectionTitle}>
+                  <span aria-label="Primitive Colors" role="img">
+                    🎨
+                  </span>
+                  Primitive Colors
+                </h3>
+                <ThemeSelector onChange={handleThemeChange} value={currentTheme} />
+              </div>
               <div className={styles.colorGrid}>
                 {PRIMITIVE_FIELDS.map((f) => (
                   <ColorInput

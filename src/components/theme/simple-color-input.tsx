@@ -44,7 +44,7 @@ const SimpleColorInput: TextFieldClientComponent = ({ field, path }) => {
           value={localValue || '#000000'}
         />
       </div>
-      <div className={styles.simplyColorColorContainer}>
+      <div className={styles.simplyTextInputContainer}>
         <label htmlFor={`${path}-text`}>{`${field?.label}` || ''}</label>
         <input
           className={styles.simpleColorTextInput}

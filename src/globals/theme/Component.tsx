@@ -151,7 +151,10 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
     // Update CSS variables in real-time
     Object.entries(updates).forEach(([key, val]) => {
       if (typeof val === 'string' && val.startsWith('#')) {
-        document.documentElement.style.setProperty(`--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`, val)
+        document.documentElement.style.setProperty(
+          `--${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`,
+          val,
+        )
       }
     })
   }

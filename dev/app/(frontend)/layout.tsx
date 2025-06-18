@@ -1,25 +1,24 @@
 import { getTheme } from 'app/actions/theme.actions'
 
+import { FontHead } from '../../../src/components/theme/font-head'
 import './global.css'
 
-async function rootLayout({ children }: { children: React.ReactNode }) {
-  const cssVariables = await getTheme()
-
-  console.log('🚀 ~ layout.tsx:39 ~ rootLayout ~ cssVariables:', cssVariables)
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const { cssVariables, fontCSS, themeData } = await getTheme()
 
   return (
     <html
       className="font-family"
-      dir={(cssVariables as any)['--theme-font-direction']}
+      dir={(cssVariables as any)['--theme-font-direction'] as string}
       lang="en"
       style={cssVariables}
       suppressHydrationWarning
     >
-      <body>
-        <div>{children}</div>
-      </body>
+      <head>
+        <FontHead fontName={themeData.typography.fontFamily} />
+        {fontCSS && <style dangerouslySetInnerHTML={{ __html: fontCSS }} />}
+      </head>
+      <body>{children}</body>
     </html>
   )
 }
-
-export default rootLayout

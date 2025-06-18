@@ -303,22 +303,158 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface ThemeConfig {
   id: number;
   /**
-   * The primary brand color used throughout the theme
+   * Input field background color
    */
-  primaryColor: string;
-  /**
-   * The secondary brand color for accents and highlights
-   */
-  secondaryColor?: string | null;
+  primary50?: string | null;
+  primary100?: string | null;
+  primary200?: string | null;
+  primary300?: string | null;
+  primary400?: string | null;
+  primary500?: string | null;
+  primary600?: string | null;
+  primary700?: string | null;
+  primary800?: string | null;
+  primary900?: string | null;
+  primary950?: string | null;
+  secondary50?: string | null;
+  secondary100?: string | null;
+  secondary200?: string | null;
+  secondary300?: string | null;
+  secondary400?: string | null;
+  secondary500?: string | null;
+  secondary600?: string | null;
+  secondary700?: string | null;
+  secondary800?: string | null;
+  secondary900?: string | null;
+  secondary950?: string | null;
+  colorPrimary?: string | null;
+  textOnPrimary?: string | null;
+  colorSecondary?: string | null;
+  textOnSecondary?: string | null;
+  cardBackground?: string | null;
+  textOnCard?: string | null;
+  pageBackground?: string | null;
+  textOnPage?: string | null;
   typography?: {
     /**
-     * Choose a font that supports your content language
+     * Font family for body text
      */
-    fontFamily?: ('' | 'alef-hebrew' | 'asimon-hebrew' | 'frank-ruhl-libre' | 'noto-sans-hebrew' | 'inter') | null;
+    fontBody?:
+      | (
+          | 'asimon-hebrew'
+          | 'frank-ruhl-libre'
+          | 'noto-sans-hebrew'
+          | 'noto-serif-hebrew'
+          | 'noto-rashi-hebrew'
+          | 'heebo'
+          | 'rubik'
+          | 'assistant'
+          | 'secular-one'
+          | 'suez-one'
+          | 'alef'
+          | 'miriam-libre'
+          | 'inter'
+          | 'manrope'
+          | 'dm-sans'
+          | 'nunito'
+          | 'epilogue'
+          | 'mulish'
+          | 'lexend'
+          | 'public-sans'
+          | 'jost'
+          | 'sora'
+          | 'poppins'
+        )
+      | null;
+    /**
+     * Font family for headings
+     */
+    fontHeading?:
+      | (
+          | 'asimon-hebrew'
+          | 'frank-ruhl-libre'
+          | 'noto-sans-hebrew'
+          | 'noto-serif-hebrew'
+          | 'noto-rashi-hebrew'
+          | 'heebo'
+          | 'rubik'
+          | 'assistant'
+          | 'secular-one'
+          | 'suez-one'
+          | 'alef'
+          | 'miriam-libre'
+          | 'inter'
+          | 'manrope'
+          | 'dm-sans'
+          | 'nunito'
+          | 'epilogue'
+          | 'mulish'
+          | 'lexend'
+          | 'public-sans'
+          | 'jost'
+          | 'sora'
+          | 'poppins'
+        )
+      | null;
+    /**
+     * Font family for monospace text (code)
+     */
+    fontMono?: ('fira-code' | 'jetbrains-mono' | 'source-code-pro' | 'ibm-plex-mono' | 'roboto-mono') | null;
+    /**
+     * Extra small text size
+     */
+    textXs?: string | null;
+    /**
+     * Small text size
+     */
+    textSm?: string | null;
+    /**
+     * Base text size
+     */
+    textBase?: string | null;
+    /**
+     * Large text size
+     */
+    textLg?: string | null;
+    /**
+     * Extra large text size
+     */
+    textXl?: string | null;
+    /**
+     * 2X large text size
+     */
+    text2xl?: string | null;
+    /**
+     * 3X large text size
+     */
+    text3xl?: string | null;
+    /**
+     * 4X large text size
+     */
+    text4xl?: string | null;
     direction?: ('auto' | 'ltr' | 'rtl') | null;
-    fontSize?: {
-      base?: string | null;
-    };
+  };
+  spacing?: {
+    /**
+     * Extra small spacing
+     */
+    spacingXs?: string | null;
+    /**
+     * Small spacing
+     */
+    spacingSm?: string | null;
+    /**
+     * Medium spacing
+     */
+    spacingMd?: string | null;
+    /**
+     * Large spacing
+     */
+    spacingLg?: string | null;
+    /**
+     * Extra large spacing
+     */
+    spacingXl?: string | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -328,18 +464,60 @@ export interface ThemeConfig {
  * via the `definition` "theme-config_select".
  */
 export interface ThemeConfigSelect<T extends boolean = true> {
-  primaryColor?: T;
-  secondaryColor?: T;
+  primary50?: T;
+  primary100?: T;
+  primary200?: T;
+  primary300?: T;
+  primary400?: T;
+  primary500?: T;
+  primary600?: T;
+  primary700?: T;
+  primary800?: T;
+  primary900?: T;
+  primary950?: T;
+  secondary50?: T;
+  secondary100?: T;
+  secondary200?: T;
+  secondary300?: T;
+  secondary400?: T;
+  secondary500?: T;
+  secondary600?: T;
+  secondary700?: T;
+  secondary800?: T;
+  secondary900?: T;
+  secondary950?: T;
+  colorPrimary?: T;
+  textOnPrimary?: T;
+  colorSecondary?: T;
+  textOnSecondary?: T;
+  cardBackground?: T;
+  textOnCard?: T;
+  pageBackground?: T;
+  textOnPage?: T;
   typography?:
     | T
     | {
-        fontFamily?: T;
+        fontBody?: T;
+        fontHeading?: T;
+        fontMono?: T;
+        textXs?: T;
+        textSm?: T;
+        textBase?: T;
+        textLg?: T;
+        textXl?: T;
+        text2xl?: T;
+        text3xl?: T;
+        text4xl?: T;
         direction?: T;
-        fontSize?:
-          | T
-          | {
-              base?: T;
-            };
+      };
+  spacing?:
+    | T
+    | {
+        spacingXs?: T;
+        spacingSm?: T;
+        spacingMd?: T;
+        spacingLg?: T;
+        spacingXl?: T;
       };
   updatedAt?: T;
   createdAt?: T;

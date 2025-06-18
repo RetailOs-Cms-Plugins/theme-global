@@ -1,7 +1,7 @@
 import type { TypographyConfig } from './index'
 
 export interface FontSource {
-  fallbacks: string[]
+  // fallbacks: string[]
   files?: {
     ttf?: string
     woff?: string

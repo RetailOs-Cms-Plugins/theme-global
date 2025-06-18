@@ -42,10 +42,12 @@ const colorPicker = (props: ColorPickerProps): ColorPickerField => {
     label: label || name,
     required: required || false,
     validate: (value: null | string | undefined) => {
-      if (value && !/^#(?:[A-F0-9]{6}|[A-F0-9]{3})$/i.test(value)) {
-        return 'Please enter a valid hex color (e.g., #FF0000 or #F00)'
-      }
-      return true
+      if (!value) return true
+      // Allow CSS variables
+      if (value.startsWith('var(--') && value.endsWith(')')) return true
+      // Allow hex colors
+      if (/^#(?:[A-F0-9]{6}|[A-F0-9]{3})$/i.test(value)) return true
+      return 'Please enter a valid hex color (e.g., #FF0000) or CSS variable (e.g., var(--color-primary-500))'
     },
   }
 }

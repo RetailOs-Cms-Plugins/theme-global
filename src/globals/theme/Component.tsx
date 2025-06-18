@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import type { ThemeConfig } from '../../types/index.js'
 
 import { ColorInput, TypographySelector } from '../../components/theme/index.js'
+import { generateColorScale } from '../../utils/color-palette/color-palette'
 import styles from './Component.module.css'
 
 interface ThemeComponentProps extends JSONFieldClient {
@@ -153,7 +154,26 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
    * Handles color changes for any color variable
    */
   const handleColorChange = (name: keyof ThemeConfig, color: string) => {
-    updateTheme({ [name]: color })
+    if (name === 'colorPrimary') {
+      // Generate primary color palette from the new primary color
+      const primaryPalette = generateColorScale(color, 'primary')
+      const updates: Partial<ThemeConfig> = {
+        colorPrimary: color,
+        primary50: primaryPalette['--color-primary-50'],
+        primary100: primaryPalette['--color-primary-100'],
+        primary200: primaryPalette['--color-primary-200'],
+        primary300: primaryPalette['--color-primary-300'],
+        primary400: primaryPalette['--color-primary-400'],
+        primary500: primaryPalette['--color-primary-500'],
+        primary600: primaryPalette['--color-primary-600'],
+        primary700: primaryPalette['--color-primary-700'],
+        primary800: primaryPalette['--color-primary-800'],
+        primary900: primaryPalette['--color-primary-900'],
+      }
+      updateTheme(updates)
+    } else {
+      updateTheme({ [name]: color })
+    }
   }
 
   /**

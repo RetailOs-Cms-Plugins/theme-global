@@ -302,6 +302,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface ThemeConfig {
   id: number;
+  /**
+   * Input field background color
+   */
   primary50?: string | null;
   primary100?: string | null;
   primary200?: string | null;
@@ -332,90 +335,6 @@ export interface ThemeConfig {
   textOnCard?: string | null;
   pageBackground?: string | null;
   textOnPage?: string | null;
-  /**
-   * Main background color (HSL format: h s% l%)
-   */
-  background: string;
-  /**
-   * Main text color (HSL format: h s% l%)
-   */
-  foreground: string;
-  /**
-   * Primary brand color (HSL format: h s% l%)
-   */
-  basePrimary: string;
-  /**
-   * Text color for primary backgrounds
-   */
-  basePrimaryForeground?: string | null;
-  /**
-   * Secondary brand color (HSL format: h s% l%)
-   */
-  baseSecondary?: string | null;
-  /**
-   * Text color for secondary backgrounds
-   */
-  baseSecondaryForeground?: string | null;
-  /**
-   * Accent color for highlights (HSL format: h s% l%)
-   */
-  accent?: string | null;
-  /**
-   * Text color for accent backgrounds
-   */
-  accentForeground?: string | null;
-  /**
-   * Default border color (HSL format: h s% l%)
-   */
-  border?: string | null;
-  /**
-   * Input field background color
-   */
-  input?: string | null;
-  /**
-   * Border radius value (e.g., 0.5rem, 8px)
-   */
-  radius?: string | null;
-  /**
-   * Body background color (HSL format: h s% l%)
-   */
-  colorBodyBg?: string | null;
-  /**
-   * Surface/container background color
-   */
-  colorSurface?: string | null;
-  /**
-   * Card background color
-   */
-  additionalCardBg?: string | null;
-  /**
-   * Alternate section background color
-   */
-  colorSectionAlt?: string | null;
-  /**
-   * Body text color
-   */
-  colorTextBody?: string | null;
-  /**
-   * Heading text color
-   */
-  colorTextHeading?: string | null;
-  /**
-   * Muted text color
-   */
-  colorTextMuted?: string | null;
-  /**
-   * Inverse text color (for dark backgrounds)
-   */
-  colorTextInverse?: string | null;
-  /**
-   * Link text color
-   */
-  colorTextLink?: string | null;
-  /**
-   * Muted border color (HSL format: h s% l%)
-   */
-  colorBorderMuted?: string | null;
   typography?: {
     /**
      * Font family for body text
@@ -575,27 +494,6 @@ export interface ThemeConfigSelect<T extends boolean = true> {
   textOnCard?: T;
   pageBackground?: T;
   textOnPage?: T;
-  background?: T;
-  foreground?: T;
-  basePrimary?: T;
-  basePrimaryForeground?: T;
-  baseSecondary?: T;
-  baseSecondaryForeground?: T;
-  accent?: T;
-  accentForeground?: T;
-  border?: T;
-  input?: T;
-  radius?: T;
-  colorBodyBg?: T;
-  colorSurface?: T;
-  additionalCardBg?: T;
-  colorSectionAlt?: T;
-  colorTextBody?: T;
-  colorTextHeading?: T;
-  colorTextMuted?: T;
-  colorTextInverse?: T;
-  colorTextLink?: T;
-  colorBorderMuted?: T;
   typography?:
     | T
     | {

@@ -93,22 +93,38 @@ export async function getThemeFromPayload(
     // Instead of generating from user input, use the above primitives for now
     const cssVariables: Record<string, string> = {
       // Primitives
-      ...Object.fromEntries(
-        Object.entries(PRIMITIVE_PRIMARY).map(([k, v]) => [`--primary-${k}`, v]),
-      ),
-      ...Object.fromEntries(
-        Object.entries(PRIMITIVE_SECONDARY).map(([k, v]) => [`--secondary-${k}`, v]),
-      ),
+      '--primary-50': PRIMITIVE_PRIMARY[50],
+      '--primary-100': PRIMITIVE_PRIMARY[100],
+      '--primary-200': PRIMITIVE_PRIMARY[200],
+      '--primary-300': PRIMITIVE_PRIMARY[300],
+      '--primary-400': PRIMITIVE_PRIMARY[400],
+      '--primary-500': PRIMITIVE_PRIMARY[500],
+      '--primary-600': PRIMITIVE_PRIMARY[600],
+      '--primary-700': PRIMITIVE_PRIMARY[700],
+      '--primary-800': PRIMITIVE_PRIMARY[800],
+      '--primary-900': PRIMITIVE_PRIMARY[900],
+      '--primary-950': PRIMITIVE_PRIMARY[950],
+      '--secondary-50': PRIMITIVE_SECONDARY[50],
+      '--secondary-100': PRIMITIVE_SECONDARY[100],
+      '--secondary-200': PRIMITIVE_SECONDARY[200],
+      '--secondary-300': PRIMITIVE_SECONDARY[300],
+      '--secondary-400': PRIMITIVE_SECONDARY[400],
+      '--secondary-500': PRIMITIVE_SECONDARY[500],
+      '--secondary-600': PRIMITIVE_SECONDARY[600],
+      '--secondary-700': PRIMITIVE_SECONDARY[700],
+      '--secondary-800': PRIMITIVE_SECONDARY[800],
+      '--secondary-900': PRIMITIVE_SECONDARY[900],
+      '--secondary-950': PRIMITIVE_SECONDARY[950],
 
-      // Semantic
-      '--color-primary': PRIMITIVE_PRIMARY[200],
-      '--text-on-primary': '#ffffff',
-      '--color-secondary': PRIMITIVE_SECONDARY[400],
-      '--text-on-secondary': PRIMITIVE_SECONDARY[950],
+      // Semantic (alphabetically ordered)
       '--card-background': PRIMITIVE_PRIMARY[50],
-      '--text-on-card': PRIMITIVE_PRIMARY[950],
+      '--color-primary': PRIMITIVE_PRIMARY[200],
+      '--color-secondary': PRIMITIVE_SECONDARY[400],
       '--page-background': '#ffffff',
+      '--text-on-card': PRIMITIVE_PRIMARY[950],
       '--text-on-page': '#000000',
+      '--text-on-primary': '#ffffff',
+      '--text-on-secondary': PRIMITIVE_SECONDARY[950],
     }
 
     return {
@@ -121,22 +137,38 @@ export async function getThemeFromPayload(
     return {
       cssVariables: {
         // Primitives
-        ...Object.fromEntries(
-          Object.entries(PRIMITIVE_PRIMARY).map(([k, v]) => [`--primary-${k}`, v]),
-        ),
-        ...Object.fromEntries(
-          Object.entries(PRIMITIVE_SECONDARY).map(([k, v]) => [`--secondary-${k}`, v]),
-        ),
+        '--primary-50': PRIMITIVE_PRIMARY[50],
+        '--primary-100': PRIMITIVE_PRIMARY[100],
+        '--primary-200': PRIMITIVE_PRIMARY[200],
+        '--primary-300': PRIMITIVE_PRIMARY[300],
+        '--primary-400': PRIMITIVE_PRIMARY[400],
+        '--primary-500': PRIMITIVE_PRIMARY[500],
+        '--primary-600': PRIMITIVE_PRIMARY[600],
+        '--primary-700': PRIMITIVE_PRIMARY[700],
+        '--primary-800': PRIMITIVE_PRIMARY[800],
+        '--primary-900': PRIMITIVE_PRIMARY[900],
+        '--primary-950': PRIMITIVE_PRIMARY[950],
+        '--secondary-50': PRIMITIVE_SECONDARY[50],
+        '--secondary-100': PRIMITIVE_SECONDARY[100],
+        '--secondary-200': PRIMITIVE_SECONDARY[200],
+        '--secondary-300': PRIMITIVE_SECONDARY[300],
+        '--secondary-400': PRIMITIVE_SECONDARY[400],
+        '--secondary-500': PRIMITIVE_SECONDARY[500],
+        '--secondary-600': PRIMITIVE_SECONDARY[600],
+        '--secondary-700': PRIMITIVE_SECONDARY[700],
+        '--secondary-800': PRIMITIVE_SECONDARY[800],
+        '--secondary-900': PRIMITIVE_SECONDARY[900],
+        '--secondary-950': PRIMITIVE_SECONDARY[950],
 
-        // Semantic
-        '--color-primary': PRIMITIVE_PRIMARY[200],
-        '--text-on-primary': '#ffffff',
-        '--color-secondary': PRIMITIVE_SECONDARY[400],
-        '--text-on-secondary': PRIMITIVE_SECONDARY[950],
+        // Semantic (alphabetically ordered)
         '--card-background': PRIMITIVE_PRIMARY[50],
-        '--text-on-card': PRIMITIVE_PRIMARY[950],
+        '--color-primary': PRIMITIVE_PRIMARY[200],
+        '--color-secondary': PRIMITIVE_SECONDARY[400],
         '--page-background': '#ffffff',
+        '--text-on-card': PRIMITIVE_PRIMARY[950],
         '--text-on-page': '#000000',
+        '--text-on-primary': '#ffffff',
+        '--text-on-secondary': PRIMITIVE_SECONDARY[950],
       },
       fontCSS: '',
       themeData: {

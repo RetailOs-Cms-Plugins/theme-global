@@ -172,7 +172,7 @@ export const themeGlobal: GlobalConfig = {
                   fields: [
                     colorPicker({
                       name: 'colorPrimary',
-                      defaultValue: 'var(--primary-500, #a855f7)',
+                      defaultValue: '#a855f7',
                       label: 'Primary (Semantic)',
                       path: '../src/components/theme/simple-color-input',
                     }),
@@ -189,7 +189,7 @@ export const themeGlobal: GlobalConfig = {
                   fields: [
                     colorPicker({
                       name: 'colorSecondary',
-                      defaultValue: 'var(--secondary-500, #0ea5e9)',
+                      defaultValue: '#0ea5e9',
                       label: 'Secondary (Semantic)',
                       path: '../src/components/theme/simple-color-input',
                     }),
@@ -206,13 +206,13 @@ export const themeGlobal: GlobalConfig = {
                   fields: [
                     colorPicker({
                       name: 'cardBackground',
-                      defaultValue: 'var(--primary-50, #faf5ff)',
+                      defaultValue: '#faf5ff',
                       label: 'Card Background',
                       path: '../src/components/theme/simple-color-input',
                     }),
                     colorPicker({
                       name: 'textOnCard',
-                      defaultValue: 'var(--primary-950, #3b0764)',
+                      defaultValue: '#3b0764',
                       label: 'Text on Card',
                       path: '../src/components/theme/simple-color-input',
                     }),

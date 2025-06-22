@@ -27,34 +27,34 @@ const TYPOGRAPHY_ELEMENTS = [
     label: 'Heading 4',
   },
   {
-    name: 'h5',
-    className: 'text-lg font-medium tracking-tight',
-    description: 'Small section headers and list titles',
-    label: 'Heading 5',
-  },
-  {
-    name: 'h6',
-    className: 'text-base font-medium tracking-tight',
-    description: 'Smallest headers and inline emphasis',
-    label: 'Heading 6',
-  },
-  {
-    name: 'body',
+    name: 'p',
     className: 'text-base leading-relaxed',
     description: 'Main content and readable text',
-    label: 'Body Text',
+    label: 'Paragraph',
   },
   {
-    name: 'small',
-    className: 'text-sm leading-relaxed',
-    description: 'Captions, metadata, and secondary information',
-    label: 'Small Text',
+    name: 'blockquote',
+    className: 'mt-6 border-l-2 pl-6 italic',
+    description: 'Quotes and cited text',
+    label: 'Blockquote',
   },
   {
-    name: 'muted',
-    className: 'text-sm text-muted-foreground leading-relaxed',
-    description: 'Subtle text for less important information',
-    label: 'Muted Text',
+    name: 'table',
+    className: 'my-6 w-full',
+    description: 'Tabular data',
+    label: 'Table',
+  },
+  {
+    name: 'list',
+    className: 'my-6 ml-6 list-disc [&>li]:mt-2',
+    description: 'Unordered list items',
+    label: 'List',
+  },
+  {
+    name: 'code',
+    className: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
+    description: 'Code snippets and technical terms',
+    label: 'Inline Code',
   },
   {
     name: 'lead',
@@ -69,14 +69,39 @@ const TYPOGRAPHY_ELEMENTS = [
     label: 'Large Text',
   },
   {
-    name: 'code',
-    className: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
-    description: 'Code snippets and technical terms',
-    label: 'Inline Code',
+    name: 'small',
+    className: 'text-sm leading-relaxed',
+    description: 'Captions, metadata, and secondary information',
+    label: 'Small Text',
+  },
+  {
+    name: 'muted',
+    className: 'text-sm text-muted-foreground leading-relaxed',
+    description: 'Subtle text for less important information',
+    label: 'Muted Text',
   },
 ]
 
-const TypographyPreview = () => {
+interface TypographyPreviewProps {
+  bodyFont?: string
+  headingFont?: string
+}
+
+const TypographyPreview = ({ bodyFont, headingFont }: TypographyPreviewProps) => {
+  const getStyle = (elementName: string) => {
+    const isHeading = ['h1', 'h2', 'h3', 'h4'].includes(elementName)
+
+    if (isHeading && headingFont) {
+      return { fontFamily: headingFont }
+    }
+
+    if (bodyFont) {
+      return { fontFamily: bodyFont }
+    }
+
+    return {}
+  }
+
   return (
     <div className="space-y-8">
       {/* Typography Scale */}
@@ -89,7 +114,11 @@ const TypographyPreview = () => {
         </h3>
         <div className="space-y-6">
           {TYPOGRAPHY_ELEMENTS.map((element) => (
-            <div className="border rounded-lg p-4 bg-white/80 shadow-sm" key={element.name}>
+            <div
+              className="border rounded-lg p-4 bg-white/80 shadow-sm"
+              id={element.name}
+              key={element.name}
+            >
               <div className="flex items-start justify-between mb-2">
                 <div className="flex flex-col">
                   <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
@@ -101,15 +130,37 @@ const TypographyPreview = () => {
                   {element.className}
                 </span>
               </div>
-              <div className={element.className}>
+              <div className={element.className} style={getStyle(element.name)}>
                 {element.name === 'h1' && 'The quick brown fox jumps over the lazy dog'}
                 {element.name === 'h2' && 'The quick brown fox jumps over the lazy dog'}
                 {element.name === 'h3' && 'The quick brown fox jumps over the lazy dog'}
                 {element.name === 'h4' && 'The quick brown fox jumps over the lazy dog'}
-                {element.name === 'h5' && 'The quick brown fox jumps over the lazy dog'}
-                {element.name === 'h6' && 'The quick brown fox jumps over the lazy dog'}
-                {element.name === 'body' &&
+                {element.name === 'p' &&
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'}
+                {element.name === 'blockquote' &&
+                  '"This is a blockquote. It is used to offset text from the main content."'}
+                {element.name === 'table' && (
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr>
+                        <th className="border p-2">Header 1</th>
+                        <th className="border p-2">Header 2</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border p-2">Data 1</td>
+                        <td className="border p-2">Data 2</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                )}
+                {element.name === 'list' && (
+                  <ul>
+                    <li>List item one</li>
+                    <li>List item two</li>
+                  </ul>
+                )}
                 {element.name === 'small' && 'This is small text used for captions and metadata.'}
                 {element.name === 'muted' && 'This is muted text for less important information.'}
                 {element.name === 'lead' &&

@@ -15,7 +15,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <head>
-        <FontHead fontName={themeData.typography.fontFamily} />
+        {themeData.typography?.fontBody && <FontHead fontName={themeData.typography.fontBody} />}
+        {themeData.typography?.fontHeading && (
+          <FontHead fontName={themeData.typography.fontHeading} />
+        )}
         {fontCSS && <style dangerouslySetInnerHTML={{ __html: fontCSS }} />}
       </head>
       <body>{children}</body>

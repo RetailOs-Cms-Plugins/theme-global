@@ -93,158 +93,6 @@ export const themeGlobal: GlobalConfig = {
         {
           fields: [
             {
-              type: 'row',
-              fields: [
-                colorPicker({
-                  name: 'primary50',
-                  admin: {
-                    description: 'Input field background color',
-                    width: '100%',
-                  },
-                  defaultValue: 'var(--color-primary-50)',
-                  label: 'Primary 50',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary100',
-                  defaultValue: 'var(--color-primary-100)',
-                  label: 'Primary 100',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary200',
-                  defaultValue: 'var(--color-primary-200)',
-                  label: 'Primary 200',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary300',
-                  defaultValue: 'var(--color-primary-300)',
-                  label: 'Primary 300',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary400',
-                  defaultValue: 'var(--color-primary-400)',
-                  label: 'Primary 400',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary500',
-                  defaultValue: 'var(--color-primary-500)',
-                  label: 'Primary 500',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary600',
-                  defaultValue: '#9333ea',
-                  label: 'Primary 600',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary700',
-                  defaultValue: '#7e22ce',
-                  label: 'Primary 700',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary800',
-                  defaultValue: '#6b21a8',
-                  label: 'Primary 800',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary900',
-                  defaultValue: '#581c87',
-                  label: 'Primary 900',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'primary950',
-                  defaultValue: '#3b0764',
-                  label: 'Primary 950',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-              ],
-            },
-            {
-              type: 'row',
-              fields: [
-                colorPicker({
-                  name: 'secondary50',
-                  defaultValue: '#f0f9ff',
-                  label: 'Secondary 50',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary100',
-                  defaultValue: '#e0f2fe',
-                  label: 'Secondary 100',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary200',
-                  defaultValue: 'var(--color-secondary-200)',
-                  label: 'Secondary 200',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary300',
-                  defaultValue: 'var(--color-secondary-300)',
-                  label: 'Secondary 300',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary400',
-                  defaultValue: 'var(--color-secondary-400)',
-                  label: 'Secondary 400',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary500',
-                  defaultValue: '#0ea5e9',
-                  label: 'Secondary 500',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary600',
-                  defaultValue: '#0284c7',
-                  label: 'Secondary 600',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary700',
-                  defaultValue: '#0369a1',
-                  label: 'Secondary 700',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary800',
-                  defaultValue: '#075985',
-                  label: 'Secondary 800',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary900',
-                  defaultValue: '#0c4a6e',
-                  label: 'Secondary 900',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-                colorPicker({
-                  name: 'secondary950',
-                  defaultValue: '#082f49',
-                  label: 'Secondary 950',
-                  path: '../src/components/theme/simple-color-input',
-                }),
-              ],
-            },
-          ],
-          label: 'Theme Colors',
-        },
-
-        {
-          fields: [
-            {
               name: 'typography',
               type: 'group',
               fields: [
@@ -329,102 +177,6 @@ export const themeGlobal: GlobalConfig = {
                   label: 'Font Families',
                 },
                 {
-                  type: 'collapsible',
-                  fields: [
-                    {
-                      type: 'row',
-                      fields: [
-                        {
-                          name: 'textXs',
-                          type: 'text',
-                          admin: {
-                            description: 'Extra small text size',
-                            width: '25%',
-                          },
-                          defaultValue: '0.75rem',
-                          label: 'XS',
-                        },
-                        {
-                          name: 'textSm',
-                          type: 'text',
-                          admin: {
-                            description: 'Small text size',
-                            width: '25%',
-                          },
-                          defaultValue: '0.875rem',
-                          label: 'SM',
-                        },
-                        {
-                          name: 'textBase',
-                          type: 'text',
-                          admin: {
-                            description: 'Base text size',
-                            width: '25%',
-                          },
-                          defaultValue: '1rem',
-                          label: 'Base',
-                        },
-                        {
-                          name: 'textLg',
-                          type: 'text',
-                          admin: {
-                            description: 'Large text size',
-                            width: '25%',
-                          },
-                          defaultValue: '1.125rem',
-                          label: 'LG',
-                        },
-                      ],
-                    },
-                    {
-                      type: 'row',
-                      fields: [
-                        {
-                          name: 'textXl',
-                          type: 'text',
-                          admin: {
-                            description: 'Extra large text size',
-                            width: '25%',
-                          },
-                          defaultValue: '1.25rem',
-                          label: 'XL',
-                        },
-                        {
-                          name: 'text2xl',
-                          type: 'text',
-                          admin: {
-                            description: '2X large text size',
-                            width: '25%',
-                          },
-                          defaultValue: '1.5rem',
-                          label: '2XL',
-                        },
-                        {
-                          name: 'text3xl',
-                          type: 'text',
-                          admin: {
-                            description: '3X large text size',
-                            width: '25%',
-                          },
-                          defaultValue: '1.875rem',
-                          label: '3XL',
-                        },
-                        {
-                          name: 'text4xl',
-                          type: 'text',
-                          admin: {
-                            description: '4X large text size',
-                            width: '25%',
-                          },
-                          defaultValue: '2.25rem',
-                          label: '4XL',
-                        },
-                      ],
-                    },
-                  ],
-                  label: 'Text Sizes',
-                },
-                {
                   name: 'direction',
                   type: 'select',
                   defaultValue: 'auto',
@@ -434,6 +186,424 @@ export const themeGlobal: GlobalConfig = {
                     { label: 'Left to Right', value: 'ltr' },
                     { label: 'Right to Left', value: 'rtl' },
                   ],
+                },
+                {
+                  type: 'collapsible',
+                  fields: [
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'h1',
+                          type: 'group',
+                          admin: {
+                            description: 'Heading 1 typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for H1',
+                              },
+                              defaultValue: '2.25rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for H1',
+                              },
+                              defaultValue: '2.5rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'H1',
+                        },
+                        {
+                          name: 'h2',
+                          type: 'group',
+                          admin: {
+                            description: 'Heading 2 typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for H2',
+                              },
+                              defaultValue: '1.875rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for H2',
+                              },
+                              defaultValue: '2.25rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'H2',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'h3',
+                          type: 'group',
+                          admin: {
+                            description: 'Heading 3 typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for H3',
+                              },
+                              defaultValue: '1.5rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for H3',
+                              },
+                              defaultValue: '2rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'H3',
+                        },
+                        {
+                          name: 'h4',
+                          type: 'group',
+                          admin: {
+                            description: 'Heading 4 typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for H4',
+                              },
+                              defaultValue: '1.25rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for H4',
+                              },
+                              defaultValue: '1.75rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'H4',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'p',
+                          type: 'group',
+                          admin: {
+                            description: 'Paragraph typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for paragraphs',
+                              },
+                              defaultValue: '1rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for paragraphs',
+                              },
+                              defaultValue: '1.5rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Paragraph',
+                        },
+                        {
+                          name: 'blockquote',
+                          type: 'group',
+                          admin: {
+                            description: 'Blockquote typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for blockquotes',
+                              },
+                              defaultValue: '1.125rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for blockquotes',
+                              },
+                              defaultValue: '1.75rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Blockquote',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'table',
+                          type: 'group',
+                          admin: {
+                            description: 'Table typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for tables',
+                              },
+                              defaultValue: '1rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for tables',
+                              },
+                              defaultValue: '1.5rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Table',
+                        },
+                        {
+                          name: 'list',
+                          type: 'group',
+                          admin: {
+                            description: 'List typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for lists',
+                              },
+                              defaultValue: '1rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for lists',
+                              },
+                              defaultValue: '1.75rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'List',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'inlineCode',
+                          type: 'group',
+                          admin: {
+                            description: 'Inline code typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for inline code',
+                              },
+                              defaultValue: '0.875rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for inline code',
+                              },
+                              defaultValue: '1.25rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Inline Code',
+                        },
+                        {
+                          name: 'lead',
+                          type: 'group',
+                          admin: {
+                            description: 'Lead paragraph typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for lead paragraphs',
+                              },
+                              defaultValue: '1.25rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for lead paragraphs',
+                              },
+                              defaultValue: '1.75rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Lead',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'large',
+                          type: 'group',
+                          admin: {
+                            description: 'Large text typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for large text',
+                              },
+                              defaultValue: '1.125rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for large text',
+                              },
+                              defaultValue: '1.75rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Large',
+                        },
+                        {
+                          name: 'small',
+                          type: 'group',
+                          admin: {
+                            description: 'Small text typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for small text',
+                              },
+                              defaultValue: '0.875rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for small text',
+                              },
+                              defaultValue: '1.25rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Small',
+                        },
+                      ],
+                    },
+                    {
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'muted',
+                          type: 'group',
+                          admin: {
+                            description: 'Muted text typography settings',
+                            width: '50%',
+                          },
+                          fields: [
+                            {
+                              name: 'fontSize',
+                              type: 'text',
+                              admin: {
+                                description: 'Font size for muted text',
+                              },
+                              defaultValue: '0.875rem',
+                              label: 'Font Size',
+                            },
+                            {
+                              name: 'lineHeight',
+                              type: 'text',
+                              admin: {
+                                description: 'Line height for muted text',
+                              },
+                              defaultValue: '1.25rem',
+                              label: 'Line Height',
+                            },
+                          ],
+                          label: 'Muted',
+                        },
+                      ],
+                    },
+                  ],
+                  label: 'Typography Elements',
                 },
               ],
             },

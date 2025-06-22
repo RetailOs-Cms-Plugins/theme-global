@@ -7,44 +7,39 @@ import type {
   TypographySelectorProps,
 } from '../../types/index.js'
 
+import { allFonts } from '../../utils/typography/font-definitions.js'
 import styles from './typography-selector.module.css'
 
 // Default typography configuration
 const DEFAULT_TYPOGRAPHY: TypographyConfig = {
-  fontFamily: 'Inter, system-ui, sans-serif',
-  fontSize: {
-    base: '1rem',
-    headings: {
-      h1: '2.5rem',
-      h2: '2rem',
-      h3: '1.75rem',
-      h4: '1.5rem',
-      h5: '1.25rem',
-      h6: '1.125rem',
-    },
+  elements: {
+    blockquote: { fontSize: '1.125rem', lineHeight: '1.75rem' },
+    h1: { fontSize: '2.25rem', lineHeight: '2.5rem' },
+    h2: { fontSize: '1.875rem', lineHeight: '2.25rem' },
+    h3: { fontSize: '1.5rem', lineHeight: '2rem' },
+    h4: { fontSize: '1.25rem', lineHeight: '1.75rem' },
+    inlineCode: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+    large: { fontSize: '1.125rem', lineHeight: '1.75rem' },
+    lead: { fontSize: '1.25rem', lineHeight: '1.75rem' },
+    list: { fontSize: '1rem', lineHeight: '1.75rem' },
+    muted: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+    p: { fontSize: '1rem', lineHeight: '1.5rem' },
+    small: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+    table: { fontSize: '1rem', lineHeight: '1.5rem' },
   },
+  fontFamily: 'Inter, system-ui, sans-serif',
   fontWeight: {
     bold: 700,
     normal: 400,
   },
-  lineHeight: {
-    normal: 1.5,
-    relaxed: 1.75,
-    tight: 1.25,
-  },
 }
 
-// Common font families
+// Generate font families from font definitions
 const FONT_FAMILIES: FontFamilyOption[] = [
-  { label: 'Inter (Sans-serif)', value: 'Inter, system-ui, sans-serif' },
-  { label: 'System Sans-serif', value: 'system-ui, sans-serif' },
-  { label: 'Helvetica', value: 'Helvetica, Arial, sans-serif' },
-  { label: 'Georgia (Serif)', value: 'Georgia, serif' },
-  { label: 'Times New Roman', value: '"Times New Roman", serif' },
-  { label: 'Courier (Monospace)', value: '"Courier New", monospace' },
-  { label: 'Roboto', value: 'Roboto, sans-serif' },
-  { label: 'Open Sans', value: '"Open Sans", sans-serif' },
-  { label: 'Lato', value: 'Lato, sans-serif' },
+  ...allFonts.map((font) => ({
+    label: font.displayName,
+    value: font.name,
+  })),
   { label: 'Custom', value: 'custom' },
 ]
 
@@ -63,20 +58,32 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
   value = DEFAULT_TYPOGRAPHY,
 }) => {
   const [typographyConfig, setTypographyConfig] = useState<TypographyConfig>(value)
-  const [customFontFamily, setCustomFontFamily] = useState<string>('')
-  const [isCustomFont, setIsCustomFont] = useState<boolean>(false)
+  const [customBodyFont, setCustomBodyFont] = useState<string>('')
+  const [isCustomBodyFont, setIsCustomBodyFont] = useState<boolean>(false)
+  const [customHeadingFont, setCustomHeadingFont] = useState<string>('')
+  const [isCustomHeadingFont, setIsCustomHeadingFont] = useState<boolean>(false)
+  const [isTextSizesOpen, setIsTextSizesOpen] = useState(false)
 
   // Update internal state when external value changes
   useEffect(() => {
     setTypographyConfig(value)
 
-    // Check if current font family is custom
-    const isCustom = !FONT_FAMILIES.some(
-      (font) => font.value === value.fontFamily && font.value !== 'custom',
+    // Check if current body font is custom
+    const isCustomBody = !FONT_FAMILIES.some(
+      (font) => font.value === value.bodyFont && font.value !== 'custom',
     )
-    setIsCustomFont(isCustom)
-    if (isCustom) {
-      setCustomFontFamily(value.fontFamily)
+    setIsCustomBodyFont(isCustomBody)
+    if (isCustomBody) {
+      setCustomBodyFont(value.bodyFont || '')
+    }
+
+    // Check if current heading font is custom
+    const isCustomHeading = !FONT_FAMILIES.some(
+      (font) => font.value === value.headingFont && font.value !== 'custom',
+    )
+    setIsCustomHeadingFont(isCustomHeading)
+    if (isCustomHeading) {
+      setCustomHeadingFont(value.headingFont || '')
     }
   }, [value])
 
@@ -94,53 +101,45 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
   /**
    * Handles font family selection
    */
-  const handleFontFamilyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value
+  const handleFontChange =
+    (fontType: 'bodyFont' | 'headingFont') => (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const selectedValue = event.target.value
+      const isCustomSetter = fontType === 'bodyFont' ? setIsCustomBodyFont : setIsCustomHeadingFont
 
-    if (selectedValue === 'custom') {
-      setIsCustomFont(true)
-    } else {
-      setIsCustomFont(false)
-      updateConfig({ fontFamily: selectedValue })
+      if (selectedValue === 'custom') {
+        isCustomSetter(true)
+      } else {
+        isCustomSetter(false)
+        updateConfig({ [fontType]: selectedValue })
+      }
     }
-  }
 
   /**
    * Handles custom font family input
    */
-  const handleCustomFontChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value
-    setCustomFontFamily(value)
-    updateConfig({ fontFamily: value })
-  }
+  const handleCustomFontChange =
+    (fontType: 'bodyFont' | 'headingFont') => (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value
+      const customSetter = fontType === 'bodyFont' ? setCustomBodyFont : setCustomHeadingFont
+      customSetter(value)
+      updateConfig({ [fontType]: value })
+    }
 
   /**
-   * Handles font size changes for base and headings
+   * Gets the font family CSS value for display
    */
-  const handleFontSizeChange =
-    (type: 'base' | keyof TypographyConfig['fontSize']['headings']) =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value
-
-      if (type === 'base') {
-        updateConfig({
-          fontSize: {
-            ...typographyConfig.fontSize,
-            base: value,
-          },
-        })
-      } else {
-        updateConfig({
-          fontSize: {
-            ...typographyConfig.fontSize,
-            headings: {
-              ...typographyConfig.fontSize.headings,
-              [type]: value,
-            },
-          },
-        })
-      }
+  const getFontFamilyCSS = (fontName?: string): string => {
+    if (!fontName) {
+      return 'system-ui, sans-serif'
     }
+
+    const fontDef = allFonts.find((f) => f.name === fontName)
+    if (fontDef) {
+      return `"${fontDef.displayName}", system-ui, sans-serif`
+    }
+
+    return fontName
+  }
 
   /**
    * Handles font weight changes
@@ -157,17 +156,18 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
       })
     }
 
-  /**
-   * Handles line height changes
-   */
-  const handleLineHeightChange =
-    (type: keyof TypographyConfig['lineHeight']) =>
+  const handleElementChange =
+    (element: keyof TypographyConfig['elements']) =>
+    (field: 'fontSize' | 'lineHeight') =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = parseFloat(event.target.value)
+      const value = event.target.value
       updateConfig({
-        lineHeight: {
-          ...typographyConfig.lineHeight,
-          [type]: value,
+        elements: {
+          ...typographyConfig.elements,
+          [element]: {
+            ...typographyConfig.elements[element],
+            [field]: value,
+          },
         },
       })
     }
@@ -184,71 +184,119 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
       <div className={styles.typographySections}>
         {/* Font Family Section */}
         <div className={styles.typographySection}>
-          <h4 className={styles.sectionTitle}>Font Family</h4>
-
+          <h4 className={styles.sectionTitle}>Body Font</h4>
           <select
             className={`${styles.fontFamilySelect} ${disabled ? styles.disabled : ''}`}
             disabled={disabled}
-            onChange={handleFontFamilyChange}
-            value={isCustomFont ? 'custom' : typographyConfig.fontFamily}
+            onChange={handleFontChange('bodyFont')}
+            value={isCustomBodyFont ? 'custom' : typographyConfig.bodyFont}
           >
             {FONT_FAMILIES.map((font) => (
-              <option key={font.value} value={font.value}>
+              <option key={`body-${font.value}`} value={font.value}>
                 {font.label}
               </option>
             ))}
           </select>
-
-          {isCustomFont && (
+          {isCustomBodyFont && (
             <input
               className={`${styles.customFontInput} ${disabled ? styles.disabled : ''}`}
               disabled={disabled}
-              onChange={handleCustomFontChange}
+              onChange={handleCustomFontChange('bodyFont')}
               placeholder="Enter custom font family..."
               type="text"
-              value={customFontFamily}
+              value={customBodyFont}
             />
           )}
-
-          {/* Font Preview */}
-          <div className={styles.fontPreview} style={{ fontFamily: typographyConfig.fontFamily }}>
+          <div
+            className={styles.fontPreview}
+            style={{ fontFamily: getFontFamilyCSS(typographyConfig.bodyFont) }}
+          >
             The quick brown fox jumps over the lazy dog
           </div>
         </div>
 
-        {/* Font Sizes Section */}
         <div className={styles.typographySection}>
-          <h4 className={styles.sectionTitle}>Font Sizes</h4>
-
-          <div className={styles.fontSizeGrid}>
-            <div className={styles.fontSizeItem}>
-              <label htmlFor={`${name}-base-size`}>Base Size</label>
-              <input
-                disabled={disabled}
-                id={`${name}-base-size`}
-                onChange={handleFontSizeChange('base')}
-                placeholder="1rem"
-                type="text"
-                value={typographyConfig.fontSize.base}
-              />
-            </div>
-
-            {Object.entries(typographyConfig.fontSize.headings).map(([heading, size]) => (
-              <div className={styles.fontSizeItem} key={heading}>
-                <label htmlFor={`${name}-${heading}-size`}>{heading.toUpperCase()}</label>
-                <input
-                  disabled={disabled}
-                  id={`${name}-${heading}-size`}
-                  onChange={handleFontSizeChange(
-                    heading as keyof TypographyConfig['fontSize']['headings'],
-                  )}
-                  placeholder="2rem"
-                  type="text"
-                  value={size}
-                />
-              </div>
+          <h4 className={styles.sectionTitle}>Heading Font</h4>
+          <select
+            className={`${styles.fontFamilySelect} ${disabled ? styles.disabled : ''}`}
+            disabled={disabled}
+            onChange={handleFontChange('headingFont')}
+            value={isCustomHeadingFont ? 'custom' : typographyConfig.headingFont}
+          >
+            {FONT_FAMILIES.map((font) => (
+              <option key={`heading-${font.value}`} value={font.value}>
+                {font.label}
+              </option>
             ))}
+          </select>
+          {isCustomHeadingFont && (
+            <input
+              className={`${styles.customFontInput} ${disabled ? styles.disabled : ''}`}
+              disabled={disabled}
+              onChange={handleCustomFontChange('headingFont')}
+              placeholder="Enter custom font family..."
+              type="text"
+              value={customHeadingFont}
+            />
+          )}
+          <div
+            className={styles.fontPreview}
+            style={{ fontFamily: getFontFamilyCSS(typographyConfig.headingFont) }}
+          >
+            The quick brown fox jumps over the lazy dog
           </div>
+        </div>
+
+        {/* Text Sizes Section */}
+        <div className={styles.typographySection}>
+          <button
+            className={styles.collapsibleHeader}
+            onClick={() => setIsTextSizesOpen(!isTextSizesOpen)}
+            type="button"
+          >
+            <h4 className={styles.sectionTitle}>Text Sizes</h4>
+            <span className={styles.collapseIcon}>{isTextSizesOpen ? '−' : '+'}</span>
+          </button>
+
+          {isTextSizesOpen && (
+            <div className={styles.textSizesGrid}>
+              {Object.keys(typographyConfig.elements).map((element) => (
+                <div className={styles.gridItem} key={element}>
+                  <label htmlFor={`${name}-${element}-font-size`}>
+                    {element.charAt(0).toUpperCase() + element.slice(1)}
+                  </label>
+                  <div className={styles.inputGroup}>
+                    <input
+                      disabled={disabled}
+                      id={`${name}-${element}-font-size`}
+                      onChange={handleElementChange(element as keyof TypographyConfig['elements'])(
+                        'fontSize',
+                      )}
+                      placeholder="e.g., 1rem"
+                      type="text"
+                      value={
+                        typographyConfig.elements[element as keyof TypographyConfig['elements']]
+                          ?.fontSize
+                      }
+                    />
+                    <input
+                      disabled={disabled}
+                      id={`${name}-${element}-line-height`}
+                      onChange={handleElementChange(element as keyof TypographyConfig['elements'])(
+                        'lineHeight',
+                      )}
+                      placeholder="e.g., 1.5"
+                      type="text"
+                      value={
+                        typographyConfig.elements[element as keyof TypographyConfig['elements']]
+                          ?.lineHeight
+                      }
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Font Weights Section */}
@@ -283,31 +331,6 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
                 value={typographyConfig.fontWeight.bold}
               />
             </div>
-          </div>
-        </div>
-
-        {/* Line Heights Section */}
-        <div className={styles.typographySection}>
-          <h4 className={styles.sectionTitle}>Line Heights</h4>
-
-          <div className={styles.lineHeightGrid}>
-            {Object.entries(typographyConfig.lineHeight).map(([type, height]) => (
-              <div className={styles.lineHeightItem} key={type}>
-                <label htmlFor={`${name}-${type}-height`}>
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </label>
-                <input
-                  disabled={disabled}
-                  id={`${name}-${type}-height`}
-                  max="3"
-                  min="1"
-                  onChange={handleLineHeightChange(type as keyof TypographyConfig['lineHeight'])}
-                  step="0.25"
-                  type="number"
-                  value={height}
-                />
-              </div>
-            ))}
           </div>
         </div>
       </div>

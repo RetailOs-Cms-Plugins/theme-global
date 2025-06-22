@@ -12,14 +12,19 @@ export function FontHead({ fontName }: FontHeadProps) {
     return null
   }
 
-  // if (fontDef.source.type === 'google') {
-  //   return (
-  //     <>
-  //       <link href="https://fonts.googleapis.com" rel="preconnect" />
-  //       <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
-  //     </>
-  //   )
-  // }
+  // Handle Google Fonts
+  if (fontDef.source.type === 'google') {
+    return (
+      <>
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossOrigin="anonymous" href="https://fonts.gstatic.com" rel="preconnect" />
+        <link
+          href={`https://fonts.googleapis.com/css2?family=${fontDef.source.googleFamily}&display=swap`}
+          rel="stylesheet"
+        />
+      </>
+    )
+  }
 
   // For local fonts, preload the actual font files
   if (fontDef.source.type === 'local' && fontDef.source.files) {
@@ -50,6 +55,6 @@ export function FontHead({ fontName }: FontHeadProps) {
     )
   }
 
-  // For local fonts, we'll handle them in the CSS
+  // For system fonts, no loading needed
   return null
 }

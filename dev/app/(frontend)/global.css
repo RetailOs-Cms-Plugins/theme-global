@@ -1,36 +1,11 @@
-@import "tailwindcss";
-
-@theme{
-    --color-primary: var(--primary-200);
-    --color-primary-50: var(--primary-50);
-    --color-primary-100: var(--primary-100);
-    --color-primary-200: var(--primary-200);
-    --color-primary-300: var(--primary-300);
-    --color-primary-400: var(--primary-400);
-    --color-primary-500: var(--primary-500);
-    --color-primary-600: var(--primary-600);
-    --color-primary-700: var(--primary-700);
-    --color-primary-800: var(--primary-800);
-    --color-secondary: var(--secondary-400);
-    --color-secondary-50: var(--secondary-50);
-    --color-secondary-100: var(--secondary-100);
-    --color-secondary-200: var(--secondary-200);
-    --color-secondary-300: var(--secondary-300);
-    --color-secondary-400: var(--secondary-400);
-    --color-secondary-500: var(--secondary-500);
-    --color-secondary-600: var(--secondary-600);
-    --color-secondary-700: var(--secondary-700);
-    --color-secondary-800: var(--secondary-800);
-    --font-family: var(--theme-font-family);
-    --font-direction: ltr;
-}
+@import 'tailwindcss';
 
 /* ========================================
    🎨 Primitive Color Variables
    ======================================== */
 :root {
   /* Primary Scale */
-  --primary-50:  #faf5ff;
+  --primary-50: #faf5ff;
   --primary-100: #f3e8ff;
   --primary-200: #e9d5ff;
   --primary-300: #d8b4fe;
@@ -43,7 +18,7 @@
   --primary-950: #3b0764;
 
   /* Secondary Scale */
-  --secondary-50:  #f0f9ff;
+  --secondary-50: #f0f9ff;
   --secondary-100: #e0f2fe;
   --secondary-200: #bae6fd;
   --secondary-300: #7dd3fc;
@@ -60,28 +35,141 @@
    Semantic Color Variables
    ======================================== */
 :root {
-  --color-primary:          var(--primary-200);
-  --text-on-primary:        #ffffff;
+  --color-primary: var(--primary-200);
+  --text-on-primary: #ffffff;
 
-  --color-secondary:        var(--secondary-400);
-  --text-on-secondary:      var(--secondary-950);
+  --color-secondary: var(--secondary-400);
+  --text-on-secondary: var(--secondary-950);
 
-  --card-background:        var(--primary-50);
-  --text-on-card:           var(--primary-950);
+  --card-background: var(--primary-50);
+  --text-on-card: var(--primary-950);
 
-  --page-background:        #ffffff;
-  --text-on-page:           #000000;
+  --page-background: #ffffff;
+  --text-on-page: #000000;
 }
 
+/* ========================================
+   Semantic Color & Typography Variables
+   ======================================== */
+:root {
+  /* Typography */
+  --font-body: var(--font-body, 'Inter', sans-serif);
+  --font-heading: var(--font-heading, 'Poppins', sans-serif);
+  --font-weight-normal: var(--font-weight-normal, 400);
+  --font-weight-bold: var(--font-weight-bold, 700);
+
+  /* Default Element Styles (fallbacks) */
+  --font-size-h1: var(--font-size-h1, 2.25rem);
+  --line-height-h1: var(--line-height-h1, 2.5rem);
+  --font-size-h2: var(--font-size-h2, 1.875rem);
+  --line-height-h2: var(--line-height-h2, 2.25rem);
+  --font-size-h3: var(--font-size-h3, 1.5rem);
+  --line-height-h3: var(--line-height-h3, 2rem);
+  --font-size-h4: var(--font-size-h4, 1.25rem);
+  --line-height-h4: var(--line-height-h4, 1.75rem);
+  --font-size-p: var(--font-size-p, 1rem);
+  --line-height-p: var(--line-height-p, 1.5rem);
+  --font-size-blockquote: var(--font-size-blockquote, 1.125rem);
+  --line-height-blockquote: var(--line-height-blockquote, 1.75rem);
+  --font-size-table: var(--font-size-table, 1rem);
+  --line-height-table: var(--line-height-table, 1.5rem);
+  --font-size-list: var(--font-size-list, 1rem);
+  --line-height-list: var(--line-height-list, 1.75rem);
+  --font-size-inlineCode: var(--font-size-inlineCode, 0.875rem);
+  --line-height-inlineCode: var(--line-height-inlineCode, 1.25rem);
+  /* ... add other elements as needed */
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+body {
+  font-family: var(--font-body, sans-serif);
+  background-color: var(--page-background);
+  color: var(--text-on-page);
+  direction: var(--direction, 'ltr');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading, sans-serif);
+  font-weight: var(--font-weight-bold, 700);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+}
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+}
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+}
+h4 {
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+}
+p {
+  font-size: var(--font-size-p);
+  line-height: var(--line-height-p);
+  font-weight: var(--font-weight-normal, 400);
+}
+blockquote {
+  font-size: var(--font-size-blockquote);
+  line-height: var(--line-height-blockquote);
+}
+table {
+  font-size: var(--font-size-table);
+  line-height: var(--line-height-table);
+}
+ul,
+ol {
+  font-size: var(--font-size-list);
+  line-height: var(--line-height-list);
+}
+code {
+  font-size: var(--font-size-inlineCode);
+  line-height: var(--line-height-inlineCode);
+}
+
+/* ========================================
+   Component Layer
+   ======================================== */
 @layer components {
-  .bg-primary { background-color: var(--color-primary); }
-  .text-on-primary { color: var(--text-on-primary); }
-  .bg-secondary { background-color: var(--color-secondary); }
-  .text-on-secondary { color: var(--text-on-secondary); }
-  .bg-card { background-color: var(--card-background); }
-  .text-card { color: var(--text-on-card); }
-  .bg-page { background-color: var(--page-background); }
-  .text-on-page { color: var(--text-on-page); }
-  
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .fill-primary {
+    fill: var(--color-primary);
+  }
+  .text-on-primary {
+    color: var(--text-on-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .text-on-secondary {
+    color: var(--text-on-secondary);
+  }
+  .bg-card {
+    background-color: var(--card-background);
+  }
+  .text-card {
+    color: var(--text-on-card);
+  }
+  .bg-page {
+    background-color: var(--page-background);
+  }
+  .text-on-page {
+    color: var(--text-on-page);
+  }
+
   /* Add more as needed */
 }

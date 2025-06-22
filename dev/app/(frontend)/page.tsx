@@ -4,6 +4,26 @@ import { IconLayoutGrid, IconPalette, IconTypography } from '@tabler/icons-react
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 
+import {
+  TypographyBlockquote,
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyInlineCode,
+  TypographyLarge,
+  TypographyLead,
+  TypographyList,
+  TypographyListItem,
+  TypographyMuted,
+  TypographyP,
+  TypographySmall,
+  TypographyTable,
+  TypographyTableBody,
+  TypographyTableCell,
+  TypographyTableHeader,
+  TypographyTableHeaderCell,
+  TypographyTableRow,
+} from '../../../src/components/theme/typography'
 import { Sidebar, SidebarBody, SidebarLink } from '../ui/sidebar'
 
 type Direction = 'auto' | 'ltr' | 'rtl'
@@ -63,16 +83,25 @@ const ColorSwatch = ({ label, varName }: { label: string; varName: string }) => 
     return () => window.removeEventListener('theme-update', handler)
   }, [varName])
   return (
-    <div className="flex items-center gap-4 p-2 rounded border border-[#E6E6E6] bg-white shadow-[0px_2px_12px_-1px_rgba(10,9,11,0.10),0px_2px_2px_-1px_rgba(10,9,11,0.04),0px_0px_0px_1px_rgba(10,9,11,0.05)]">
+    <div
+      className="flex items-center gap-4 p-2 rounded border border-[#E6E6E6] shadow-[0px_2px_12px_-1px_rgba(10,9,11,0.10),0px_2px_2px_-1px_rgba(10,9,11,0.04),0px_0px_0px_1px_rgba(10,9,11,0.05)]"
+      style={{ background: `var(--card-background)`, color: `var(--text-on-card)` }}
+    >
       <div
-        className="w-10 h-10 rounded border bg-primary-500"
+        className="w-10 h-10 rounded border fill-primary-500"
         style={{ background: `var(${varName})` }}
         title={hex}
       />
       <div className="flex flex-col">
-        <span className="font-mono text-sm text-gray-700">{label}</span>
-        <span className="font-mono text-sm text-gray-400">{varName}</span>
-        <span className="font-mono text-sm text-gray-900">{hex}</span>
+        <span className="font-mono text-sm" style={{ color: `var(--text-on-card)` }}>
+          {label}
+        </span>
+        <span className="font-mono text-sm text-gray-400" style={{ color: `var(--text-on-card)` }}>
+          {varName}
+        </span>
+        <span className="font-mono text-sm text-gray-900" style={{ color: `var(--text-on-card)` }}>
+          {hex}
+        </span>
       </div>
     </div>
   )
@@ -81,7 +110,7 @@ const ColorSwatch = ({ label, varName }: { label: string; varName: string }) => 
 const ColorsContent = () => {
   return (
     <div className="flex flex-1">
-      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 bg-white p-4 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
+      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700">
         <h1 className="text-3xl font-bold mb-8">Color System</h1>
 
         {/* Semantic */}
@@ -138,7 +167,11 @@ const TypographyContent = () => {
     return themeData?.typography?.direction || 'auto'
   }
 
-  const getStyles = (type: 'body' | 'heading' | 'mono'): React.CSSProperties => ({
+  const getDirection = (): string => {
+    return themeData?.typography?.direction || 'auto'
+  }
+
+  const getStyles = (type: 'body' | 'heading'): React.CSSProperties => ({
     direction: getTextDirection() === 'auto' ? undefined : (getTextDirection() as 'ltr' | 'rtl'),
     fontFamily: getFontFamily(type),
     textAlign: getTextDirection() === 'rtl' ? 'right' : 'left',
@@ -191,7 +224,6 @@ const TypographyContent = () => {
         headingFont: 'גופן כותרות',
         largeText: 'טקסט גדול',
         leadParagraph: 'פסקת פתיחה',
-        monoFont: 'גופן מונוספייס',
         typography: 'טיפוגרפיה',
         typographyScale: 'סולם טיפוגרפי',
       }
@@ -203,7 +235,6 @@ const TypographyContent = () => {
       headingFont: 'Heading Font',
       largeText: 'Large Text',
       leadParagraph: 'Lead Paragraph',
-      monoFont: 'Monospace Font',
       typography: 'Typography',
       typographyScale: 'Typography Scale',
     }
@@ -267,11 +298,10 @@ const TypographyContent = () => {
       .join(' ')
   }
 
-  function getFontFamily(type: 'body' | 'heading' | 'mono') {
+  function getFontFamily(type: 'body' | 'heading') {
     const fontMap = {
       body: themeData?.typography?.fontBody,
       heading: themeData?.typography?.fontHeading,
-      mono: themeData?.typography?.fontMono,
     }
     const value = fontMap[type]
     if (!value) {
@@ -281,57 +311,63 @@ const TypographyContent = () => {
     const fallbacks = {
       body: 'system-ui, sans-serif',
       heading: 'system-ui, sans-serif',
-      mono: 'monospace',
     }
     return `"${getFontLabel(value)}", ${fallbacks[type]}`
   }
 
   return (
     <div className="flex flex-1">
-      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 bg-white p-4 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
-        <h1 className="text-3xl font-bold mb-8" style={getStyles('heading')}>
+      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-7">
+        <TypographyH1
+          className="text-3xl font-bold mb-8"
+          dir={getTextDirection()}
+          style={getStyles('heading')}
+        >
           {getSectionTitle('typography')}
-        </h1>
+        </TypographyH1>
 
         <div className="space-y-12">
           {/* Font Family Display */}
           <section>
-            <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+            <TypographyH2
+              className="text-xl font-semibold mb-4"
+              dir={getTextDirection()}
+              style={getStyles('heading')}
+            >
               {getSectionTitle('fontFamilies')}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            </TypographyH2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                <h3
+                <TypographyH3
                   className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+                  dir={getTextDirection()}
                   style={getStyles('heading')}
                 >
                   {getSectionTitle('bodyFont')}
-                </h3>
-                <p className="mt-1 text-2xl" style={getStyles('body')}>
+                </TypographyH3>
+                <TypographyP
+                  className="mt-1 text-2xl"
+                  dir={getTextDirection()}
+                  style={getStyles('body')}
+                >
                   {getFontLabel(themeData?.typography?.fontBody) || 'Inter'}
-                </p>
+                </TypographyP>
               </div>
               <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                <h3
+                <TypographyH3
                   className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+                  dir={getTextDirection()}
                   style={getStyles('heading')}
                 >
                   {getSectionTitle('headingFont')}
-                </h3>
-                <p className="mt-1 text-2xl" style={getStyles('heading')}>
-                  {getFontLabel(themeData?.typography?.fontHeading) || 'Poppins'}
-                </p>
-              </div>
-              <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                <h3
-                  className="text-sm font-medium text-neutral-500 dark:text-neutral-400"
+                </TypographyH3>
+                <TypographyP
+                  className="mt-1 text-2xl"
+                  dir={getTextDirection()}
                   style={getStyles('heading')}
                 >
-                  {getSectionTitle('monoFont')}
-                </h3>
-                <p className="mt-1 text-2xl" style={getStyles('mono')}>
-                  {getFontLabel(themeData?.typography?.fontMono) || 'Fira Code'}
-                </p>
+                  {getFontLabel(themeData?.typography?.fontHeading) || 'Poppins'}
+                </TypographyP>
               </div>
             </div>
           </section>
@@ -339,99 +375,211 @@ const TypographyContent = () => {
           {/* Typography Scale */}
           <section className="space-y-8">
             <div>
-              <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+              <TypographyH2
+                className="text-xl font-semibold mb-4"
+                dir={getTextDirection()}
+                style={getStyles('heading')}
+              >
                 {getSectionTitle('typographyScale')}
-              </h2>
+              </TypographyH2>
               <div className="space-y-6">
                 <div className="space-y-3">
-                  <h1
-                    className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
-                    style={getStyles('heading')}
-                  >
+                  <TypographyH1 dir={getTextDirection()} style={getStyles('heading')}>
                     {getDirectionalText('heading')}
-                  </h1>
-                  <p style={typographyDescriptionStyles}>
+                  </TypographyH1>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
                     {getTypographyDescription(
                       'h1',
                       getFontLabel(themeData?.typography?.fontHeading) || 'Poppins',
                       themeData?.typography?.text3xl || '2.25rem',
                       '800',
                     )}
-                  </p>
+                  </TypographyP>
                 </div>
 
                 <div className="space-y-3">
-                  <h2
-                    className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0"
-                    style={getStyles('heading')}
-                  >
+                  <TypographyH2 dir={getTextDirection()} style={getStyles('heading')}>
                     {getDirectionalText('heading')}
-                  </h2>
-                  <p style={typographyDescriptionStyles}>
+                  </TypographyH2>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
                     {getTypographyDescription(
                       'h2',
                       getFontLabel(themeData?.typography?.fontHeading) || 'Poppins',
                       themeData?.typography?.text2xl || '1.875rem',
                       '600',
                     )}
-                  </p>
+                  </TypographyP>
                 </div>
 
                 <div className="space-y-3">
-                  <p className="leading-7 [&:not(:first-child)]:mt-6" style={getStyles('body')}>
+                  <TypographyP
+                    className="leading-7 [&:not(:first-child)]:mt-6"
+                    dir={getTextDirection()}
+                    style={getStyles('body')}
+                  >
                     {getDirectionalText('paragraph')}
-                  </p>
-                  <p style={typographyDescriptionStyles}>
+                  </TypographyP>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
                     {getTypographyDescription(
                       'p',
                       getFontLabel(themeData?.typography?.fontBody) || 'Inter',
                       themeData?.typography?.textBase || '1rem',
                       '400',
                     )}
-                  </p>
+                  </TypographyP>
                 </div>
 
                 {/* Code example with RTL container but LTR content */}
                 <div className="space-y-3" dir="rtl">
                   <div className="text-left" dir="ltr">
-                    <code className="relative rounded bg-neutral-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold dark:bg-neutral-800">
+                    <TypographyInlineCode className="relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
                       npm install @acme/api-client
-                    </code>
+                    </TypographyInlineCode>
                   </div>
-                  <p style={typographyDescriptionStyles}>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
                     {getTypographyDescription(
                       'code',
-                      getFontLabel(themeData?.typography?.fontMono) || 'Fira Code',
+                      'Fira Code',
                       themeData?.typography?.textSm || '0.875rem',
                       '600',
                     )}
-                  </p>
+                  </TypographyP>
+                </div>
+
+                {/* Blockquote Example */}
+                <div className="space-y-3">
+                  <TypographyBlockquote dir={getTextDirection()} style={getStyles('body')}>
+                    {getDirection() === 'rtl'
+                      ? '"אחרי הכל," הוא אמר, "כולם נהנים מבדיחה טובה, אז זה רק הוגן שהם ישלמו על הפריבילגיה."'
+                      : '"After all," he said, "everyone enjoys a good joke, so it\'s only fair that they should pay for the privilege."'}
+                  </TypographyBlockquote>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'blockquote',
+                      getFontLabel(themeData?.typography?.fontBody) || 'Inter',
+                      '1.125rem',
+                      '400',
+                    )}
+                  </TypographyP>
+                </div>
+
+                {/* List Example */}
+                <div className="space-y-3">
+                  <TypographyList dir={getTextDirection()} style={getStyles('body')}>
+                    <TypographyListItem>
+                      {getDirection() === 'rtl'
+                        ? 'רמה ראשונה של משחקי מילים: 5 מטבעות זהב'
+                        : '1st level of puns: 5 gold coins'}
+                    </TypographyListItem>
+                    <TypographyListItem>
+                      {getDirection() === 'rtl'
+                        ? 'רמה שנייה של בדיחות: 10 מטבעות זהב'
+                        : '2nd level of jokes: 10 gold coins'}
+                    </TypographyListItem>
+                    <TypographyListItem>
+                      {getDirection() === 'rtl'
+                        ? 'רמה שלישית של משפטים קצרים: 20 מטבעות זהב'
+                        : '3rd level of one-liners: 20 gold coins'}
+                    </TypographyListItem>
+                  </TypographyList>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'list',
+                      getFontLabel(themeData?.typography?.fontBody) || 'Inter',
+                      '1rem',
+                      '400',
+                    )}
+                  </TypographyP>
+                </div>
+
+                {/* Table Example */}
+                <div className="space-y-3">
+                  <TypographyTable dir={getTextDirection()} style={getStyles('body')}>
+                    <TypographyTableHeader>
+                      <TypographyTableHeaderCell>
+                        {getDirection() === 'rtl' ? 'אוצר המלך' : "King's Treasury"}
+                      </TypographyTableHeaderCell>
+                      <TypographyTableHeaderCell>
+                        {getDirection() === 'rtl' ? 'אושר העם' : "People's happiness"}
+                      </TypographyTableHeaderCell>
+                    </TypographyTableHeader>
+                    <TypographyTableBody>
+                      <TypographyTableRow>
+                        <TypographyTableCell>
+                          {getDirection() === 'rtl' ? 'ריק' : 'Empty'}
+                        </TypographyTableCell>
+                        <TypographyTableCell>
+                          {getDirection() === 'rtl' ? 'מלא עד גדותיו' : 'Overflowing'}
+                        </TypographyTableCell>
+                      </TypographyTableRow>
+                      <TypographyTableRow>
+                        <TypographyTableCell>
+                          {getDirection() === 'rtl' ? 'צנוע' : 'Modest'}
+                        </TypographyTableCell>
+                        <TypographyTableCell>
+                          {getDirection() === 'rtl' ? 'מרוצה' : 'Satisfied'}
+                        </TypographyTableCell>
+                      </TypographyTableRow>
+                      <TypographyTableRow>
+                        <TypographyTableCell>
+                          {getDirection() === 'rtl' ? 'מלא' : 'Full'}
+                        </TypographyTableCell>
+                        <TypographyTableCell>
+                          {getDirection() === 'rtl' ? 'נלהב' : 'Ecstatic'}
+                        </TypographyTableCell>
+                      </TypographyTableRow>
+                    </TypographyTableBody>
+                  </TypographyTable>
+                  <TypographyP dir={getTextDirection()} style={typographyDescriptionStyles}>
+                    {getTypographyDescription(
+                      'table',
+                      getFontLabel(themeData?.typography?.fontBody) || 'Inter',
+                      '1rem',
+                      '400',
+                    )}
+                  </TypographyP>
                 </div>
 
                 {/* Lead Paragraph Example */}
                 <section className="mt-8">
-                  <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+                  <TypographyH3 dir={getTextDirection()} style={getStyles('heading')}>
                     {getSectionTitle('leadParagraph')}
-                  </h2>
-                  <p
-                    className="text-xl text-neutral-700 dark:text-neutral-300"
-                    style={getStyles('body')}
-                  >
+                  </TypographyH3>
+                  <TypographyLead dir={getTextDirection()} style={getStyles('body')}>
                     {getLeadParagraphText()}
-                  </p>
+                  </TypographyLead>
                 </section>
 
                 {/* Large Text Example */}
                 <section className="mt-8">
-                  <h2 className="text-xl font-semibold mb-4" style={getStyles('heading')}>
+                  <TypographyH3 dir={getTextDirection()} style={getStyles('heading')}>
                     {getSectionTitle('largeText')}
-                  </h2>
-                  <p
-                    className="text-lg text-neutral-700 dark:text-neutral-300"
-                    style={getStyles('body')}
-                  >
+                  </TypographyH3>
+                  <TypographyLarge dir={getTextDirection()} style={getStyles('body')}>
                     {getLargeTextExample()}
-                  </p>
+                  </TypographyLarge>
+                </section>
+
+                {/* Small Text Example */}
+                <section className="mt-8">
+                  <TypographyH3 dir={getTextDirection()} style={getStyles('heading')}>
+                    {getDirection() === 'rtl' ? 'טקסט קטן' : 'Small Text'}
+                  </TypographyH3>
+                  <TypographySmall dir={getTextDirection()} style={getStyles('body')}>
+                    {getDirection() === 'rtl' ? 'כתובת דוא"ל' : 'Email address'}
+                  </TypographySmall>
+                </section>
+
+                {/* Muted Text Example */}
+                <section className="mt-8">
+                  <TypographyH3 dir={getTextDirection()} style={getStyles('heading')}>
+                    {getDirection() === 'rtl' ? 'טקסט מושתק' : 'Muted Text'}
+                  </TypographyH3>
+                  <TypographyMuted dir={getTextDirection()} style={getStyles('body')}>
+                    {getDirection() === 'rtl'
+                      ? 'הזן את כתובת הדוא"ל שלך.'
+                      : 'Enter your email address.'}
+                  </TypographyMuted>
                 </section>
               </div>
             </div>
@@ -445,7 +593,7 @@ const TypographyContent = () => {
 const LayoutContent = () => {
   return (
     <div className="flex flex-1">
-      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 bg-white p-4 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
+      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700">
         <h1 className="text-3xl font-bold mb-8">Layout & Spacing</h1>
 
         <div className="space-y-8">
@@ -527,34 +675,34 @@ export const Logo = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className="fill-black dark:fill-white"
+            className="fill-primary-500"
             d="M334.974 109.247C317.709 113.038 301.421 119.405 286.525 127.904C291.885 141.586 294.876 156.453 294.876 172.001C294.876 230.105 253.86 278.614 199.22 290.223C200.464 308.94 204.64 326.856 211.333 343.5C289.22 326.412 347.531 257.054 347.531 174.044C347.531 151.122 343.059 129.267 334.974 109.247Z"
           />
           <path
-            className="fill-black/50 dark:fill-white/50"
+            className="fill-primary-500"
             d="M294.869 172.001C294.869 156.423 291.878 141.557 286.518 127.904C234.129 157.756 198.799 214.083 198.799 278.703C198.799 282.582 198.977 286.403 199.213 290.193C253.853 278.584 294.869 230.075 294.869 171.971V172.001Z"
           />
           <path
-            className="fill-black dark:fill-white"
+            className="fill-primary-500"
             d="M53.1244 172.001C53.1244 156.423 56.1154 141.557 61.4757 127.904C46.5499 119.405 30.2617 113.038 13.0259 109.247C4.94107 129.267 0.469238 151.122 0.469238 174.044C0.469238 257.054 58.7808 326.412 136.668 343.5C143.361 326.856 147.566 308.94 148.78 290.223C94.1409 278.614 53.1244 230.105 53.1244 172.001Z"
           />
           <path
-            className="fill-black/50 dark:fill-white/50"
+            className="fill-primary-500"
             d="M61.4852 127.874C56.1249 141.556 53.1338 156.423 53.1338 171.971C53.1338 230.075 94.1503 278.584 148.79 290.193C149.027 286.373 149.204 282.552 149.204 278.702C149.204 214.083 113.874 157.756 61.4852 127.904V127.874Z"
           />
           <path
-            className="fill-black dark:fill-white"
+            className="fill-primary-500"
             d="M262.38 89.6109C277.602 81.3188 291.432 70.8352 303.455 58.545C271.679 22.9184 225.48 0.5 174.009 0.5C125.441 0.5 81.5516 20.49 50.0415 52.6517C61.5024 65.4749 74.8291 76.5508 89.6069 85.5241C111.403 64.2607 141.166 51.1413 174.009 51.1413C208.895 51.1413 240.346 65.9487 262.409 89.6109H262.38Z"
           />
           <path
-            className="fill-black/50 dark:fill-white/50"
+            className="fill-primary-500"
             d="M262.378 89.6111C240.315 65.9489 208.893 51.1415 173.977 51.1415C141.135 51.1415 111.342 64.2608 89.5752 85.5243C115.814 101.457 146.554 110.667 179.486 110.667C209.515 110.667 237.738 103.027 262.378 89.5815V89.6111Z"
           />
         </svg>
       </div>
       <motion.span
         animate={{ opacity: 1 }}
-        className="font-medium whitespace-pre text-black dark:text-white"
+        className="font-medium whitespace-pre text-primary-500"
         initial={{ opacity: 0 }}
       >
         Theme Config
@@ -578,27 +726,27 @@ export const LogoIcon = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            className="fill-black dark:fill-white"
+            className="fill-primary-500"
             d="M334.974 109.247C317.709 113.038 301.421 119.405 286.525 127.904C291.885 141.586 294.876 156.453 294.876 172.001C294.876 230.105 253.86 278.614 199.22 290.223C200.464 308.94 204.64 326.856 211.333 343.5C289.22 326.412 347.531 257.054 347.531 174.044C347.531 151.122 343.059 129.267 334.974 109.247Z"
           />
           <path
-            className="fill-black/50 dark:fill-white/50"
+            className="fill-primary-500"
             d="M294.869 172.001C294.869 156.423 291.878 141.557 286.518 127.904C234.129 157.756 198.799 214.083 198.799 278.703C198.799 282.582 198.977 286.403 199.213 290.193C253.853 278.584 294.869 230.075 294.869 171.971V172.001Z"
           />
           <path
-            className="fill-black dark:fill-white"
+            className="fill-primary-500"
             d="M53.1244 172.001C53.1244 156.423 56.1154 141.557 61.4757 127.904C46.5499 119.405 30.2617 113.038 13.0259 109.247C4.94107 129.267 0.469238 151.122 0.469238 174.044C0.469238 257.054 58.7808 326.412 136.668 343.5C143.361 326.856 147.566 308.94 148.78 290.223C94.1409 278.614 53.1244 230.105 53.1244 172.001Z"
           />
           <path
-            className="fill-black/50 dark:fill-white/50"
+            className="fill-primary-500"
             d="M61.4852 127.874C56.1249 141.556 53.1338 156.423 53.1338 171.971C53.1338 230.075 94.1503 278.584 148.79 290.193C149.027 286.373 149.204 282.552 149.204 278.702C149.204 214.083 113.874 157.756 61.4852 127.904V127.874Z"
           />
           <path
-            className="fill-black dark:fill-white"
+            className="fill-primary-500"
             d="M262.38 89.6109C277.602 81.3188 291.432 70.8352 303.455 58.545C271.679 22.9184 225.48 0.5 174.009 0.5C125.441 0.5 81.5516 20.49 50.0415 52.6517C61.5024 65.4749 74.8291 76.5508 89.6069 85.5241C111.403 64.2607 141.166 51.1413 174.009 51.1413C208.895 51.1413 240.346 65.9487 262.409 89.6109H262.38Z"
           />
           <path
-            className="fill-black/50 dark:fill-white/50"
+            className="fill-primary-500"
             d="M262.378 89.6111C240.315 65.9489 208.893 51.1415 173.977 51.1415C141.135 51.1415 111.342 64.2608 89.5752 85.5243C115.814 101.457 146.554 110.667 179.486 110.667C209.515 110.667 237.738 103.027 262.378 89.5815V89.6111Z"
           />
         </svg>
@@ -610,12 +758,12 @@ export const LogoIcon = () => {
 const MainContent = () => {
   return (
     <div className="flex flex-1">
-      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 bg-white p-4 md:p-10 dark:border-neutral-700 dark:bg-neutral-900">
+      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700 ">
         <h1 className="text-3xl font-bold mb-8">Theme Configuration</h1>
         <div className="flex gap-2">
           {[...new Array(4)].map((_, idx) => (
             <div
-              className="h-32 w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"
+              className="h-32 w-full animate-pulse rounded-lg"
               key={'first-array-demo-1' + idx}
             />
           ))}
@@ -623,7 +771,7 @@ const MainContent = () => {
         <div className="flex flex-1 gap-2">
           {[...new Array(2)].map((_, idx) => (
             <div
-              className="h-full w-full animate-pulse rounded-lg bg-gray-100 dark:bg-neutral-800"
+              className="h-full w-full animate-pulse rounded-lg"
               key={'second-array-demo-1' + idx}
             />
           ))}
@@ -641,19 +789,19 @@ const Page = () => {
     {
       id: 'colors',
       href: '#colors',
-      icon: <IconPalette className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      icon: <IconPalette className="h-5 w-5 shrink-0 text-text-on-page" />,
       label: 'Colors',
     },
     {
       id: 'typography',
       href: '#typography',
-      icon: <IconTypography className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      icon: <IconTypography className="h-5 w-5 shrink-0 text-text-on-page" />,
       label: 'Typography',
     },
     {
       id: 'layout',
       href: '#layout',
-      icon: <IconLayoutGrid className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+      icon: <IconLayoutGrid className="h-5 w-5 shrink-0 text-text-on-page" />,
       label: 'Layout & Spacing',
     },
   ]
@@ -661,9 +809,13 @@ const Page = () => {
   return (
     <div
       className={cn(
-        'mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 bg-gray-100 md:flex-row dark:border-neutral-700 dark:bg-neutral-800',
+        'mx-auto flex w-full flex-1 flex-col overflow-hidden rounded-md border border-neutral-200 md:flex-row dark:border-neutral-700',
         'min-h-screen',
       )}
+      style={{
+        backgroundColor: 'var(--page-background)',
+        color: 'var(--text-on-page)',
+      }}
     >
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
@@ -672,7 +824,10 @@ const Page = () => {
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link) => (
                 <SidebarLink
-                  className={cn(activeTab === link.id && 'bg-gray-200 dark:bg-neutral-700')}
+                  className={cn(
+                    activeTab === link.id && 'bg-card text-card',
+                    'hover:bg-card hover:text-card',
+                  )}
                   key={link.id}
                   link={link}
                   onClick={() => setActiveTab(link.id)}

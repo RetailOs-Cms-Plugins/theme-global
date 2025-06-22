@@ -81,6 +81,7 @@
   .bg-card { background-color: var(--card-background); }
   .text-card { color: var(--text-on-card); }
   .bg-page { background-color: var(--page-background); }
-  .text-page { color: var(--text-on-page); }
+  .text-on-page { color: var(--text-on-page); }
+  
   /* Add more as needed */
 }

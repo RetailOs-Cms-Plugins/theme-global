@@ -86,12 +86,13 @@ export const DesktopSidebar = ({
         animate={{
           width: animate ? (open ? '300px' : '60px') : '300px',
         }}
-        className={cn(
-          'h-full px-4 py-4 hidden md:flex md:flex-col bg-neutral-100 dark:bg-neutral-800 w-[300px] shrink-0',
-          className,
-        )}
+        className={cn('h-full px-4 py-4 hidden md:flex md:flex-col w-[300px] shrink-0', className)}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
+        style={{
+          backgroundColor: 'var(--page-background)',
+          color: 'var(--text-on-page)',
+        }}
         {...props}
       >
         {children}
@@ -111,10 +112,7 @@ export const MobileSidebar = ({ children, className, ...props }: React.Component
         {...props}
       >
         <div className="flex justify-end z-20 w-full">
-          <IconMenu2
-            className="text-neutral-800 dark:text-neutral-200"
-            onClick={() => setOpen(!open)}
-          />
+          <IconMenu2 className="text-neutral-800 " onClick={() => setOpen(!open)} />
         </div>
         <AnimatePresence>
           {open && (
@@ -133,7 +131,7 @@ export const MobileSidebar = ({ children, className, ...props }: React.Component
             >
               <button
                 aria-label="Close sidebar"
-                className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200 p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full"
+                className="absolute right-10 top-10 z-50 text-neutral-800  p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full"
                 onClick={() => setOpen(!open)}
               >
                 <IconX />
@@ -175,7 +173,10 @@ export const SidebarLink = ({
           display: animate ? (open ? 'inline-block' : 'none') : 'inline-block',
           opacity: animate ? (open ? 1 : 0) : 1,
         }}
-        className="text-neutral-700 dark:text-neutral-200 text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        className="text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+        style={{
+          color: 'var(--text-on-page)',
+        }}
       >
         {link.label}
       </motion.span>

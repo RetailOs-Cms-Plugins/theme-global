@@ -10,5 +10,9 @@ export type {
   TypographySelectorProps,
 } from '../../types/index.js'
 
-export { default as ColorInput } from './color-input.js'
-export { default as TypographySelector } from './typography-selector.js'
+export * from './color-input'
+export * from './font-head'
+export * from './simple-color-input'
+export * from './typography'
+export * from './typography-preview'
+export * from './typography-selector'

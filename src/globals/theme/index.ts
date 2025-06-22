@@ -325,22 +325,6 @@ export const themeGlobal: GlobalConfig = {
                         { label: 'Poppins (Google)', value: 'poppins' },
                       ],
                     },
-                    {
-                      name: 'fontMono',
-                      type: 'select',
-                      admin: {
-                        description: 'Font family for monospace text (code)',
-                      },
-                      defaultValue: 'fira-code',
-                      label: 'Monospace Font',
-                      options: [
-                        { label: 'Fira Code (Google)', value: 'fira-code' },
-                        { label: 'JetBrains Mono (Google)', value: 'jetbrains-mono' },
-                        { label: 'Source Code Pro (Google)', value: 'source-code-pro' },
-                        { label: 'IBM Plex Mono (Google)', value: 'ibm-plex-mono' },
-                        { label: 'Roboto Mono (Google)', value: 'roboto-mono' },
-                      ],
-                    },
                   ],
                   label: 'Font Families',
                 },

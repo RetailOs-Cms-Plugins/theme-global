@@ -795,10 +795,7 @@ const LayoutContent = () => {
 
 export const Logo = () => {
   return (
-    <a
-      className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
-      href="#"
-    >
+    <a className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal" href="#">
       <div className="h-8 w-8 shrink-0">
         <svg
           fill="none"
@@ -835,7 +832,7 @@ export const Logo = () => {
       </div>
       <motion.span
         animate={{ opacity: 1 }}
-        className="font-medium whitespace-pre text-primary-500"
+        className="font-medium whitespace-pre text-on-page"
         initial={{ opacity: 0 }}
       >
         Theme Config
@@ -846,10 +843,7 @@ export const Logo = () => {
 
 export const LogoIcon = () => {
   return (
-    <a
-      className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal text-black"
-      href="#"
-    >
+    <a className="relative z-20 flex items-center space-x-2 py-1 text-sm font-normal" href="#">
       <div className="h-8 w-8 shrink-0">
         <svg
           fill="none"

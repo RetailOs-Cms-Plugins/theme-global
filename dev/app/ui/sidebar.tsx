@@ -178,7 +178,7 @@ export const SidebarLink = ({
         }}
         className="text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
         style={{
-          color: 'var(--text-on-page)',
+          color: 'currentColor',
         }}
       >
         {link.label}

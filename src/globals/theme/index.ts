@@ -613,6 +613,21 @@ export const themeGlobal: GlobalConfig = {
         {
           fields: [
             {
+              name: 'layout',
+              type: 'group',
+              fields: [
+                {
+                  name: 'maxWidth',
+                  type: 'number',
+                  admin: {
+                    description: 'Set the max-width for the main container. (e.g., 1440)',
+                  },
+                  label: 'Max Width',
+                },
+              ],
+              label: 'Layout',
+            },
+            {
               name: 'spacing',
               type: 'group',
               fields: [

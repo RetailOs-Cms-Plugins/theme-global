@@ -140,7 +140,7 @@ const TypographyPreview = ({ bodyFont, headingFont }: TypographyPreviewProps) =>
                 {element.name === 'blockquote' &&
                   '"This is a blockquote. It is used to offset text from the main content."'}
                 {element.name === 'table' && (
-                  <table className="w-full text-left">
+                  <table className="w-full text-start">
                     <thead>
                       <tr>
                         <th className="border p-2">Header 1</th>

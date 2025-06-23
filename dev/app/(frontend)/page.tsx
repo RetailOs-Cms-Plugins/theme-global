@@ -165,6 +165,7 @@ const ColorsContent = () => {
 
 const TypographyContent = () => {
   const [themeData, setThemeData] = useState<any>(null)
+  const [activeLink, setActiveLink] = useState<string>('')
 
   useEffect(() => {
     async function fetchTheme() {
@@ -365,6 +366,7 @@ const TypographyContent = () => {
         block: 'start',
         inline: 'nearest',
       })
+      setActiveLink(href)
     }
   }
 
@@ -376,7 +378,9 @@ const TypographyContent = () => {
 
           <div className="space-y-12">
             <section>
-              <TypographyH2 themeData={themeData}>Selected Font Families</TypographyH2>
+              <TypographyH3 className="mt-4" themeData={themeData}>
+                Selected Font Families
+              </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                 <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
                   <TypographyH3 themeData={themeData}>Body Font</TypographyH3>
@@ -395,7 +399,7 @@ const TypographyContent = () => {
 
             <section className="space-y-8">
               <div>
-                <TypographyH2 themeData={themeData}>Typography Scale</TypographyH2>
+                <TypographyH3 themeData={themeData}>Typography Scale</TypographyH3>
                 <div className="space-y-6 mt-4">
                   <div id="h1">
                     <TypographyH1 themeData={themeData}>
@@ -666,9 +670,17 @@ const TypographyContent = () => {
               {typographyLinks.map((link) => (
                 <li key={link.href}>
                   <a
-                    className="text-sm hover:underline block"
+                    className={cn(
+                      'text-sm hover:underline block transition-colors duration-200',
+                      activeLink === link.href
+                        ? 'text-primary font-medium'
+                        : 'text-on-page hover:text-color-secondary',
+                    )}
                     href={link.href}
                     onClick={(e) => handleSmoothScroll(e, link.href)}
+                    style={{
+                      color: activeLink === link.href ? 'var(--color-primary)' : undefined,
+                    }}
                   >
                     {link.label}
                   </a>
@@ -683,6 +695,33 @@ const TypographyContent = () => {
 }
 
 const LayoutContent = () => {
+  const [themeData, setThemeData] = useState<any>(null)
+
+  useEffect(() => {
+    async function fetchTheme() {
+      try {
+        const data = await getClientTheme()
+        setThemeData(data)
+      } catch (error) {
+        console.error('Error fetching theme:', error)
+      }
+    }
+
+    // Fetch theme on mount
+    void fetchTheme()
+
+    // Listen for theme updates
+    const handleThemeUpdate = () => {
+      void fetchTheme()
+    }
+
+    window.addEventListener('theme-update', handleThemeUpdate)
+
+    return () => {
+      window.removeEventListener('theme-update', handleThemeUpdate)
+    }
+  }, [])
+
   return (
     <div className="flex flex-1">
       <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700">
@@ -693,12 +732,14 @@ const LayoutContent = () => {
             <h2 className="text-xl font-semibold mb-4">Layout Grid</h2>
             <div className="space-y-4">
               <div className="space-y-2">
+                {/* Get max width size from theme data */}
                 <label className="text-sm font-medium">Container Width</label>
-                <select className="w-full p-2 border rounded">
-                  <option>Full Width</option>
-                  <option>Max Width (1280px)</option>
-                  <option>Custom</option>
-                </select>
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.maxWidth ? `${themeData.layout.maxWidth}px` : '1280px'}
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Grid Columns</label>

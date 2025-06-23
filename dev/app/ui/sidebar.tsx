@@ -86,7 +86,10 @@ export const DesktopSidebar = ({
         animate={{
           width: animate ? (open ? '300px' : '60px') : '300px',
         }}
-        className={cn('h-full px-4 py-4 hidden md:flex md:flex-col w-[300px] shrink-0', className)}
+        className={cn(
+          'h-full px-4 py-4 hidden md:flex md:flex-col sticky top-0 w-[300px] shrink-0',
+          className,
+        )}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         style={{
@@ -175,7 +178,7 @@ export const SidebarLink = ({
         }}
         className="text-sm group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
         style={{
-          color: 'var(--text-on-page)',
+          color: 'currentColor',
         }}
       >
         {link.label}

@@ -106,11 +106,18 @@ export function generateColorScale(
   const scale = chroma
     .scale(['white', baseColor, 'black'])
     .mode('lab')
-    .colors(weights.length)
-    .map((color) => chroma(color).hex())
+    .colors(weights.length * 2) // Generate more colors for better mapping
+
+  const colorScale = weights.map((_, index) => {
+    // A non-linear mapping to get a better distribution of colors
+    const scaleIndex = Math.round(
+      Math.pow(index / (weights.length - 1), 1.5) * (weights.length * 2 - 1),
+    )
+    return chroma(scale[scaleIndex]).hex()
+  })
 
   return weights.reduce((acc: Record<string, string>, weight: number, index: number) => {
-    acc[`--color-${variableName}-${weight}`] = scale[index]
+    acc[`--${variableName}-${weight}`] = colorScale[index]
     return acc
   }, {})
 }

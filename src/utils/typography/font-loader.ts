@@ -153,3 +153,26 @@ export function generateFontCSS(selectedFont: string, fallbackFonts: string[]): 
 
   return css
 }
+
+export function getGoogleFontsUrl(fontNames: Readonly<string[]>): null | string {
+  const googleFonts = fontNames
+    .map((name) => getFontDefinition(name))
+    .filter((def) => def?.source.type === 'google')
+    .map((def) => {
+      if (def) {
+        let fontQuery = `family=${def.source.googleFamily?.replace(/ /g, '+')}`
+        if (def.weights) {
+          fontQuery += `:wght@${def.weights.join(';')}`
+        }
+        return fontQuery
+      }
+      return null
+    })
+    .filter(Boolean)
+
+  if (googleFonts.length === 0) {
+    return null
+  }
+
+  return `https://fonts.googleapis.com/css2?${googleFonts.join('&')}&display=swap`
+}

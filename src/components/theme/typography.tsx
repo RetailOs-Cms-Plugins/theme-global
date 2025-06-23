@@ -5,15 +5,49 @@ type TypographyProps = {
   className?: string
   dir?: 'auto' | 'ltr' | 'rtl'
   style?: React.CSSProperties
+  themeData?: any // Add theme data prop
 } & React.HTMLAttributes<HTMLElement>
 
-// Heading Components - Professional Landing Page Sizing
-export function TypographyH1({ children, className, dir, style, ...props }: TypographyProps) {
+// Helper function to get typography styles from theme
+const getTypographyStyles = (element: string, themeData: any, baseClassName: string = '') => {
+  const elementConfig = themeData?.typography?.[element]
+  const fontSize = elementConfig?.fontSize
+  const lineHeight = elementConfig?.lineHeight
+
+  const customStyles: React.CSSProperties = {}
+  if (fontSize) {
+    customStyles.fontSize = fontSize
+  }
+  if (lineHeight) {
+    customStyles.lineHeight = lineHeight
+  }
+
+  return {
+    className: baseClassName,
+    style: customStyles,
+  }
+}
+
+// Heading Components - Now using theme configuration
+export function TypographyH1({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'h1',
+    themeData,
+    'scroll-m-20 font-extrabold tracking-tight text-balance',
+  )
+
   return (
     <h1
-      className={`scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl xl:text-6xl text-balance ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -21,12 +55,25 @@ export function TypographyH1({ children, className, dir, style, ...props }: Typo
   )
 }
 
-export function TypographyH2({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyH2({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'h2',
+    themeData,
+    'scroll-m-20 border-b pb-2 font-semibold tracking-tight first:mt-0',
+  )
+
   return (
     <h2
-      className={`scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight lg:text-4xl first:mt-0 ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -34,12 +81,25 @@ export function TypographyH2({ children, className, dir, style, ...props }: Typo
   )
 }
 
-export function TypographyH3({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyH3({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'h3',
+    themeData,
+    'scroll-m-20 font-semibold tracking-tight',
+  )
+
   return (
     <h3
-      className={`scroll-m-20 text-2xl font-semibold tracking-tight lg:text-3xl ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -47,12 +107,25 @@ export function TypographyH3({ children, className, dir, style, ...props }: Typo
   )
 }
 
-export function TypographyH4({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyH4({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'h4',
+    themeData,
+    'scroll-m-20 font-semibold tracking-tight',
+  )
+
   return (
     <h4
-      className={`scroll-m-20 text-xl font-semibold tracking-tight lg:text-2xl ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -61,12 +134,25 @@ export function TypographyH4({ children, className, dir, style, ...props }: Typo
 }
 
 // Body Text Components
-export function TypographyP({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyP({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'p',
+    themeData,
+    'leading-7 [&:not(:first-child)]:mt-6',
+  )
+
   return (
     <p
-      className={`leading-7 [&:not(:first-child)]:mt-6 text-base lg:text-lg ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -75,12 +161,25 @@ export function TypographyP({ children, className, dir, style, ...props }: Typog
 }
 
 // Special Text Components
-export function TypographyLead({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyLead({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'lead',
+    themeData,
+    'text-muted-foreground leading-7 [&:not(:first-child)]:mt-6',
+  )
+
   return (
     <p
-      className={`text-xl text-muted-foreground leading-7 [&:not(:first-child)]:mt-6 lg:text-2xl ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -88,12 +187,25 @@ export function TypographyLead({ children, className, dir, style, ...props }: Ty
   )
 }
 
-export function TypographyLarge({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyLarge({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'large',
+    themeData,
+    'font-semibold',
+  )
+
   return (
     <div
-      className={`text-lg font-semibold lg:text-xl ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -101,12 +213,25 @@ export function TypographyLarge({ children, className, dir, style, ...props }: T
   )
 }
 
-export function TypographySmall({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographySmall({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'small',
+    themeData,
+    'leading-none font-medium',
+  )
+
   return (
     <small
-      className={`text-sm leading-none font-medium ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -114,12 +239,25 @@ export function TypographySmall({ children, className, dir, style, ...props }: T
   )
 }
 
-export function TypographyMuted({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyMuted({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'muted',
+    themeData,
+    'text-muted-foreground leading-7 [&:not(:first-child)]:mt-6',
+  )
+
   return (
     <p
-      className={`text-sm text-muted-foreground leading-7 [&:not(:first-child)]:mt-6 ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -133,13 +271,20 @@ export function TypographyInlineCode({
   className,
   dir,
   style,
+  themeData,
   ...props
 }: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'inlineCode',
+    themeData,
+    'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono font-semibold',
+  )
+
   return (
     <code
-      className={`relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -153,13 +298,20 @@ export function TypographyBlockquote({
   className,
   dir,
   style,
+  themeData,
   ...props
 }: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'blockquote',
+    themeData,
+    'mt-6 border-l-2 pl-6 italic',
+  )
+
   return (
     <blockquote
-      className={`mt-6 border-l-2 pl-6 italic text-lg lg:text-xl ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -167,9 +319,26 @@ export function TypographyBlockquote({
   )
 }
 
-export function TypographyTable({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyTable({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'table',
+    themeData,
+    'my-6 w-full overflow-y-auto',
+  )
+
   return (
-    <div className={`my-6 w-full overflow-y-auto ${className ?? ''}`} dir={dir} style={style}>
+    <div
+      className={`${baseClassName} ${className ?? ''}`}
+      dir={dir}
+      style={{ ...themeStyle, ...style }}
+    >
       <table className="w-full" {...props}>
         {children}
       </table>
@@ -177,12 +346,25 @@ export function TypographyTable({ children, className, dir, style, ...props }: T
   )
 }
 
-export function TypographyList({ children, className, dir, style, ...props }: TypographyProps) {
+export function TypographyList({
+  children,
+  className,
+  dir,
+  style,
+  themeData,
+  ...props
+}: TypographyProps) {
+  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
+    'list',
+    themeData,
+    'my-6 ml-6 list-disc [&>li]:mt-2',
+  )
+
   return (
     <ul
-      className={`my-6 ml-6 list-disc [&>li]:mt-2 text-base lg:text-lg ${className ?? ''}`}
+      className={`${baseClassName} ${className ?? ''}`}
       dir={dir}
-      style={style}
+      style={{ ...themeStyle, ...style }}
       {...props}
     >
       {children}
@@ -196,11 +378,12 @@ export function TypographyTableHeader({
   className,
   dir,
   style,
+  themeData,
   ...props
 }: TypographyProps) {
   return (
-    <thead {...props}>
-      <tr className="even:bg-muted m-0 border-t p-0">{children}</tr>
+    <thead className={className} dir={dir} style={style} {...props}>
+      {children}
     </thead>
   )
 }
@@ -214,7 +397,7 @@ export function TypographyTableHeaderCell({
 }: TypographyProps) {
   return (
     <th
-      className={`border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right ${className ?? ''}`}
+      className={`h-12 px-4 text-start align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 ${className ?? ''}`}
       dir={dir}
       style={style}
       {...props}
@@ -231,13 +414,17 @@ export function TypographyTableBody({
   style,
   ...props
 }: TypographyProps) {
-  return <tbody {...props}>{children}</tbody>
+  return (
+    <tbody className={className} dir={dir} style={style} {...props}>
+      {children}
+    </tbody>
+  )
 }
 
 export function TypographyTableRow({ children, className, dir, style, ...props }: TypographyProps) {
   return (
     <tr
-      className={`even:bg-muted m-0 border-t p-0 ${className ?? ''}`}
+      className={`border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted ${className ?? ''}`}
       dir={dir}
       style={style}
       {...props}
@@ -256,7 +443,7 @@ export function TypographyTableCell({
 }: TypographyProps) {
   return (
     <td
-      className={`border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right ${className ?? ''}`}
+      className={`p-4 align-middle [&:has([role=checkbox])]:pr-0 ${className ?? ''}`}
       dir={dir}
       style={style}
       {...props}
@@ -269,7 +456,7 @@ export function TypographyTableCell({
 // List Item Component
 export function TypographyListItem({ children, className, dir, style, ...props }: TypographyProps) {
   return (
-    <li className={`mt-2 ${className ?? ''}`} dir={dir} style={style} {...props}>
+    <li className={className} dir={dir} style={style} {...props}>
       {children}
     </li>
   )

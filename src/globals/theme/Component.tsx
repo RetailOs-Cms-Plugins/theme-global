@@ -65,27 +65,27 @@ const DEFAULT_THEME: ThemeConfig = {
   textOnPrimary: '#fff',
   textOnSecondary: '#0c4a6e',
   typography: {
-    fontFamily: 'Inter, system-ui, sans-serif',
-    fontSize: {
-      base: '1rem',
-      headings: {
-        h1: '2.5rem',
-        h2: '2rem',
-        h3: '1.75rem',
-        h4: '1.5rem',
-        h5: '1.25rem',
-        h6: '1.125rem',
-      },
+    elements: {
+      blockquote: { fontSize: '1.125rem', lineHeight: '1.75rem' },
+      h1: { fontSize: '2.25rem', lineHeight: '2.5rem' },
+      h2: { fontSize: '1.875rem', lineHeight: '2.25rem' },
+      h3: { fontSize: '1.5rem', lineHeight: '2rem' },
+      h4: { fontSize: '1.25rem', lineHeight: '1.75rem' },
+      inlineCode: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+      large: { fontSize: '1.125rem', lineHeight: '1.75rem' },
+      lead: { fontSize: '1.25rem', lineHeight: '1.75rem' },
+      list: { fontSize: '1rem', lineHeight: '1.75rem' },
+      muted: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+      p: { fontSize: '1rem', lineHeight: '1.5rem' },
+      small: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+      table: { fontSize: '1rem', lineHeight: '1.5rem' },
     },
+    fontFamily: 'Inter, system-ui, sans-serif',
     fontWeight: {
       bold: 700,
       normal: 400,
     },
-    lineHeight: {
-      normal: 1.5,
-      relaxed: 1.75,
-      tight: 1.25,
-    },
+    headingFont: 'Inter, system-ui, sans-serif',
   },
 }
 
@@ -352,7 +352,7 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                     key={f.name}
                     label={f.label}
                     name={f.name}
-                    onChange={(color) => handleColorChange(f.name, color)}
+                    onChange={(color: string) => handleColorChange(f.name, color)}
                     value={
                       typeof value[f.name] === 'string' ? (value[f.name] as string) : undefined
                     }
@@ -375,7 +375,7 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                     key={f.name}
                     label={f.label}
                     name={f.name}
-                    onChange={(color) => handleColorChange(f.name, color)}
+                    onChange={(color: string) => handleColorChange(f.name, color)}
                     value={
                       typeof value[f.name] === 'string' ? (value[f.name] as string) : undefined
                     }
@@ -454,16 +454,16 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 className={styles.typographyPreview}
                 style={{
                   fontFamily: value.typography.fontFamily,
-                  fontSize: value.typography.fontSize.base,
-                  lineHeight: value.typography.lineHeight.normal,
+                  fontSize: value.typography.elements.p.fontSize,
+                  lineHeight: value.typography.elements.p.lineHeight,
                 }}
               >
                 <h1
                   className={styles.previewHeading}
                   style={{
-                    fontSize: value.typography.fontSize.headings.h1,
+                    fontSize: value.typography.elements.h1.fontSize,
                     fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.lineHeight.tight,
+                    lineHeight: value.typography.elements.h1.lineHeight,
                   }}
                 >
                   Heading 1 Example
@@ -471,9 +471,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <h2
                   className={styles.previewHeading}
                   style={{
-                    fontSize: value.typography.fontSize.headings.h2,
+                    fontSize: value.typography.elements.h2.fontSize,
                     fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.lineHeight.tight,
+                    lineHeight: value.typography.elements.h2.lineHeight,
                   }}
                 >
                   Heading 2 Example
@@ -481,9 +481,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <h3
                   className={styles.previewHeading}
                   style={{
-                    fontSize: value.typography.fontSize.headings.h3,
+                    fontSize: value.typography.elements.h3.fontSize,
                     fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.lineHeight.normal,
+                    lineHeight: value.typography.elements.h3.lineHeight,
                   }}
                 >
                   Heading 3 Example
@@ -491,8 +491,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <p
                   className={styles.previewParagraph}
                   style={{
+                    fontSize: value.typography.elements.p.fontSize,
                     fontWeight: value.typography.fontWeight.normal,
-                    lineHeight: value.typography.lineHeight.relaxed,
+                    lineHeight: value.typography.elements.p.lineHeight,
                   }}
                 >
                   This is a paragraph example showing how your body text will appear with the
@@ -502,8 +503,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <p
                   className={styles.previewParagraph}
                   style={{
+                    fontSize: value.typography.elements.p.fontSize,
                     fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.lineHeight.normal,
+                    lineHeight: value.typography.elements.p.lineHeight,
                   }}
                 >
                   <strong>This is bold text</strong> showing the bold font weight setting in action.

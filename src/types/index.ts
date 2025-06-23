@@ -3,67 +3,68 @@
  */
 
 export interface TypographyConfig {
-  fontFamily: string
-  fontSize: {
-    base: string
-    headings: {
-      h1: string
-      h2: string
-      h3: string
-      h4: string
-      h5: string
-      h6: string
-    }
-  }
-  fontWeight: {
-    bold: number
-    normal: number
-  }
-  lineHeight: {
-    normal: number
-    relaxed: number
-    tight: number
-  }
+  blockquote?: { fontSize: string; lineHeight: string }
+  direction?: 'auto' | 'ltr' | 'rtl'
+  fontBody?: string
+  fontHeading?: string
+  fontMono?: string
+  h1?: { fontSize: string; lineHeight: string }
+  h2?: { fontSize: string; lineHeight: string }
+  h3?: { fontSize: string; lineHeight: string }
+  h4?: { fontSize: string; lineHeight: string }
+  inlineCode?: { fontSize: string; lineHeight: string }
+  large?: { fontSize: string; lineHeight: string }
+  lead?: { fontSize: string; lineHeight: string }
+  list?: { fontSize: string; lineHeight: string }
+  muted?: { fontSize: string; lineHeight: string }
+  p?: { fontSize: string; lineHeight: string }
+  small?: { fontSize: string; lineHeight: string }
+  table?: { fontSize: string; lineHeight: string }
+  text2xl?: string
+  text3xl?: string
+  text4xl?: string
+  textBase?: string
+  textLg?: string
+  textSm?: string
+  textXl?: string
+  textXs?: string
 }
 
 export interface ThemeConfig {
-  cardBackground?: string
-  // Semantic
-  colorPrimary?: string
-  colorSecondary?: string
-  pageBackground?: string
-  // Primitives
-  primary50?: string
-  primary100?: string
-  primary200?: string
-  primary300?: string
-  primary400?: string
-  primary500?: string
-  primary600?: string
-
-  primary700?: string
-  primary800?: string
-  primary900?: string
-  primary950?: string
-  secondary50?: string
-  secondary100?: string
-  secondary200?: string
-  secondary300?: string
-  secondary400?: string
-  secondary500?: string
-  secondary600?: string
-
-  secondary700?: string
-  secondary800?: string
-  secondary900?: string
-  secondary950?: string
-  textOnCard?: string
-  textOnPage?: string
-  textOnPrimary?: string
-  textOnSecondary?: string
-
+  cardBackground: string
+  colorPrimary: string
+  colorSecondary: string
+  pageBackground: string
+  primary50: string
+  primary100: string
+  primary200: string
+  primary300: string
+  primary400: string
+  primary500: string
+  primary600: string
+  primary700: string
+  primary800: string
+  primary900: string
+  primary950: string
+  secondary50: string
+  secondary100: string
+  secondary200: string
+  secondary300: string
+  secondary400: string
+  secondary500: string
+  secondary600: string
+  secondary700: string
+  secondary800: string
+  secondary900: string
+  secondary950: string
+  textOnCard: string
+  textOnPage: string
+  textOnPrimary: string
+  textOnSecondary: string
   typography: TypographyConfig
 }
+
+export * from './typography.js'
 
 /**
  * Props for color input components

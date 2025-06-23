@@ -660,7 +660,7 @@ const TypographyContent = () => {
           </div>
         </div>
         <aside className="w-64 flex-shrink-0 border-l border-neutral-200 dark:border-neutral-700">
-          <div className="sticky top-0 p-4">
+          <div className="fixed top-0 p-4">
             <div className="font-semibold mb-2">On This Page</div>
             <ul className="space-y-1">
               {typographyLinks.map((link) => (

@@ -731,38 +731,18 @@ const LayoutContent = () => {
           <section>
             <h2 className="text-xl font-semibold mb-4">Layout Grid</h2>
             <div className="space-y-4">
-              <div className="space-y-2">
-                {/* Get max width size from theme data */}
-                <label className="text-sm font-medium">Container Width</label>
-                <input
-                  className="w-full p-2 border rounded bg-gray-100"
-                  readOnly
-                  type="text"
-                  value={themeData?.layout?.maxWidth ? `${themeData.layout.maxWidth}px` : '1280px'}
-                />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Grid Columns</label>
-                <select className="w-full p-2 border rounded">
-                  <option>12 Columns</option>
-                  <option>16 Columns</option>
-                  <option>Custom</option>
-                </select>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold mb-4">Spacing Scale</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Base Spacing</label>
-                <input className="w-full p-2 border rounded" type="text" value="1rem" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Scale Factor</label>
-                <input className="w-full p-2 border rounded" type="number" value="1.5" />
-              </div>
+              {/* Get max width size from theme data */}
+              <label className="text-sm font-medium">Container Width</label>
+              <input
+                className="w-full p-2 border rounded bg-gray-100"
+                readOnly
+                type="text"
+                value={
+                  themeData?.layout?.maxWidth && themeData.layout.maxWidth !== 0
+                    ? `${themeData.layout.maxWidth}px`
+                    : '1360px'
+                }
+              />
             </div>
           </section>
 
@@ -771,19 +751,111 @@ const LayoutContent = () => {
             <div className="space-y-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">Mobile</label>
-                <input className="w-full p-2 border rounded" type="text" value="640px" />
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={
+                    themeData?.layout?.breakpoints?.mobile
+                      ? `${themeData.layout.breakpoints.mobile}px`
+                      : '640px'
+                  }
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Tablet</label>
-                <input className="w-full p-2 border rounded" type="text" value="768px" />
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={
+                    themeData?.layout?.breakpoints?.tablet
+                      ? `${themeData.layout.breakpoints.tablet}px`
+                      : '768px'
+                  }
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Desktop</label>
-                <input className="w-full p-2 border rounded" type="text" value="1024px" />
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={
+                    themeData?.layout?.breakpoints?.desktop
+                      ? `${themeData.layout.breakpoints.desktop}px`
+                      : '1024px'
+                  }
+                />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Large Desktop</label>
-                <input className="w-full p-2 border rounded" type="text" value="1280px" />
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={
+                    themeData?.layout?.breakpoints?.largeDesktop
+                      ? `${themeData.layout.breakpoints.largeDesktop}px`
+                      : '1280px'
+                  }
+                />
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold mb-4">Spacing Scale</h2>
+            <div className="grid grid-cols-5 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium">XS</label>
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.spacingScale?.xs || '0.25rem'}
+                />
+                <div className="text-xs text-gray-400">Extra small spacing</div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">SM</label>
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.spacingScale?.sm || '0.5rem'}
+                />
+                <div className="text-xs text-gray-400">Small spacing</div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">MD</label>
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.spacingScale?.md || '1rem'}
+                />
+                <div className="text-xs text-gray-400">Medium spacing</div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">LG</label>
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.spacingScale?.lg || '2rem'}
+                />
+                <div className="text-xs text-gray-400">Large spacing</div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium">XL</label>
+                <input
+                  className="w-full p-2 border rounded bg-gray-100"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.spacingScale?.xl || '4rem'}
+                />
+                <div className="text-xs text-gray-400">Extra large spacing</div>
               </div>
             </div>
           </section>

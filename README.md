@@ -124,6 +124,22 @@ import {
 <TypographyLead themeData={themeData}>
   Lead paragraph for introductions.
 </TypographyLead>
+
+// Table example with proper structure
+<TypographyTable themeData={themeData}>
+  <TypographyTableHeader>
+    <TypographyTableRow>
+      <TypographyTableHeaderCell>Name</TypographyTableHeaderCell>
+      <TypographyTableHeaderCell>Email</TypographyTableHeaderCell>
+    </TypographyTableRow>
+  </TypographyTableHeader>
+  <TypographyTableBody>
+    <TypographyTableRow>
+      <TypographyTableCell>John Doe</TypographyTableCell>
+      <TypographyTableCell>john@example.com</TypographyTableCell>
+    </TypographyTableRow>
+  </TypographyTableBody>
+</TypographyTable>
 ```
 
 ### Font Families

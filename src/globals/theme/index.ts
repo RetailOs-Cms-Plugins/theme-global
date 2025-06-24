@@ -620,74 +620,41 @@ export const themeGlobal: GlobalConfig = {
                   name: 'maxWidth',
                   type: 'number',
                   admin: {
-                    description: 'Set the max-width for the main container. (e.g., 1440)',
+                    description: 'Set the max-width for the main container. (e.g., 1360)',
                   },
+                  defaultValue: 1360,
                   label: 'Max Width',
+                },
+                {
+                  name: 'breakpoints',
+                  type: 'group',
+                  fields: [
+                    { name: 'mobile', type: 'number', defaultValue: 640, label: 'Mobile' },
+                    { name: 'tablet', type: 'number', defaultValue: 768, label: 'Tablet' },
+                    { name: 'desktop', type: 'number', defaultValue: 1024, label: 'Desktop' },
+                    {
+                      name: 'largeDesktop',
+                      type: 'number',
+                      defaultValue: 1280,
+                      label: 'Large Desktop',
+                    },
+                  ],
+                  label: 'Breakpoints',
+                },
+                {
+                  name: 'spacingScale',
+                  type: 'group',
+                  fields: [
+                    { name: 'xs', type: 'text', defaultValue: '0.25rem', label: 'XS' },
+                    { name: 'sm', type: 'text', defaultValue: '0.5rem', label: 'SM' },
+                    { name: 'md', type: 'text', defaultValue: '1rem', label: 'MD' },
+                    { name: 'lg', type: 'text', defaultValue: '2rem', label: 'LG' },
+                    { name: 'xl', type: 'text', defaultValue: '4rem', label: 'XL' },
+                  ],
+                  label: 'Spacing Scale',
                 },
               ],
               label: 'Layout',
-            },
-            {
-              name: 'spacing',
-              type: 'group',
-              fields: [
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'spacingXs',
-                      type: 'text',
-                      admin: {
-                        description: 'Extra small spacing',
-                        width: '20%',
-                      },
-                      defaultValue: '0.25rem',
-                      label: 'XS',
-                    },
-                    {
-                      name: 'spacingSm',
-                      type: 'text',
-                      admin: {
-                        description: 'Small spacing',
-                        width: '20%',
-                      },
-                      defaultValue: '0.5rem',
-                      label: 'SM',
-                    },
-                    {
-                      name: 'spacingMd',
-                      type: 'text',
-                      admin: {
-                        description: 'Medium spacing',
-                        width: '20%',
-                      },
-                      defaultValue: '1rem',
-                      label: 'MD',
-                    },
-                    {
-                      name: 'spacingLg',
-                      type: 'text',
-                      admin: {
-                        description: 'Large spacing',
-                        width: '20%',
-                      },
-                      defaultValue: '2rem',
-                      label: 'LG',
-                    },
-                    {
-                      name: 'spacingXl',
-                      type: 'text',
-                      admin: {
-                        description: 'Extra large spacing',
-                        width: '20%',
-                      },
-                      defaultValue: '4rem',
-                      label: 'XL',
-                    },
-                  ],
-                },
-              ],
-              label: 'Spacing Scale',
             },
           ],
           label: 'Layout & Spacing',

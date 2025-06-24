@@ -396,14 +396,16 @@ export function TypographyTableHeaderCell({
   ...props
 }: TypographyProps) {
   return (
-    <th
-      className={`h-12 px-4 text-start align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 ${className ?? ''}`}
-      dir={dir}
-      style={style}
-      {...props}
-    >
-      {children}
-    </th>
+    <tr>
+      <th
+        className={`h-12 px-4 text-start align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 ${className ?? ''}`}
+        dir={dir}
+        style={style}
+        {...props}
+      >
+        {children}
+      </th>
+    </tr>
   )
 }
 

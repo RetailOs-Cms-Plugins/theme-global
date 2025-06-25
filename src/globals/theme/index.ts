@@ -191,163 +191,443 @@ export const themeGlobal: GlobalConfig = {
                   type: 'collapsible',
                   fields: [
                     {
-                      type: 'row',
+                      name: 'h1',
+                      type: 'group',
                       fields: [
                         {
-                          name: 'h1',
+                          name: 'fontSize',
                           type: 'group',
-                          admin: {
-                            description: 'Heading 1 typography settings',
-                            width: '50%',
-                          },
                           fields: [
                             {
-                              name: 'fontSize',
-                              type: 'text',
-                              admin: {
-                                description: 'Font size for H1',
-                              },
-                              defaultValue: '2.25rem',
-                              label: 'Font Size',
-                            },
-                            {
-                              name: 'lineHeight',
-                              type: 'text',
-                              admin: {
-                                description: 'Line height for H1',
-                              },
-                              defaultValue: '2.5rem',
-                              label: 'Line Height',
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '5rem',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '4rem',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '3rem',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2rem',
+                                  label: 'Mobile',
+                                },
+                              ],
                             },
                           ],
-                          label: 'H1',
+                          label: 'Font Size',
                         },
                         {
-                          name: 'h2',
+                          name: 'lineHeight',
                           type: 'group',
-                          admin: {
-                            description: 'Heading 2 typography settings',
-                            width: '50%',
-                          },
                           fields: [
                             {
-                              name: 'fontSize',
-                              type: 'text',
-                              admin: {
-                                description: 'Font size for H2',
-                              },
-                              defaultValue: '1.875rem',
-                              label: 'Font Size',
-                            },
-                            {
-                              name: 'lineHeight',
-                              type: 'text',
-                              admin: {
-                                description: 'Line height for H2',
-                              },
-                              defaultValue: '2.25rem',
-                              label: 'Line Height',
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.1',
+                                  label: 'Mobile',
+                                },
+                              ],
                             },
                           ],
-                          label: 'H2',
+                          label: 'Line Height',
                         },
                       ],
+                      label: 'H1',
+                    },
+                    {
+                      name: 'h2',
+                      type: 'group',
+                      fields: [
+                        {
+                          name: 'fontSize',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '4rem',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '3rem',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2.5rem',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2rem',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Font Size',
+                        },
+                        {
+                          name: 'lineHeight',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.1',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Line Height',
+                        },
+                      ],
+                      label: 'H2',
+                    },
+                    {
+                      name: 'h3',
+                      type: 'group',
+                      fields: [
+                        {
+                          name: 'fontSize',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '3rem',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2.5rem',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2rem',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.5rem',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Font Size',
+                        },
+                        {
+                          name: 'lineHeight',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.1',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Line Height',
+                        },
+                      ],
+                      label: 'H3',
+                    },
+                    {
+                      name: 'h4',
+                      type: 'group',
+                      fields: [
+                        {
+                          name: 'fontSize',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2.5rem',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '2rem',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.5rem',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2rem',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Font Size',
+                        },
+                        {
+                          name: 'lineHeight',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.2',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.1',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Line Height',
+                        },
+                      ],
+                      label: 'H4',
+                    },
+                    {
+                      name: 'p',
+                      type: 'group',
+                      fields: [
+                        {
+                          name: 'fontSize',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.5rem',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.25rem',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1rem',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '0.9rem',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Font Size',
+                        },
+                        {
+                          name: 'lineHeight',
+                          type: 'group',
+                          fields: [
+                            {
+                              type: 'row',
+                              fields: [
+                                {
+                                  name: 'largeDesktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.5',
+                                  label: 'Large Desktop',
+                                },
+                                {
+                                  name: 'desktop',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.5',
+                                  label: 'Desktop',
+                                },
+                                {
+                                  name: 'tablet',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.4',
+                                  label: 'Tablet',
+                                },
+                                {
+                                  name: 'mobile',
+                                  type: 'text',
+                                  admin: { width: '25%' },
+                                  defaultValue: '1.3',
+                                  label: 'Mobile',
+                                },
+                              ],
+                            },
+                          ],
+                          label: 'Line Height',
+                        },
+                      ],
+                      label: 'Paragraph',
                     },
                     {
                       type: 'row',
                       fields: [
-                        {
-                          name: 'h3',
-                          type: 'group',
-                          admin: {
-                            description: 'Heading 3 typography settings',
-                            width: '50%',
-                          },
-                          fields: [
-                            {
-                              name: 'fontSize',
-                              type: 'text',
-                              admin: {
-                                description: 'Font size for H3',
-                              },
-                              defaultValue: '1.5rem',
-                              label: 'Font Size',
-                            },
-                            {
-                              name: 'lineHeight',
-                              type: 'text',
-                              admin: {
-                                description: 'Line height for H3',
-                              },
-                              defaultValue: '2rem',
-                              label: 'Line Height',
-                            },
-                          ],
-                          label: 'H3',
-                        },
-                        {
-                          name: 'h4',
-                          type: 'group',
-                          admin: {
-                            description: 'Heading 4 typography settings',
-                            width: '50%',
-                          },
-                          fields: [
-                            {
-                              name: 'fontSize',
-                              type: 'text',
-                              admin: {
-                                description: 'Font size for H4',
-                              },
-                              defaultValue: '1.25rem',
-                              label: 'Font Size',
-                            },
-                            {
-                              name: 'lineHeight',
-                              type: 'text',
-                              admin: {
-                                description: 'Line height for H4',
-                              },
-                              defaultValue: '1.75rem',
-                              label: 'Line Height',
-                            },
-                          ],
-                          label: 'H4',
-                        },
-                      ],
-                    },
-                    {
-                      type: 'row',
-                      fields: [
-                        {
-                          name: 'p',
-                          type: 'group',
-                          admin: {
-                            description: 'Paragraph typography settings',
-                            width: '50%',
-                          },
-                          fields: [
-                            {
-                              name: 'fontSize',
-                              type: 'text',
-                              admin: {
-                                description: 'Font size for paragraphs',
-                              },
-                              defaultValue: '1rem',
-                              label: 'Font Size',
-                            },
-                            {
-                              name: 'lineHeight',
-                              type: 'text',
-                              admin: {
-                                description: 'Line height for paragraphs',
-                              },
-                              defaultValue: '1.5rem',
-                              label: 'Line Height',
-                            },
-                          ],
-                          label: 'Paragraph',
-                        },
                         {
                           name: 'blockquote',
                           type: 'group',

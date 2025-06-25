@@ -119,28 +119,39 @@ export const MobileSidebar = ({ children, className, ...props }: React.Component
         </div>
         <AnimatePresence>
           {open && (
-            <motion.div
-              animate={{ opacity: 1, x: 0 }}
-              className={cn(
-                'fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between',
-                className,
-              )}
-              exit={{ opacity: 0, x: '-100%' }}
-              initial={{ opacity: 0, x: '-100%' }}
-              transition={{
-                duration: 0.3,
-                ease: 'easeInOut',
-              }}
-            >
-              <button
-                aria-label="Close sidebar"
-                className="absolute right-10 top-10 z-50 text-neutral-800  p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full"
-                onClick={() => setOpen(!open)}
+            <>
+              {/* Overlay for click-to-close */}
+              <motion.div
+                animate={{ opacity: 1 }}
+                className="fixed inset-0 bg-black/40 z-[99]"
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                onClick={() => setOpen(false)}
+              />
+              {/* Sidebar content */}
+              <motion.div
+                animate={{ opacity: 1, x: 0 }}
+                className={cn(
+                  'fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between',
+                  className,
+                )}
+                exit={{ opacity: 0, x: '-100%' }}
+                initial={{ opacity: 0, x: '-100%' }}
+                transition={{
+                  duration: 0.3,
+                  ease: 'easeInOut',
+                }}
               >
-                <IconX />
-              </button>
-              {children}
-            </motion.div>
+                <button
+                  aria-label="Close sidebar"
+                  className="absolute left-10 top-10 z-50 text-neutral-800  p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full"
+                  onClick={() => setOpen(false)}
+                >
+                  <IconX />
+                </button>
+                {children}
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

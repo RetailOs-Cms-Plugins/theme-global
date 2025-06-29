@@ -24,6 +24,48 @@ export const hebrewFonts: FontDefinition[] = [
     weights: [400, 700],
   },
   {
+    name: 'almoni-tzar-bold',
+    displayName: 'Almoni Tzar Bold',
+    preview: {
+      english: 'Bold Hebrew Display Font',
+      hebrew: 'גופן עברי מודגש לתצוגה',
+    },
+    source: {
+      type: 'local',
+      files: {
+        woff: '/fonts/he/almoni/almoni-tzar-bold-aaa.woff',
+        woff2: '/fonts/he/almoni/almoni-tzar-bold-aaa.woff2',
+      },
+    },
+    styles: ['normal'],
+    supports: {
+      languages: ['he', 'en'],
+      scripts: ['hebrew', 'latin'],
+    },
+    weights: [700],
+  },
+  {
+    name: 'ploni-regular',
+    displayName: 'Ploni Regular',
+    preview: {
+      english: 'Regular Hebrew Body Font',
+      hebrew: 'גופן עברי רגיל לגוף הטקסט',
+    },
+    source: {
+      type: 'local',
+      files: {
+        woff: '/fonts/he/ploni/ploni-regular-aaa.woff',
+        woff2: '/fonts/he/ploni/ploni-regular-aaa.woff2',
+      },
+    },
+    styles: ['normal'],
+    supports: {
+      languages: ['he', 'en'],
+      scripts: ['hebrew', 'latin'],
+    },
+    weights: [400],
+  },
+  {
     name: 'frank-ruhl-libre',
     displayName: 'Frank Ruhl Libre',
     preview: {

@@ -171,5 +171,49 @@ code {
     color: var(--text-on-page);
   }
 
-  /* Add more as needed */
+}
+
+@font-face {
+  font-family: 'Almoni Tzar Bold';
+  src: url('/fonts/he/almoni/almoni-tzar-bold-aaa.woff2') format('woff2'),
+       url('/fonts/he/almoni/almoni-tzar-bold-aaa.woff') format('woff'),
+       url('/fonts/he/almoni/almoni-tzar-bold-aaa.eot') format('embedded-opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ploni Regular';
+  src: url('/fonts/he/ploni/ploni-regular-aaa.woff2') format('woff2'),
+       url('/fonts/he/ploni/ploni-regular-aaa.woff') format('woff'),
+       url('/fonts/he/ploni/ploni-regular-aaa.eot') format('embedded-opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Asimon Hebrew';
+  src: url('/fonts/he/asimon/asimon-regular-aaa.woff2') format('woff2'),
+       url('/fonts/he/asimon/asimon-regular-aaa.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ploni Hebrew';
+  src: url('/fonts/he/ploni/ploni-regular-aaa.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Almoni Tzar';
+  src: url('/fonts/he/almoni/almoni-tzar-bold-aaa.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }

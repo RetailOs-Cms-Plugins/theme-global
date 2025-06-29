@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
+import { useCurrentBreakpoint } from '../../utils/typography/useCurrentBreakpoint'
 import { useResponsiveTypography } from '../../utils/typography/useResponsiveValue'
+import { useTheme } from './ThemeProvider'
+
+// Font loading best practice: Preload fonts in your layout or _document for best performance.
+// Use font-display: swap for Google Fonts.
 
 type TypographyProps = {
   breakpoint?: 'desktop' | 'largeDesktop' | 'mobile' | 'tablet'
@@ -21,9 +26,34 @@ const getTypographyStyles = (element: string, themeData: any, baseClassName: str
   const hasResponsiveLineHeight =
     elementConfig?.lineHeight && typeof elementConfig.lineHeight === 'object'
 
-  // For non-responsive fallback
-  const fontSize = hasResponsiveFontSize ? undefined : elementConfig?.fontSize
-  const lineHeight = hasResponsiveLineHeight ? undefined : elementConfig?.lineHeight
+  // For responsive configurations, use 'desktop' as the default breakpoint
+  // For non-responsive configurations, use the string values directly
+  let fontSize: string | undefined
+  let lineHeight: string | undefined
+
+  if (hasResponsiveFontSize) {
+    // Use desktop as default, fallback to first available breakpoint
+    fontSize =
+      elementConfig.fontSize.desktop ||
+      elementConfig.fontSize.largeDesktop ||
+      elementConfig.fontSize.tablet ||
+      elementConfig.fontSize.mobile ||
+      Object.values(elementConfig.fontSize)[0]
+  } else {
+    fontSize = elementConfig?.fontSize
+  }
+
+  if (hasResponsiveLineHeight) {
+    // Use desktop as default, fallback to first available breakpoint
+    lineHeight =
+      elementConfig.lineHeight.desktop ||
+      elementConfig.lineHeight.largeDesktop ||
+      elementConfig.lineHeight.tablet ||
+      elementConfig.lineHeight.mobile ||
+      Object.values(elementConfig.lineHeight)[0]
+  } else {
+    lineHeight = elementConfig?.lineHeight
+  }
 
   const customStyles: React.CSSProperties = {}
   if (fontSize) {
@@ -44,21 +74,35 @@ const getTypographyStyles = (element: string, themeData: any, baseClassName: str
 
 // Heading Components - Now using theme configuration with responsive breakpoints
 export function TypographyH1({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('h1', themeData, 'scroll-m-20 font-extrabold tracking-tight text-balance')
-
+  } = useMemo(
+    () =>
+      getTypographyStyles(
+        'h1',
+        themeData,
+        'scroll-m-20 font-extrabold tracking-tight text-balance',
+      ),
+    [themeData],
+  )
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -66,14 +110,12 @@ export function TypographyH1({
   if (breakpoint && responsiveLineHeight) {
     lineHeight = responsiveLineHeight[breakpoint]
   }
-
   const finalStyle = {
     ...themeStyle,
     ...(fontSize ? { fontSize } : {}),
     ...(lineHeight ? { lineHeight } : {}),
     ...style,
   }
-
   return (
     <h1 className={`${baseClassName} ${className ?? ''}`} dir={dir} style={finalStyle} {...props}>
       {children}
@@ -82,24 +124,35 @@ export function TypographyH1({
 }
 
 export function TypographyH2({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles(
-    'h2',
-    themeData,
-    'scroll-m-20 border-b pb-2 font-semibold tracking-tight first:mt-0',
+  } = useMemo(
+    () =>
+      getTypographyStyles(
+        'h2',
+        themeData,
+        'scroll-m-20 border-b pb-2 font-semibold tracking-tight first:mt-0',
+      ),
+    [themeData],
   )
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -121,20 +174,30 @@ export function TypographyH2({
 }
 
 export function TypographyH3({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('h3', themeData, 'scroll-m-20 font-semibold tracking-tight')
+  } = useMemo(
+    () => getTypographyStyles('h3', themeData, 'scroll-m-20 font-semibold tracking-tight'),
+    [themeData],
+  )
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -156,20 +219,30 @@ export function TypographyH3({
 }
 
 export function TypographyH4({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('h4', themeData, 'scroll-m-20 font-semibold tracking-tight')
+  } = useMemo(
+    () => getTypographyStyles('h4', themeData, 'scroll-m-20 font-semibold tracking-tight'),
+    [themeData],
+  )
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -192,20 +265,30 @@ export function TypographyH4({
 
 // Body Text Components
 export function TypographyP({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('p', themeData, 'leading-7 [&:not(:first-child)]:mt-6')
+  } = useMemo(
+    () => getTypographyStyles('p', themeData, 'leading-7 [&:not(:first-child)]:mt-6'),
+    [themeData],
+  )
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -228,20 +311,27 @@ export function TypographyP({
 
 // Special Text Components
 export function TypographyLead({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('lead', themeData, 'text-xl')
+  } = useMemo(() => getTypographyStyles('lead', themeData, 'text-xl'), [themeData])
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -263,20 +353,27 @@ export function TypographyLead({
 }
 
 export function TypographyLarge({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('large', themeData, 'text-lg')
+  } = useMemo(() => getTypographyStyles('large', themeData, 'text-lg'), [themeData])
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -298,20 +395,27 @@ export function TypographyLarge({
 }
 
 export function TypographySmall({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('small', themeData, 'text-sm')
+  } = useMemo(() => getTypographyStyles('small', themeData, 'text-sm'), [themeData])
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -337,97 +441,31 @@ export function TypographySmall({
   )
 }
 
-export function TypographyMuted({
-  breakpoint,
-  children,
-  className,
-  dir,
-  style,
-  themeData,
-  ...props
-}: TypographyProps) {
-  const {
-    className: baseClassName,
-    responsiveFontSize,
-    responsiveLineHeight,
-    style: themeStyle,
-  } = getTypographyStyles('muted', themeData, 'text-sm text-muted-foreground')
-  let fontSize, lineHeight
-  if (breakpoint && responsiveFontSize) {
-    fontSize = responsiveFontSize[breakpoint]
-  }
-  if (breakpoint && responsiveLineHeight) {
-    lineHeight = responsiveLineHeight[breakpoint]
-  }
-  const finalStyle = {
-    ...themeStyle,
-    ...(fontSize ? { fontSize } : {}),
-    ...(lineHeight ? { lineHeight } : {}),
-    ...style,
-  }
-  return (
-    <span className={`${baseClassName} ${className ?? ''}`} dir={dir} style={finalStyle} {...props}>
-      {children}
-    </span>
-  )
-}
-
-// Code Components
-export function TypographyInlineCode({
-  breakpoint,
-  children,
-  className,
-  dir,
-  style,
-  themeData,
-  ...props
-}: TypographyProps) {
-  const {
-    className: baseClassName,
-    responsiveFontSize,
-    responsiveLineHeight,
-    style: themeStyle,
-  } = getTypographyStyles(
-    'inlineCode',
-    themeData,
-    'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono font-semibold',
-  )
-  let fontSize, lineHeight
-  if (breakpoint && responsiveFontSize) {
-    fontSize = responsiveFontSize[breakpoint]
-  }
-  if (breakpoint && responsiveLineHeight) {
-    lineHeight = responsiveLineHeight[breakpoint]
-  }
-  const finalStyle = {
-    ...themeStyle,
-    ...(fontSize ? { fontSize } : {}),
-    ...(lineHeight ? { lineHeight } : {}),
-    ...style,
-  }
-  return (
-    <code className={`${baseClassName} ${className ?? ''}`} dir={dir} style={finalStyle} {...props}>
-      {children}
-    </code>
-  )
-}
-
-// Block Components
 export function TypographyBlockquote({
-  breakpoint,
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
   const {
     className: baseClassName,
     responsiveFontSize,
     responsiveLineHeight,
     style: themeStyle,
-  } = getTypographyStyles('blockquote', themeData, 'mt-6 border-l-2 pl-6 italic')
+  } = useMemo(
+    () => getTypographyStyles('blockquote', themeData, 'mt-6 border-l-2 pl-6 italic'),
+    [themeData],
+  )
+  if (!themeData) {
+    return null
+  }
   let fontSize, lineHeight
   if (breakpoint && responsiveFontSize) {
     fontSize = responsiveFontSize[breakpoint]
@@ -453,147 +491,94 @@ export function TypographyBlockquote({
   )
 }
 
-export function TypographyTable({
+export function TypographyInlineCode({
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
-  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
-    'table',
-    themeData,
-    'my-6 w-full overflow-y-auto',
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
+  const {
+    className: baseClassName,
+    responsiveFontSize,
+    responsiveLineHeight,
+    style: themeStyle,
+  } = useMemo(
+    () =>
+      getTypographyStyles(
+        'code',
+        themeData,
+        'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
+      ),
+    [themeData],
   )
-
+  if (!themeData) {
+    return null
+  }
+  let fontSize, lineHeight
+  if (breakpoint && responsiveFontSize) {
+    fontSize = responsiveFontSize[breakpoint]
+  }
+  if (breakpoint && responsiveLineHeight) {
+    lineHeight = responsiveLineHeight[breakpoint]
+  }
+  const finalStyle = {
+    ...themeStyle,
+    ...(fontSize ? { fontSize } : {}),
+    ...(lineHeight ? { lineHeight } : {}),
+    ...style,
+  }
   return (
-    <div
-      className={`${baseClassName} ${className ?? ''}`}
-      dir={dir}
-      style={{ ...themeStyle, ...style }}
-    >
-      <table className="w-full" {...props}>
-        {children}
-      </table>
-    </div>
+    <code className={`${baseClassName} ${className ?? ''}`} dir={dir} style={finalStyle} {...props}>
+      {children}
+    </code>
   )
 }
 
-export function TypographyList({
+export function TypographyMuted({
+  breakpoint: propBreakpoint,
   children,
   className,
   dir,
   style,
-  themeData,
+  themeData: propThemeData,
   ...props
 }: TypographyProps) {
-  const { className: baseClassName, style: themeStyle } = getTypographyStyles(
-    'list',
-    themeData,
-    'my-6 ml-6 list-disc [&>li]:mt-2',
-  )
-
+  const contextThemeData = useTheme()
+  const themeData = propThemeData || contextThemeData
+  const currentBreakpoint = useCurrentBreakpoint()
+  const breakpoint = propBreakpoint || currentBreakpoint
+  const {
+    className: baseClassName,
+    responsiveFontSize,
+    responsiveLineHeight,
+    style: themeStyle,
+  } = useMemo(() => getTypographyStyles('muted', themeData, 'text-muted-foreground'), [themeData])
+  if (!themeData) {
+    return null
+  }
+  let fontSize, lineHeight
+  if (breakpoint && responsiveFontSize) {
+    fontSize = responsiveFontSize[breakpoint]
+  }
+  if (breakpoint && responsiveLineHeight) {
+    lineHeight = responsiveLineHeight[breakpoint]
+  }
+  const finalStyle = {
+    ...themeStyle,
+    ...(fontSize ? { fontSize } : {}),
+    ...(lineHeight ? { lineHeight } : {}),
+    ...style,
+  }
   return (
-    <ul
-      className={`${baseClassName} ${className ?? ''}`}
-      dir={dir}
-      style={{ ...themeStyle, ...style }}
-      {...props}
-    >
+    <p className={`${baseClassName} ${className ?? ''}`} dir={dir} style={finalStyle} {...props}>
       {children}
-    </ul>
-  )
-}
-
-// Table Components for better structure
-export function TypographyTableHeader({
-  children,
-  className,
-  dir,
-  style,
-  themeData,
-  ...props
-}: TypographyProps) {
-  return (
-    <thead className={className} dir={dir} style={style} {...props}>
-      {children}
-    </thead>
-  )
-}
-
-export function TypographyTableHeaderCell({
-  children,
-  className,
-  dir,
-  style,
-  ...props
-}: TypographyProps) {
-  return (
-    <tr>
-      <th
-        className={`h-12 px-4 text-start align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 ${className ?? ''}`}
-        dir={dir}
-        style={style}
-        {...props}
-      >
-        {children}
-      </th>
-    </tr>
-  )
-}
-
-export function TypographyTableBody({
-  children,
-  className,
-  dir,
-  style,
-  ...props
-}: TypographyProps) {
-  return (
-    <tbody className={className} dir={dir} style={style} {...props}>
-      {children}
-    </tbody>
-  )
-}
-
-export function TypographyTableRow({ children, className, dir, style, ...props }: TypographyProps) {
-  return (
-    <tr
-      className={`border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted ${className ?? ''}`}
-      dir={dir}
-      style={style}
-      {...props}
-    >
-      {children}
-    </tr>
-  )
-}
-
-export function TypographyTableCell({
-  children,
-  className,
-  dir,
-  style,
-  ...props
-}: TypographyProps) {
-  return (
-    <td
-      className={`p-4 align-middle [&:has([role=checkbox])]:pr-0 ${className ?? ''}`}
-      dir={dir}
-      style={style}
-      {...props}
-    >
-      {children}
-    </td>
-  )
-}
-
-// List Item Component
-export function TypographyListItem({ children, className, dir, style, ...props }: TypographyProps) {
-  return (
-    <li className={className} dir={dir} style={style} {...props}>
-      {children}
-    </li>
+    </p>
   )
 }

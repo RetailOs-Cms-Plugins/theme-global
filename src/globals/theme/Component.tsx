@@ -3,7 +3,7 @@ import type { JSONFieldClient } from 'payload'
 
 import React, { useState } from 'react'
 
-import type { ThemeConfig } from '../../types/index.js'
+import type { ThemeConfig } from '../../types/theme.types.js'
 import type { TailwindTheme } from '../../utils/color-palette/color-palette'
 
 import { ColorInput, TypographySelector } from '../../components/theme/index.js'
@@ -33,10 +33,14 @@ interface ThemeComponentProps extends JSONFieldClient {
 }
 
 // Default theme configuration
-const DEFAULT_THEME: ThemeConfig = {
+const DEFAULT_THEME: { fontWeight?: { bold: number; normal: number } } & ThemeConfig = {
   cardBackground: '#faf5ff',
   colorPrimary: '#3b82f6',
   colorSecondary: '#10b981',
+  fontWeight: {
+    bold: 700,
+    normal: 400,
+  },
   pageBackground: '#faf5ff',
   primary50: '#faf5ff',
   primary100: '#f3e8ff',
@@ -65,27 +69,21 @@ const DEFAULT_THEME: ThemeConfig = {
   textOnPrimary: '#fff',
   textOnSecondary: '#0c4a6e',
   typography: {
-    elements: {
-      blockquote: { fontSize: '1.125rem', lineHeight: '1.75rem' },
-      h1: { fontSize: '2.25rem', lineHeight: '2.5rem' },
-      h2: { fontSize: '1.875rem', lineHeight: '2.25rem' },
-      h3: { fontSize: '1.5rem', lineHeight: '2rem' },
-      h4: { fontSize: '1.25rem', lineHeight: '1.75rem' },
-      inlineCode: { fontSize: '0.875rem', lineHeight: '1.25rem' },
-      large: { fontSize: '1.125rem', lineHeight: '1.75rem' },
-      lead: { fontSize: '1.25rem', lineHeight: '1.75rem' },
-      list: { fontSize: '1rem', lineHeight: '1.75rem' },
-      muted: { fontSize: '0.875rem', lineHeight: '1.25rem' },
-      p: { fontSize: '1rem', lineHeight: '1.5rem' },
-      small: { fontSize: '0.875rem', lineHeight: '1.25rem' },
-      table: { fontSize: '1rem', lineHeight: '1.5rem' },
-    },
-    fontFamily: 'Inter, system-ui, sans-serif',
-    fontWeight: {
-      bold: 700,
-      normal: 400,
-    },
-    headingFont: 'Inter, system-ui, sans-serif',
+    blockquote: { fontSize: '1.125rem', lineHeight: '1.75rem' },
+    fontBody: 'Inter, system-ui, sans-serif',
+    fontHeading: 'Inter, system-ui, sans-serif',
+    h1: { fontSize: '2.25rem', lineHeight: '2.5rem' },
+    h2: { fontSize: '1.875rem', lineHeight: '2.25rem' },
+    h3: { fontSize: '1.5rem', lineHeight: '2rem' },
+    h4: { fontSize: '1.25rem', lineHeight: '1.75rem' },
+    inlineCode: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+    large: { fontSize: '1.125rem', lineHeight: '1.75rem' },
+    lead: { fontSize: '1.25rem', lineHeight: '1.75rem' },
+    list: { fontSize: '1rem', lineHeight: '1.75rem' },
+    muted: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+    p: { fontSize: '1rem', lineHeight: '1.5rem' },
+    small: { fontSize: '0.875rem', lineHeight: '1.25rem' },
+    table: { fontSize: '1rem', lineHeight: '1.5rem' },
   },
 }
 
@@ -453,17 +451,17 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
               <div
                 className={styles.typographyPreview}
                 style={{
-                  fontFamily: value.typography.fontFamily,
-                  fontSize: value.typography.elements.p.fontSize,
-                  lineHeight: value.typography.elements.p.lineHeight,
+                  fontFamily: value.typography.fontBody || 'Inter, system-ui, sans-serif',
+                  fontSize: value.typography.p?.fontSize || '1rem',
+                  lineHeight: value.typography.p?.lineHeight || '1.5rem',
                 }}
               >
                 <h1
                   className={styles.previewHeading}
                   style={{
-                    fontSize: value.typography.elements.h1.fontSize,
-                    fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.elements.h1.lineHeight,
+                    fontSize: value.typography.h1?.fontSize || '2.25rem',
+                    fontWeight: value.fontWeight?.bold || 700,
+                    lineHeight: value.typography.h1?.lineHeight || '2.5rem',
                   }}
                 >
                   Heading 1 Example
@@ -471,9 +469,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <h2
                   className={styles.previewHeading}
                   style={{
-                    fontSize: value.typography.elements.h2.fontSize,
-                    fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.elements.h2.lineHeight,
+                    fontSize: value.typography.h2?.fontSize || '1.875rem',
+                    fontWeight: value.fontWeight?.bold || 700,
+                    lineHeight: value.typography.h2?.lineHeight || '2.25rem',
                   }}
                 >
                   Heading 2 Example
@@ -481,9 +479,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <h3
                   className={styles.previewHeading}
                   style={{
-                    fontSize: value.typography.elements.h3.fontSize,
-                    fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.elements.h3.lineHeight,
+                    fontSize: value.typography.h3?.fontSize || '1.5rem',
+                    fontWeight: value.fontWeight?.bold || 700,
+                    lineHeight: value.typography.h3?.lineHeight || '2rem',
                   }}
                 >
                   Heading 3 Example
@@ -491,9 +489,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <p
                   className={styles.previewParagraph}
                   style={{
-                    fontSize: value.typography.elements.p.fontSize,
-                    fontWeight: value.typography.fontWeight.normal,
-                    lineHeight: value.typography.elements.p.lineHeight,
+                    fontSize: value.typography.p?.fontSize || '1rem',
+                    fontWeight: value.fontWeight?.normal || 400,
+                    lineHeight: value.typography.p?.lineHeight || '1.5rem',
                   }}
                 >
                   This is a paragraph example showing how your body text will appear with the
@@ -503,9 +501,9 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
                 <p
                   className={styles.previewParagraph}
                   style={{
-                    fontSize: value.typography.elements.p.fontSize,
-                    fontWeight: value.typography.fontWeight.bold,
-                    lineHeight: value.typography.elements.p.lineHeight,
+                    fontSize: value.typography.p?.fontSize || '1rem',
+                    fontWeight: value.fontWeight?.bold || 700,
+                    lineHeight: value.typography.p?.lineHeight || '1.5rem',
                   }}
                 >
                   <strong>This is bold text</strong> showing the bold font weight setting in action.

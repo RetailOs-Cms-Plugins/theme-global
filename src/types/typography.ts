@@ -4,30 +4,31 @@ export interface FontFamilyOption {
 }
 
 export interface TypographyConfig {
-  bodyFont?: string
+  blockquote?: { fontSize: string; lineHeight: string }
   direction?: 'auto' | 'ltr' | 'rtl'
-  elements: {
-    [key: string]: { fontSize: string; lineHeight: string }
-    blockquote: { fontSize: string; lineHeight: string }
-    h1: { fontSize: string; lineHeight: string }
-    h2: { fontSize: string; lineHeight: string }
-    h3: { fontSize: string; lineHeight: string }
-    h4: { fontSize: string; lineHeight: string }
-    inlineCode: { fontSize: string; lineHeight: string }
-    large: { fontSize: string; lineHeight: string }
-    lead: { fontSize: string; lineHeight: string }
-    list: { fontSize: string; lineHeight: string }
-    muted: { fontSize: string; lineHeight: string }
-    p: { fontSize: string; lineHeight: string }
-    small: { fontSize: string; lineHeight: string }
-    table: { fontSize: string; lineHeight: string }
-  }
-  fontFamily?: string
-  fontWeight: {
-    bold: number
-    normal: number
-  }
-  headingFont?: string
+  fontBody?: string
+  fontHeading?: string
+  fontMono?: string
+  h1?: { fontSize: string; lineHeight: string }
+  h2?: { fontSize: string; lineHeight: string }
+  h3?: { fontSize: string; lineHeight: string }
+  h4?: { fontSize: string; lineHeight: string }
+  inlineCode?: { fontSize: string; lineHeight: string }
+  large?: { fontSize: string; lineHeight: string }
+  lead?: { fontSize: string; lineHeight: string }
+  list?: { fontSize: string; lineHeight: string }
+  muted?: { fontSize: string; lineHeight: string }
+  p?: { fontSize: string; lineHeight: string }
+  small?: { fontSize: string; lineHeight: string }
+  table?: { fontSize: string; lineHeight: string }
+  text2xl?: string
+  text3xl?: string
+  text4xl?: string
+  textBase?: string
+  textLg?: string
+  textSm?: string
+  textXl?: string
+  textXs?: string
 }
 
 export interface ExtendedTypographyConfig extends TypographyConfig {

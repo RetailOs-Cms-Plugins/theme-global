@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.dev.json",
   "exclude": [],
   "include": [
     "**/*.js",
@@ -17,20 +17,12 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["app/*"],
-      "@payload-config": [
-        "./payload.config.ts"
-      ],
-      "theme-global": [
-        "../src/index.ts"
-      ],
-      "theme-global/client": [
-        "../src/exports/client.ts"
-      ],
-      "theme-global/rsc": [
-        "../src/exports/rsc.ts"
-      ]
+      "@payload-config": ["./payload.config.ts"],
+      "theme-global": ["../src/index.ts"],
+      "theme-global/client": ["../src/exports/client.ts"],
+      "theme-global/rsc": ["../src/exports/rsc.ts"]
     },
     "noEmit": true,
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": false
   }
 }

@@ -59,282 +59,284 @@ export type SupportedTimezones =
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
   | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+  | 'Pacific/Fiji'
 
 export interface Config {
   auth: {
-    users: UserAuthOperations;
-  };
-  blocks: {};
+    users: UserAuthOperations
+  }
+  blocks: {}
   collections: {
-    posts: Post;
-    media: Media;
-    users: User;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
-  };
-  collectionsJoins: {};
+    posts: Post
+    media: Media
+    users: User
+    'payload-locked-documents': PayloadLockedDocument
+    'payload-preferences': PayloadPreference
+    'payload-migrations': PayloadMigration
+  }
+  collectionsJoins: {}
   collectionsSelect: {
-    posts: PostsSelect<false> | PostsSelect<true>;
-    media: MediaSelect<false> | MediaSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
-  };
+    posts: PostsSelect<false> | PostsSelect<true>
+    media: MediaSelect<false> | MediaSelect<true>
+    users: UsersSelect<false> | UsersSelect<true>
+    'payload-locked-documents':
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>
+  }
   db: {
-    defaultIDType: number;
-  };
+    defaultIDType: number
+  }
   globals: {
-    'theme-config': ThemeConfig;
-  };
+    'theme-config': ThemeConfig
+  }
   globalsSelect: {
-    'theme-config': ThemeConfigSelect<false> | ThemeConfigSelect<true>;
-  };
-  locale: null;
+    'theme-config': ThemeConfigSelect<false> | ThemeConfigSelect<true>
+  }
+  locale: null
   user: User & {
-    collection: 'users';
-  };
+    collection: 'users'
+  }
   jobs: {
-    tasks: unknown;
-    workflows: unknown;
-  };
+    tasks: unknown
+    workflows: unknown
+  }
 }
 export interface UserAuthOperations {
   forgotPassword: {
-    email: string;
-    password: string;
-  };
+    email: string
+    password: string
+  }
   login: {
-    email: string;
-    password: string;
-  };
+    email: string
+    password: string
+  }
   registerFirstUser: {
-    email: string;
-    password: string;
-  };
+    email: string
+    password: string
+  }
   unlock: {
-    email: string;
-    password: string;
-  };
+    email: string
+    password: string
+  }
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
 export interface Post {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
+  id: number
+  updatedAt: string
+  createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+  id: number
+  updatedAt: string
+  createdAt: string
+  url?: string | null
+  thumbnailURL?: string | null
+  filename?: string | null
+  mimeType?: string | null
+  filesize?: number | null
+  width?: number | null
+  height?: number | null
+  focalX?: number | null
+  focalY?: number | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
+  id: number
+  updatedAt: string
+  createdAt: string
+  email: string
+  resetPasswordToken?: string | null
+  resetPasswordExpiration?: string | null
+  salt?: string | null
+  hash?: string | null
+  loginAttempts?: number | null
+  lockUntil?: string | null
+  password?: string | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number;
+  id: number
   document?:
     | ({
-        relationTo: 'posts';
-        value: number | Post;
+        relationTo: 'posts'
+        value: number | Post
       } | null)
     | ({
-        relationTo: 'media';
-        value: number | Media;
+        relationTo: 'media'
+        value: number | Media
       } | null)
     | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null);
-  globalSlug?: string | null;
+        relationTo: 'users'
+        value: number | User
+      } | null)
+  globalSlug?: string | null
   user: {
-    relationTo: 'users';
-    value: number | User;
-  };
-  updatedAt: string;
-  createdAt: string;
+    relationTo: 'users'
+    value: number | User
+  }
+  updatedAt: string
+  createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number;
+  id: number
   user: {
-    relationTo: 'users';
-    value: number | User;
-  };
-  key?: string | null;
+    relationTo: 'users'
+    value: number | User
+  }
+  key?: string | null
   value?:
     | {
-        [k: string]: unknown;
+        [k: string]: unknown
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null;
-  updatedAt: string;
-  createdAt: string;
+    | null
+  updatedAt: string
+  createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number;
-  name?: string | null;
-  batch?: number | null;
-  updatedAt: string;
-  createdAt: string;
+  id: number
+  name?: string | null
+  batch?: number | null
+  updatedAt: string
+  createdAt: string
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
+  updatedAt?: T
+  createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
+  updatedAt?: T
+  createdAt?: T
+  url?: T
+  thumbnailURL?: T
+  filename?: T
+  mimeType?: T
+  filesize?: T
+  width?: T
+  height?: T
+  focalX?: T
+  focalY?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
+  updatedAt?: T
+  createdAt?: T
+  email?: T
+  resetPasswordToken?: T
+  resetPasswordExpiration?: T
+  salt?: T
+  hash?: T
+  loginAttempts?: T
+  lockUntil?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-  document?: T;
-  globalSlug?: T;
-  user?: T;
-  updatedAt?: T;
-  createdAt?: T;
+  document?: T
+  globalSlug?: T
+  user?: T
+  updatedAt?: T
+  createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-  user?: T;
-  key?: T;
-  value?: T;
-  updatedAt?: T;
-  createdAt?: T;
+  user?: T
+  key?: T
+  value?: T
+  updatedAt?: T
+  createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-  name?: T;
-  batch?: T;
-  updatedAt?: T;
-  createdAt?: T;
+  name?: T
+  batch?: T
+  updatedAt?: T
+  createdAt?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "theme-config".
  */
 export interface ThemeConfig {
-  id: number;
+  id: number
   /**
    * Input field background color
    */
-  primary50?: string | null;
-  primary100?: string | null;
-  primary200?: string | null;
-  primary300?: string | null;
-  primary400?: string | null;
-  primary500?: string | null;
-  primary600?: string | null;
-  primary700?: string | null;
-  primary800?: string | null;
-  primary900?: string | null;
-  primary950?: string | null;
-  secondary50?: string | null;
-  secondary100?: string | null;
-  secondary200?: string | null;
-  secondary300?: string | null;
-  secondary400?: string | null;
-  secondary500?: string | null;
-  secondary600?: string | null;
-  secondary700?: string | null;
-  secondary800?: string | null;
-  secondary900?: string | null;
-  secondary950?: string | null;
-  colorPrimary?: string | null;
-  textOnPrimary?: string | null;
-  colorSecondary?: string | null;
-  textOnSecondary?: string | null;
-  cardBackground?: string | null;
-  textOnCard?: string | null;
-  pageBackground?: string | null;
-  textOnPage?: string | null;
+  primary50?: string | null
+  primary100?: string | null
+  primary200?: string | null
+  primary300?: string | null
+  primary400?: string | null
+  primary500?: string | null
+  primary600?: string | null
+  primary700?: string | null
+  primary800?: string | null
+  primary900?: string | null
+  primary950?: string | null
+  secondary50?: string | null
+  secondary100?: string | null
+  secondary200?: string | null
+  secondary300?: string | null
+  secondary400?: string | null
+  secondary500?: string | null
+  secondary600?: string | null
+  secondary700?: string | null
+  secondary800?: string | null
+  secondary900?: string | null
+  secondary950?: string | null
+  colorPrimary?: string | null
+  textOnPrimary?: string | null
+  colorSecondary?: string | null
+  textOnSecondary?: string | null
+  cardBackground?: string | null
+  textOnCard?: string | null
+  pageBackground?: string | null
+  textOnPage?: string | null
   typography?: {
     /**
      * Font family for body text
@@ -365,7 +367,7 @@ export interface ThemeConfig {
           | 'sora'
           | 'poppins'
         )
-      | null;
+      | null
     /**
      * Font family for headings
      */
@@ -395,142 +397,143 @@ export interface ThemeConfig {
           | 'sora'
           | 'poppins'
         )
-      | null;
+      | null
     /**
      * Font family for monospace text (code)
      */
-    fontMono?: ('fira-code' | 'jetbrains-mono' | 'source-code-pro' | 'ibm-plex-mono' | 'roboto-mono') | null;
+    fontMono?:
+      | ('fira-code' | 'jetbrains-mono' | 'source-code-pro' | 'ibm-plex-mono' | 'roboto-mono')
+      | null
     /**
      * Extra small text size
      */
-    textXs?: string | null;
+    textXs?: string | null
     /**
      * Small text size
      */
-    textSm?: string | null;
+    textSm?: string | null
     /**
      * Base text size
      */
-    textBase?: string | null;
+    textBase?: string | null
     /**
      * Large text size
      */
-    textLg?: string | null;
+    textLg?: string | null
     /**
      * Extra large text size
      */
-    textXl?: string | null;
+    textXl?: string | null
     /**
      * 2X large text size
      */
-    text2xl?: string | null;
+    text2xl?: string | null
     /**
      * 3X large text size
      */
-    text3xl?: string | null;
+    text3xl?: string | null
     /**
      * 4X large text size
      */
-    text4xl?: string | null;
-    direction?: ('auto' | 'ltr' | 'rtl') | null;
-  };
+    text4xl?: string | null
+    direction?: ('auto' | 'ltr' | 'rtl') | null
+  }
   spacing?: {
     /**
      * Extra small spacing
      */
-    spacingXs?: string | null;
+    spacingXs?: string | null
     /**
      * Small spacing
      */
-    spacingSm?: string | null;
+    spacingSm?: string | null
     /**
      * Medium spacing
      */
-    spacingMd?: string | null;
+    spacingMd?: string | null
     /**
      * Large spacing
      */
-    spacingLg?: string | null;
+    spacingLg?: string | null
     /**
      * Extra large spacing
      */
-    spacingXl?: string | null;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
+    spacingXl?: string | null
+  }
+  updatedAt?: string | null
+  createdAt?: string | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "theme-config_select".
  */
 export interface ThemeConfigSelect<T extends boolean = true> {
-  primary50?: T;
-  primary100?: T;
-  primary200?: T;
-  primary300?: T;
-  primary400?: T;
-  primary500?: T;
-  primary600?: T;
-  primary700?: T;
-  primary800?: T;
-  primary900?: T;
-  primary950?: T;
-  secondary50?: T;
-  secondary100?: T;
-  secondary200?: T;
-  secondary300?: T;
-  secondary400?: T;
-  secondary500?: T;
-  secondary600?: T;
-  secondary700?: T;
-  secondary800?: T;
-  secondary900?: T;
-  secondary950?: T;
-  colorPrimary?: T;
-  textOnPrimary?: T;
-  colorSecondary?: T;
-  textOnSecondary?: T;
-  cardBackground?: T;
-  textOnCard?: T;
-  pageBackground?: T;
-  textOnPage?: T;
+  primary50?: T
+  primary100?: T
+  primary200?: T
+  primary300?: T
+  primary400?: T
+  primary500?: T
+  primary600?: T
+  primary700?: T
+  primary800?: T
+  primary900?: T
+  primary950?: T
+  secondary50?: T
+  secondary100?: T
+  secondary200?: T
+  secondary300?: T
+  secondary400?: T
+  secondary500?: T
+  secondary600?: T
+  secondary700?: T
+  secondary800?: T
+  secondary900?: T
+  secondary950?: T
+  colorPrimary?: T
+  textOnPrimary?: T
+  colorSecondary?: T
+  textOnSecondary?: T
+  cardBackground?: T
+  textOnCard?: T
+  pageBackground?: T
+  textOnPage?: T
   typography?:
     | T
     | {
-        fontBody?: T;
-        fontHeading?: T;
-        fontMono?: T;
-        textXs?: T;
-        textSm?: T;
-        textBase?: T;
-        textLg?: T;
-        textXl?: T;
-        text2xl?: T;
-        text3xl?: T;
-        text4xl?: T;
-        direction?: T;
-      };
+        fontBody?: T
+        fontHeading?: T
+        fontMono?: T
+        textXs?: T
+        textSm?: T
+        textBase?: T
+        textLg?: T
+        textXl?: T
+        text2xl?: T
+        text3xl?: T
+        text4xl?: T
+        direction?: T
+      }
   spacing?:
     | T
     | {
-        spacingXs?: T;
-        spacingSm?: T;
-        spacingMd?: T;
-        spacingLg?: T;
-        spacingXl?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
+        spacingXs?: T
+        spacingSm?: T
+        spacingMd?: T
+        spacingLg?: T
+        spacingXl?: T
+      }
+  updatedAt?: T
+  createdAt?: T
+  globalType?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-  [k: string]: unknown;
+  [k: string]: unknown
 }
-
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

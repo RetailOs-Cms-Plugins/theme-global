@@ -4,6 +4,10 @@ export interface ThemeConfig {
   cardBackground: string
   colorPrimary: string
   colorSecondary: string
+  fontWeight?: {
+    bold: number
+    normal: number
+  }
   pageBackground: string
   primary50: string
   primary100: string

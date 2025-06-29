@@ -27,6 +27,7 @@ const BREAKPOINTS = [
     description: '1920px+',
     icon: '🖥️',
     maxWidth: 'max-w-none',
+    value: 'largeDesktop',
     width: 'w-full',
   },
   {
@@ -34,6 +35,7 @@ const BREAKPOINTS = [
     description: '1024px - 1919px',
     icon: '💻',
     maxWidth: 'max-w-6xl',
+    value: 'desktop',
     width: 'w-4/5',
   },
   {
@@ -41,6 +43,7 @@ const BREAKPOINTS = [
     description: '768px - 1023px',
     icon: '📱',
     maxWidth: 'max-w-2xl',
+    value: 'tablet',
     width: 'w-2/3',
   },
   {
@@ -48,6 +51,7 @@ const BREAKPOINTS = [
     description: '320px - 767px',
     icon: '📱',
     maxWidth: 'max-w-sm',
+    value: 'mobile',
     width: 'w-full',
   },
 ]
@@ -68,16 +72,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
     const breakpoints = ['largeDesktop', 'desktop', 'tablet', 'mobile']
     const breakpoint = breakpoints[selectedBreakpoint]
 
-    console.log(
-      'getFontSize - selectedBreakpoint:',
-      selectedBreakpoint,
-      'breakpoint:',
-      breakpoint,
-      'obj:',
-      obj,
-    )
     const result = getResponsiveFontSize(obj, breakpoint) || ''
-    console.log('getFontSize - result:', result)
     return result
   }
 
@@ -85,16 +80,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
     const breakpoints = ['largeDesktop', 'desktop', 'tablet', 'mobile']
     const breakpoint = breakpoints[selectedBreakpoint]
 
-    console.log(
-      'getLineHeight - selectedBreakpoint:',
-      selectedBreakpoint,
-      'breakpoint:',
-      breakpoint,
-      'obj:',
-      obj,
-    )
     const result = getResponsiveLineHeight(obj, breakpoint) || ''
-    console.log('getLineHeight - result:', result)
     return result
   }
 
@@ -183,22 +169,32 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
     const direction = getTextDirection()
     if (direction === 'rtl') {
       const descriptions = {
+        blockquote: `ציטוט - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
         code: `קוד - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
         h1: `כותרת ראשית - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
         h2: `כותרת משנית - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
         h3: `כותרת שלישית - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
         h4: `כותרת רביעית - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
+        large: `טקסט גדול - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
+        lead: `פסקת פתיחה - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
+        muted: `טקסט משני - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
         p: `טקסט גוף - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
+        small: `טקסט קטן - גופן: ${font}, גודל: ${size}, משקל: ${weight}${lineHeight ? `, גובה שורה: ${lineHeight}` : ''}`,
       }
       return descriptions[type as keyof typeof descriptions] || type
     }
     const descriptions = {
-      code: `${type} - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
+      blockquote: `Blockquote - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
+      code: `Code - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
       h1: `Main Heading - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
       h2: `Secondary Heading - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
       h3: `Third Heading - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
       h4: `Fourth Heading - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
+      large: `Large Text - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
+      lead: `Lead Paragraph - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
+      muted: `Muted Text - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
       p: `Body Text - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
+      small: `Small Text - Font: ${font}, Size: ${size}, Weight: ${weight}${lineHeight ? `, Line Height: ${lineHeight}` : ''}`,
     }
     return descriptions[type as keyof typeof descriptions] || type
   }
@@ -318,58 +314,112 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
     breakpointNames[selectedBreakpoint]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Responsive Preview Controls */}
-      <section>
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <span aria-label="Responsive Preview" role="img">
-            📱
+      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+        <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-gray-800">
+          <span className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg">
+            <span aria-label="Responsive Preview" className="text-lg" role="img">
+              📱
+            </span>
           </span>
           Responsive Preview
         </h3>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {BREAKPOINTS.map((breakpoint, index) => (
-            <button
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg border transition-all duration-200 ${
-                selectedBreakpoint === index
-                  ? 'bg-blue-100 border-blue-300 text-blue-700 shadow-sm'
-                  : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-gray-300'
-              }`}
-              key={breakpoint.name}
-              onClick={() => setSelectedBreakpoint(index)}
-              title={`${breakpoint.name} (${breakpoint.description})`}
-            >
-              <span aria-label={breakpoint.name} className="text-lg" role="img">
-                {breakpoint.icon}
-              </span>
-              <span className="font-medium text-sm">{breakpoint.name}</span>
-              <span className="text-xs text-gray-500 hidden sm:inline">
-                {breakpoint.description}
-              </span>
-            </button>
-          ))}
+
+        {/* Breakpoint Selector */}
+        <div className="mb-4">
+          <p className="text-xs text-gray-500 mb-2">
+            Select a breakpoint to preview how typography will appear at different screen sizes:
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            {BREAKPOINTS.map((breakpoint, index) => (
+              <button
+                aria-label={`Select ${breakpoint.name} breakpoint`}
+                aria-pressed={selectedBreakpoint === index}
+                className={`
+                  group relative flex flex-col items-center gap-1 px-2 py-2 rounded-lg border text-xs font-medium transition-all duration-200
+                  focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:ring-offset-1
+                  ${
+                    selectedBreakpoint === index
+                      ? 'bg-indigo-50 border-indigo-400 text-indigo-700 shadow-sm'
+                      : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-indigo-200'
+                  }
+                `}
+                key={breakpoint.name}
+                onClick={() => setSelectedBreakpoint(index)}
+                title={`${breakpoint.name} (${breakpoint.description})`}
+              >
+                {/* Active indicator */}
+                {selectedBreakpoint === index && (
+                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-indigo-400 rounded-full flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                  </div>
+                )}
+                <span
+                  aria-hidden="true"
+                  className={`text-lg transition-transform duration-200 ${
+                    selectedBreakpoint === index ? 'scale-105' : 'group-hover:scale-105'
+                  }`}
+                >
+                  {breakpoint.icon}
+                </span>
+                <span
+                  className={`font-semibold text-xs ${selectedBreakpoint === index ? 'text-indigo-700' : 'text-gray-700'}`}
+                >
+                  {breakpoint.name}
+                </span>
+                <span
+                  className={`text-[10px] ${selectedBreakpoint === index ? 'text-indigo-500' : 'text-gray-400'}`}
+                >
+                  {breakpoint.description}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Preview Container */}
         <div className="flex justify-center">
-          <div
-            className={`${currentBreakpoint.width} ${currentBreakpoint.maxWidth} transition-all duration-300 ease-in-out border-2 border-dashed border-gray-300 rounded-lg p-4 bg-gray-50/50`}
-          >
-            <div className="space-y-4" id="typography-preview">
-              {/* Sample Content for Preview */}
-              <div>
-                <TypographyH1 breakpoint={selectedBreakpointName} themeData={themeData}>
-                  {getDirectionalText('heading')}
-                </TypographyH1>
-                <TypographyH3 breakpoint={selectedBreakpointName} themeData={themeData}>
-                  {getDirectionalText('heading')}
-                </TypographyH3>
-                <TypographyP breakpoint={selectedBreakpointName} themeData={themeData}>
-                  {getDirectionalText('paragraph')}
-                </TypographyP>
-                <TypographySmall breakpoint={selectedBreakpointName} themeData={themeData}>
-                  {getDirectionalText('paragraph')}
-                </TypographySmall>
+          <div className="relative">
+            {/* Device frame indicator */}
+            <div className="absolute -top-7 left-1/2 transform -translate-x-1/2">
+              <div className="bg-gray-700 text-white px-2 py-0.5 rounded text-xs font-medium shadow">
+                {currentBreakpoint.name}
+              </div>
+            </div>
+            <div
+              className={`
+                ${currentBreakpoint.width} ${currentBreakpoint.maxWidth}
+                transition-all duration-500 ease-in-out
+                border border-gray-200 rounded-lg p-4
+                bg-gradient-to-br from-white to-gray-50/60
+                shadow
+                relative overflow-hidden
+              `}
+            >
+              {/* Responsive indicator */}
+              <div className="absolute top-2 right-2">
+                <div className="flex items-center gap-1 bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full text-[10px] font-medium">
+                  <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse"></span>
+                  {currentBreakpoint.description}
+                </div>
+              </div>
+              <div className="space-y-3" id="typography-preview">
+                {/* Sample Content for Preview */}
+                <div>
+                  <TypographyH1 breakpoint={selectedBreakpointName} themeData={themeData}>
+                    {getDirectionalText('heading')}
+                  </TypographyH1>
+                  <TypographyH3 breakpoint={selectedBreakpointName} themeData={themeData}>
+                    {getDirectionalText('heading')}
+                  </TypographyH3>
+                  <TypographyP breakpoint={selectedBreakpointName} themeData={themeData}>
+                    {getDirectionalText('paragraph')}
+                  </TypographyP>
+                  <TypographySmall breakpoint={selectedBreakpointName} themeData={themeData}>
+                    {getDirectionalText('paragraph')}
+                  </TypographySmall>
+                </div>
               </div>
             </div>
           </div>
@@ -378,20 +428,25 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
       {/* Typography Scale */}
       <section>
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <span aria-label="Typography Scale" role="img">
-            📝
+        <h4 className="text-xl font-bold mb-6 flex items-center gap-3 text-gray-800">
+          <span className="flex items-center justify-center w-8 h-8 bg-green-100 rounded-lg">
+            <span aria-label="Typography Scale" className="text-lg" role="img">
+              📝
+            </span>
           </span>
           Typography Scale
-        </h3>
-        <div className="space-y-6">
+        </h4>
+        <div className="grid gap-6">
           {/* H1 */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">h1</span>
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
+                  h1
+                </span>
+                <span className="text-sm text-gray-600">Main Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('h1')}
               </span>
             </div>
@@ -399,13 +454,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('heading')}
             </TypographyH1>
           </div>
+
           {/* H2 */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">h2</span>
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
+                  h2
+                </span>
+                <span className="text-sm text-gray-600">Secondary Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('h2')}
               </span>
             </div>
@@ -413,27 +472,35 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('heading')}
             </TypographyH2>
           </div>
+
           {/* H3 */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">h3</span>
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
+                  h3
+                </span>
+                <span className="text-sm text-gray-600">Third Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('h3')}
               </span>
             </div>
-            <TypographyH3 breakpoint={selectedBreakpointName} themeData={themeData}>
+            <TypographyH4 breakpoint={selectedBreakpointName} themeData={themeData}>
               {getDirectionalText('heading')}
-            </TypographyH3>
+            </TypographyH4>
           </div>
+
           {/* H4 */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">h4</span>
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
+                  h4
+                </span>
+                <span className="text-sm text-gray-600">Fourth Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('h4')}
               </span>
             </div>
@@ -441,13 +508,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('heading')}
             </TypographyH4>
           </div>
+
           {/* Paragraph */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">p</span>
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
+                  p
+                </span>
+                <span className="text-sm text-gray-600">Body Text</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('p')}
               </span>
             </div>
@@ -455,15 +526,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('paragraph')}
             </TypographyP>
           </div>
+
           {/* Blockquote */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
                   blockquote
                 </span>
+                <span className="text-sm text-gray-600">Quote Text</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('blockquote')}
               </span>
             </div>
@@ -471,15 +544,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('blockquote')}
             </TypographyBlockquote>
           </div>
+
           {/* Small */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
                   small
                 </span>
+                <span className="text-sm text-gray-600">Small Text</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('small')}
               </span>
             </div>
@@ -487,15 +562,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('paragraph')}
             </TypographySmall>
           </div>
+
           {/* Muted */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
                   muted
                 </span>
+                <span className="text-sm text-gray-600">Muted Text</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('muted')}
               </span>
             </div>
@@ -503,15 +580,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getDirectionalText('paragraph')}
             </TypographyMuted>
           </div>
+
           {/* Lead */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
                   lead
                 </span>
+                <span className="text-sm text-gray-600">Lead Paragraph</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('lead')}
               </span>
             </div>
@@ -519,15 +598,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getLeadParagraphText()}
             </TypographyLead>
           </div>
+
           {/* Large */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
                   large
                 </span>
+                <span className="text-sm text-gray-600">Large Text</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('large')}
               </span>
             </div>
@@ -535,15 +616,17 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
               {getLargeTextExample()}
             </TypographyLarge>
           </div>
+
           {/* Inline Code */}
-          <div className="border rounded-lg p-4 bg-white/80 shadow-sm">
-            <div className="flex items-start justify-between mb-2">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide">
+                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
                   code
                 </span>
+                <span className="text-sm text-gray-600">Inline Code</span>
               </div>
-              <span className="flex items-center gap-2 px-5 py-2 font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 text-base text-blue-700 bg-blue-100 rounded-r-xl">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
                 {getElementTypographyInfo('code')}
               </span>
             </div>

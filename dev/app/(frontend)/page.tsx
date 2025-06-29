@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 
 import { TypographyPreview } from '../../../src/components/theme'
+import { ThemeProvider } from '../../../src/components/theme/ThemeProvider'
 import { TypographyH1, TypographyH3, TypographyP } from '../../../src/components/theme/typography'
 import { getFontDefinition } from '../../../src/utils/typography/font-definitions'
 import { useResponsiveValue } from '../../../src/utils/typography/useResponsiveValue'
@@ -96,15 +97,15 @@ const ColorsContent = () => {
   return (
     <div className="flex flex-1">
       <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700">
-        <h1 className="text-3xl font-bold mb-8">Color System</h1>
+        <TypographyH1>Color System</TypographyH1>
 
         {/* Semantic */}
         <section>
           <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <span aria-label="Semantic Colors" role="img">
               ⚔️
-            </span>{' '}
-            Website Colors
+            </span>
+            <span>Website Colors</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {SEMANTIC_COLORS.map((f) => (
@@ -118,8 +119,8 @@ const ColorsContent = () => {
           <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
             <span aria-label="Theme Colors" role="img">
               🎨
-            </span>{' '}
-            Theme Colors
+            </span>
+            <span>Theme Colors</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -670,7 +671,11 @@ const Page = () => {
       </Sidebar>
 
       <div className="flex-1 overflow-auto">
-        {activeTab === 'colors' && <ColorsContent />}
+        {activeTab === 'colors' && (
+          <ThemeProvider>
+            <ColorsContent />
+          </ThemeProvider>
+        )}
         {activeTab === 'typography' && <TypographyContent />}
         {activeTab === 'layout' && <LayoutContent />}
       </div>

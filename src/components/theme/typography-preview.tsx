@@ -316,7 +316,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
   return (
     <div className="space-y-8">
       {/* Responsive Preview Controls */}
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+      <section className="bg-card text-card rounded-xl p-6 border border-blue-100">
         <h3 className="text-xl font-bold mb-6 flex items-center gap-3 text-gray-800">
           <span className="flex items-center justify-center w-8 h-8 bg-blue-100 rounded-lg">
             <span aria-label="Responsive Preview" className="text-lg" role="img">
@@ -438,7 +438,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
         </h4>
         <div className="grid gap-6">
           {/* H1 */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="h1"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -446,7 +449,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Main Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('h1')}
               </span>
             </div>
@@ -456,7 +459,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* H2 */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="h2"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -464,7 +470,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Secondary Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('h2')}
               </span>
             </div>
@@ -474,7 +480,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* H3 */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="h3"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -482,7 +491,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Third Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('h3')}
               </span>
             </div>
@@ -492,7 +501,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* H4 */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="h4"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -500,7 +512,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Fourth Heading</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('h4')}
               </span>
             </div>
@@ -510,7 +522,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Paragraph */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="p"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -518,7 +533,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Body Text</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('p')}
               </span>
             </div>
@@ -528,7 +543,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Blockquote */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="blockquote"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -536,7 +554,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Quote Text</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('blockquote')}
               </span>
             </div>
@@ -546,7 +564,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Small */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="small"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -554,7 +575,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Small Text</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('small')}
               </span>
             </div>
@@ -564,7 +585,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Muted */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="muted"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -572,7 +596,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Muted Text</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('muted')}
               </span>
             </div>
@@ -582,7 +606,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Lead */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="lead"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -590,7 +617,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Lead Paragraph</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('lead')}
               </span>
             </div>
@@ -600,7 +627,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Large */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="large"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -608,7 +638,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Large Text</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('large')}
               </span>
             </div>
@@ -618,7 +648,10 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
           </div>
 
           {/* Inline Code */}
-          <div className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200">
+          <div
+            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            id="inline-code"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
@@ -626,7 +659,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 </span>
                 <span className="text-sm text-gray-600">Inline Code</span>
               </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm text-green-700 bg-green-100 border border-green-200">
+              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-card bg-card">
                 {getElementTypographyInfo('code')}
               </span>
             </div>

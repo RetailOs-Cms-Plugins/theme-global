@@ -157,8 +157,7 @@ const TypographyContent = () => {
   useEffect(() => {
     async function fetchTheme() {
       try {
-        const data = await getClientTheme()
-        console.log('Theme data received:', data) // Debug log
+        const data = await getClientTheme({ noCache: true })
         setThemeData(data)
       } catch (error) {
         console.error('Error fetching theme:', error)
@@ -289,7 +288,7 @@ const TypographyContent = () => {
             </section>
           </div>
         </div>
-        <aside className="w-64 flex-shrink-0 border-l border-neutral-200 dark:border-neutral-700">
+        <aside className="hidden xl:block w-64 flex-shrink-0 border-l border-neutral-200 dark:border-neutral-700">
           <div className="fixed top-0 p-4">
             <div className="font-semibold mb-2">On This Page</div>
             <ul className="space-y-1">
@@ -326,7 +325,7 @@ const LayoutContent = () => {
   useEffect(() => {
     async function fetchTheme() {
       try {
-        const data = await getClientTheme()
+        const data = await getClientTheme({ noCache: true })
         setThemeData(data)
       } catch (error) {
         console.error('Error fetching theme:', error)

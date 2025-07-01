@@ -109,15 +109,29 @@ const getCachedTheme = cache(
   },
 )
 
-export async function getTheme(): Promise<{
+export async function getTheme({ noCache = false } = {}): Promise<{
   cssVariables: React.CSSProperties
   fontCSS: string
   themeData: ThemeConfig
 }> {
+  if (noCache) {
+    const payload = await getPayload({ config })
+    const rawTheme = (await payload.findGlobal({ slug: 'theme-config' })) as unknown as ThemeConfig
+    const cssVariables = createCssVariables(rawTheme)
+    const fontNames = [rawTheme.typography?.fontBody, rawTheme.typography?.fontHeading].filter(
+      (name): name is string => typeof name === 'string' && name.length > 0,
+    )
+    const fontCSS = getGoogleFontsUrl(fontNames)
+    return {
+      cssVariables,
+      fontCSS: fontCSS ? `@import url('${fontCSS}');` : '',
+      themeData: rawTheme,
+    }
+  }
   return getCachedTheme()
 }
 
-export async function getClientTheme() {
-  const { themeData } = await getCachedTheme()
+export async function getClientTheme({ noCache = false } = {}) {
+  const { themeData } = await getTheme({ noCache })
   return themeData
 }

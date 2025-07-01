@@ -3,9 +3,20 @@ import type { GlobalConfig } from 'payload'
 import { revalidateTag } from 'next/cache'
 
 import colorPicker from '../../fields/color-picker'
+import ThemeConfigEditView from './Component'
 
 export const themeGlobal: GlobalConfig = {
   slug: 'theme',
+  admin: {
+    components: {
+      views: {
+        edit: { component: ThemeConfigEditView as any },
+      },
+    },
+    livePreview: {
+      url: '/design-system',
+    },
+  },
   fields: [
     {
       type: 'tabs',

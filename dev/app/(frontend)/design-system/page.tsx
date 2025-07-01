@@ -15,6 +15,7 @@ import { getFontDefinition } from '../../../../src/utils/typography/font-definit
 import { useResponsiveValue } from '../../../../src/utils/typography/useResponsiveValue'
 import { getClientTheme } from '../../actions/client-theme.actions'
 import { Sidebar, SidebarBody, SidebarLink } from '../../ui/sidebar'
+import { LivePreviewListener } from 'theme-global/client'
 
 type Direction = 'auto' | 'ltr' | 'rtl'
 
@@ -73,27 +74,36 @@ const ColorSwatch = ({ label, varName }: { label: string; varName: string }) => 
     return () => window.removeEventListener('theme-update', handler)
   }, [varName])
   return (
-    <div
-      className="flex items-center gap-4 p-2 rounded border border-[#E6E6E6] shadow-[0px_2px_12px_-1px_rgba(10,9,11,0.10),0px_2px_2px_-1px_rgba(10,9,11,0.04),0px_0px_0px_1px_rgba(10,9,11,0.05)]"
-      style={{ background: `var(--card-background)`, color: `var(--text-on-card)` }}
-    >
+    <>
+      <LivePreviewListener />
       <div
-        className="w-10 h-10 rounded border fill-primary"
-        style={{ background: `var(${varName})` }}
-        title={hex}
-      />
-      <div className="flex flex-col">
-        <span className="font-mono text-sm" style={{ color: `var(--text-on-card)` }}>
-          {label}
-        </span>
-        <span className="font-mono text-sm text-gray-400" style={{ color: `var(--text-on-card)` }}>
-          {varName}
-        </span>
-        <span className="font-mono text-sm text-gray-900" style={{ color: `var(--text-on-card)` }}>
-          {hex}
-        </span>
+        className="flex items-center gap-4 p-2 rounded border border-[#E6E6E6] shadow-[0px_2px_12px_-1px_rgba(10,9,11,0.10),0px_2px_2px_-1px_rgba(10,9,11,0.04),0px_0px_0px_1px_rgba(10,9,11,0.05)]"
+        style={{ background: `var(--card-background)`, color: `var(--text-on-card)` }}
+      >
+        <div
+          className="w-10 h-10 rounded border fill-primary"
+          style={{ background: `var(${varName})` }}
+          title={hex}
+        />
+        <div className="flex flex-col">
+          <span className="font-mono text-sm" style={{ color: `var(--text-on-card)` }}>
+            {label}
+          </span>
+          <span
+            className="font-mono text-sm text-gray-400"
+            style={{ color: `var(--text-on-card)` }}
+          >
+            {varName}
+          </span>
+          <span
+            className="font-mono text-sm text-gray-900"
+            style={{ color: `var(--text-on-card)` }}
+          >
+            {hex}
+          </span>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

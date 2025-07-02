@@ -1,7 +1,7 @@
 'use client'
 import { IconLayoutGrid, IconPalette, IconTypography } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import { getClientTheme } from '../../../dev/app/actions/client-theme.actions'
 import { cn } from '../../../dev/app/lib/utils'
@@ -9,8 +9,9 @@ import { Sidebar, SidebarBody, SidebarLink } from '../../../dev/app/ui/sidebar'
 import { getFontDefinition } from '../../utils/typography/font-definitions'
 import { useResponsiveValue } from '../../utils/typography/useResponsiveValue'
 import { TypographyPreview } from '../theme'
-import { ThemeProvider } from '../theme/ThemeProvider'
+import { ThemeProvider, useTheme } from '../theme/ThemeProvider'
 import { TypographyH1, TypographyH3, TypographyP } from '../theme/typography'
+import { ThemeConfig } from 'src/types'
 
 type Direction = 'auto' | 'ltr' | 'rtl'
 
@@ -147,50 +148,55 @@ const ColorsContent = () => {
 }
 
 const TypographyContent = () => {
-  const [themeData, setThemeData] = useState<any>(null)
+  // const [themeData, setThemeData] = useState<any>(null)
   const [activeLink, setActiveLink] = useState<string>('')
+  const themeData = useTheme()
 
-  useEffect(() => {
-    async function fetchTheme() {
-      try {
-        const data = await getClientTheme()
-        setThemeData(data)
-      } catch (error) {
-        console.error('Error fetching theme:', error)
+  // useEffect(() => {
+  //   async function fetchTheme() {
+  //     try {
+  //       const data = await getClientTheme()
+  //       setThemeData(data)
+  //     } catch (error) {
+  //       console.error('Error fetching theme:', error)
+  //     }
+  //   }
+
+  //   // Fetch theme on mount
+  //   void fetchTheme()
+
+  //   // Listen for theme updates
+  //   const handleThemeUpdate = () => {
+  //     void fetchTheme()
+  //   }
+
+  //   window.addEventListener('theme-update', handleThemeUpdate)
+
+  //   return () => {
+  //     window.removeEventListener('theme-update', handleThemeUpdate)
+  //   }
+  // }, [])
+
+  const getFontLabel = useCallback(
+    (value: string | undefined): string | null => {
+      console.log('🚀 ~ page.tsx:179 ~ getFontLabel ~ value:', value)
+      if (!value) {
+        return null
       }
-    }
 
-    // Fetch theme on mount
-    void fetchTheme()
+      const fontDef = getFontDefinition(value)
+      if (fontDef) {
+        return fontDef.displayName
+      }
 
-    // Listen for theme updates
-    const handleThemeUpdate = () => {
-      void fetchTheme()
-    }
-
-    window.addEventListener('theme-update', handleThemeUpdate)
-
-    return () => {
-      window.removeEventListener('theme-update', handleThemeUpdate)
-    }
-  }, [])
-
-  function getFontLabel(value: null | string): null | string {
-    if (!value) {
-      return null
-    }
-
-    const fontDef = getFontDefinition(value)
-    if (fontDef) {
-      return fontDef.displayName
-    }
-
-    // Fallback for custom fonts
-    return value
-      .split('-')
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')
-  }
+      // Fallback for custom fonts
+      return value
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    },
+    [themeData],
+  )
 
   const getFontFamily = (type: 'body' | 'heading') => {
     const fontMap = {
@@ -316,32 +322,33 @@ const TypographyContent = () => {
 }
 
 const LayoutContent = () => {
-  const [themeData, setThemeData] = useState<any>(null)
+  // const [themeData, setThemeData] = useState<any>(null)
+  const themeData = useTheme()
 
-  useEffect(() => {
-    async function fetchTheme() {
-      try {
-        const data = await getClientTheme()
-        setThemeData(data)
-      } catch (error) {
-        console.error('Error fetching theme:', error)
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchTheme() {
+  //     try {
+  //       const data = await getClientTheme()
+  //       setThemeData(data)
+  //     } catch (error) {
+  //       console.error('Error fetching theme:', error)
+  //     }
+  //   }
 
-    // Fetch theme on mount
-    void fetchTheme()
+  //   // Fetch theme on mount
+  //   void fetchTheme()
 
-    // Listen for theme updates
-    const handleThemeUpdate = () => {
-      void fetchTheme()
-    }
+  //   // Listen for theme updates
+  //   const handleThemeUpdate = () => {
+  //     void fetchTheme()
+  //   }
 
-    window.addEventListener('theme-update', handleThemeUpdate)
+  //   window.addEventListener('theme-update', handleThemeUpdate)
 
-    return () => {
-      window.removeEventListener('theme-update', handleThemeUpdate)
-    }
-  }, [])
+  //   return () => {
+  //     window.removeEventListener('theme-update', handleThemeUpdate)
+  //   }
+  // }, [])
 
   return (
     <div className="flex flex-1">
@@ -601,7 +608,7 @@ const MainContent = () => {
   )
 }
 
-const Page = () => {
+const Page = ({ themeData }: { themeData: ThemeConfig }) => {
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('colors')
 
@@ -670,13 +677,11 @@ const Page = () => {
       </Sidebar>
 
       <div className="flex-1 overflow-auto">
-        {activeTab === 'colors' && (
-          <ThemeProvider>
-            <ColorsContent />
-          </ThemeProvider>
-        )}
-        {activeTab === 'typography' && <TypographyContent />}
-        {activeTab === 'layout' && <LayoutContent />}
+        <ThemeProvider themeData={themeData}>
+          {activeTab === 'colors' && <ColorsContent />}
+          {activeTab === 'typography' && <TypographyContent />}
+          {activeTab === 'layout' && <LayoutContent />}
+        </ThemeProvider>
       </div>
     </div>
   )

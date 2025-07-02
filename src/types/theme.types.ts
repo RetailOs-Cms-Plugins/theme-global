@@ -8,6 +8,22 @@ export interface ThemeConfig {
     bold: number
     normal: number
   }
+  layout?: {
+    breakpoints?: {
+      desktop?: number
+      largeDesktop?: number
+      mobile?: number
+      tablet?: number
+    }
+    maxWidth?: number
+    spacingScale?: {
+      lg?: string
+      md?: string
+      sm?: string
+      xl?: string
+      xs?: string
+    }
+  }
   pageBackground: string
   primary50: string
   primary100: string

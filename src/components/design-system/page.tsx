@@ -1,17 +1,16 @@
 'use client'
 import { IconLayoutGrid, IconPalette, IconTypography } from '@tabler/icons-react'
 import { motion } from 'framer-motion'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
-import { getClientTheme } from '../../../dev/app/actions/client-theme.actions'
+import type { ThemeConfig } from '../../types'
+
 import { cn } from '../../../dev/app/lib/utils'
 import { Sidebar, SidebarBody, SidebarLink } from '../../../dev/app/ui/sidebar'
 import { getFontDefinition } from '../../utils/typography/font-definitions'
-import { useResponsiveValue } from '../../utils/typography/useResponsiveValue'
 import { TypographyPreview } from '../theme'
 import { ThemeProvider, useTheme } from '../theme/ThemeProvider'
 import { TypographyH1, TypographyH3, TypographyP } from '../theme/typography'
-import { ThemeConfig } from 'src/types'
 
 type Direction = 'auto' | 'ltr' | 'rtl'
 
@@ -178,7 +177,7 @@ const TypographyContent = () => {
   // }, [])
 
   const getFontLabel = useCallback(
-    (value: string | undefined): string | null => {
+    (value: string | undefined): null | string => {
       console.log('🚀 ~ page.tsx:179 ~ getFontLabel ~ value:', value)
       if (!value) {
         return null
@@ -322,33 +321,7 @@ const TypographyContent = () => {
 }
 
 const LayoutContent = () => {
-  // const [themeData, setThemeData] = useState<any>(null)
   const themeData = useTheme()
-
-  // useEffect(() => {
-  //   async function fetchTheme() {
-  //     try {
-  //       const data = await getClientTheme()
-  //       setThemeData(data)
-  //     } catch (error) {
-  //       console.error('Error fetching theme:', error)
-  //     }
-  //   }
-
-  //   // Fetch theme on mount
-  //   void fetchTheme()
-
-  //   // Listen for theme updates
-  //   const handleThemeUpdate = () => {
-  //     void fetchTheme()
-  //   }
-
-  //   window.addEventListener('theme-update', handleThemeUpdate)
-
-  //   return () => {
-  //     window.removeEventListener('theme-update', handleThemeUpdate)
-  //   }
-  // }, [])
 
   return (
     <div className="flex flex-1">
@@ -360,9 +333,12 @@ const LayoutContent = () => {
             <h2 className="text-xl font-semibold mb-4">Layout Grid</h2>
             <div className="space-y-4">
               {/* Get max width size from theme data */}
-              <label className="text-sm font-medium">Container Width</label>
+              <label className="text-sm font-medium" htmlFor="container-width">
+                Container Width
+              </label>
               <input
                 className="w-full p-2 border rounded bg-card text-card"
+                id="container-width"
                 readOnly
                 type="text"
                 value={
@@ -378,9 +354,12 @@ const LayoutContent = () => {
             <h2 className="text-xl font-semibold mb-4">Breakpoints</h2>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Mobile</label>
+                <label className="text-sm font-medium" htmlFor="breakpoint-mobile">
+                  Mobile
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="breakpoint-mobile"
                   readOnly
                   type="text"
                   value={
@@ -391,9 +370,12 @@ const LayoutContent = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">Tablet</label>
+                <label className="text-sm font-medium" htmlFor="breakpoint-tablet">
+                  Tablet
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="breakpoint-tablet"
                   readOnly
                   type="text"
                   value={
@@ -404,9 +386,12 @@ const LayoutContent = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">Desktop</label>
+                <label className="text-sm font-medium" htmlFor="breakpoint-desktop">
+                  Desktop
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="breakpoint-desktop"
                   readOnly
                   type="text"
                   value={
@@ -417,9 +402,12 @@ const LayoutContent = () => {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">Large Desktop</label>
+                <label className="text-sm font-medium" htmlFor="breakpoint-large-desktop">
+                  Large Desktop
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="breakpoint-large-desktop"
                   readOnly
                   type="text"
                   value={
@@ -436,9 +424,12 @@ const LayoutContent = () => {
             <h2 className="text-xl font-semibold mb-4">Spacing Scale</h2>
             <div className="grid grid-cols-5 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">XS</label>
+                <label className="text-sm font-medium" htmlFor="spacing-xs">
+                  XS
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="spacing-xs"
                   readOnly
                   type="text"
                   value={themeData?.layout?.spacingScale?.xs || '0.25rem'}
@@ -446,9 +437,12 @@ const LayoutContent = () => {
                 <div className="text-xs text-gray-400">Extra small spacing</div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">SM</label>
+                <label className="text-sm font-medium" htmlFor="spacing-sm">
+                  SM
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="spacing-sm"
                   readOnly
                   type="text"
                   value={themeData?.layout?.spacingScale?.sm || '0.5rem'}
@@ -456,9 +450,12 @@ const LayoutContent = () => {
                 <div className="text-xs text-gray-400">Small spacing</div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">MD</label>
+                <label className="text-sm font-medium" htmlFor="spacing-md">
+                  MD
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="spacing-md"
                   readOnly
                   type="text"
                   value={themeData?.layout?.spacingScale?.md || '1rem'}
@@ -466,9 +463,12 @@ const LayoutContent = () => {
                 <div className="text-xs text-gray-400">Medium spacing</div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">LG</label>
+                <label className="text-sm font-medium" htmlFor="spacing-lg">
+                  LG
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="spacing-lg"
                   readOnly
                   type="text"
                   value={themeData?.layout?.spacingScale?.lg || '2rem'}
@@ -476,14 +476,48 @@ const LayoutContent = () => {
                 <div className="text-xs text-gray-400">Large spacing</div>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">XL</label>
+                <label className="text-sm font-medium" htmlFor="spacing-xl">
+                  XL
+                </label>
                 <input
                   className="w-full p-2 border rounded bg-card text-card"
+                  id="spacing-xl"
                   readOnly
                   type="text"
                   value={themeData?.layout?.spacingScale?.xl || '4rem'}
                 />
                 <div className="text-xs text-gray-400">Extra large spacing</div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2 className="text-xl font-semibold mb-4">Border Radius</h2>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="border-radius-box">
+                  Box Border Radius
+                </label>
+                <input
+                  className="w-full p-2 border rounded bg-green-50 text-center font-mono"
+                  id="border-radius-box"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.borderRadius?.box || '0.5rem'}
+                />
+                <div className="text-xs text-gray-400">Border radius for boxes</div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium" htmlFor="border-radius-button">
+                  Button Border Radius
+                </label>
+                <input
+                  className="w-full p-2 border rounded bg-green-50 text-center font-mono"
+                  id="border-radius-button"
+                  readOnly
+                  type="text"
+                  value={themeData?.layout?.borderRadius?.button || '9999px'}
+                />
+                <div className="text-xs text-gray-400">Border radius for buttons</div>
               </div>
             </div>
           </section>

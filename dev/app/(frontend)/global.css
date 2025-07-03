@@ -37,6 +37,21 @@
 :root {
   /* Core Design Tokens */
   --radius: 0.625rem;
+  
+  /* Spacing Scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Animation Variables */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-slow: 350ms ease-in-out;
+  
   --background: #ffffff;
   --foreground: #000000;
   --card: var(--card-background,#ffffff);
@@ -47,10 +62,14 @@
   --primary-foreground: var(--text-on-primary, #ffffff);
   --secondary: var(--color-secondary, #38bdf8);
   --secondary-foreground: var(--text-on-secondary, #082f49);
-  --muted: var(--color-muted, #f0f9ff);
-  --muted-foreground: var(--color-muted-foreground, #6b7280);
-  --accent: var(--color-accent, #f0f9ff);
+  --muted: #f0f9ff;
+  --muted-foreground: #6b7280;
+  --accent: #f0f9ff;
   --accent-foreground: #082f49;
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e9d5ff;
@@ -119,6 +138,20 @@
   --success: #059669;
   --warning: #d97706;
   --error: #dc2626;
+  
+  /* Dark mode support for legacy variables */
+  --color-primary: var(--primary-200);
+  --text-on-primary: #ffffff;
+  --color-secondary: var(--secondary-400);
+  --text-on-secondary: var(--secondary-950);
+  --card-background: var(--primary-50);
+  --text-on-card: var(--primary-950);
+  --page-background: var(--background);
+  --text-on-page: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
 }
 
 /* ========================================
@@ -347,6 +380,17 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  
+  /* Spacing tokens */
+  --spacing-0: 0;
+  --spacing-px: 1px;
+  --spacing-0-5: var(--spacing-xs);
+  --spacing-1: var(--spacing-sm);
+  --spacing-2: var(--spacing-md);
+  --spacing-3: var(--spacing-lg);
+  --spacing-4: var(--spacing-xl);
+  --spacing-6: var(--spacing-2xl);
+  --spacing-8: var(--spacing-3xl);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

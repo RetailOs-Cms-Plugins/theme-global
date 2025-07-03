@@ -948,6 +948,31 @@ export const themeGlobal: GlobalConfig = {
                   ],
                   label: 'Spacing Scale',
                 },
+                {
+                  name: 'borderRadius',
+                  type: 'group',
+                  fields: [
+                    {
+                      name: 'box',
+                      type: 'text',
+                      admin: {
+                        description: 'Border radius for boxes (e.g., 0.5rem)',
+                      },
+                      defaultValue: '0.5rem',
+                      label: 'Box Border Radius',
+                    },
+                    {
+                      name: 'button',
+                      type: 'text',
+                      admin: {
+                        description: 'Border radius for buttons (e.g., 9999px for pill shape)',
+                      },
+                      defaultValue: '9999px',
+                      label: 'Button Border Radius',
+                    },
+                  ],
+                  label: 'Border Radius',
+                },
               ],
               label: 'Layout',
             },

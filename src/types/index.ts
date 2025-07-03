@@ -34,6 +34,26 @@ export interface ThemeConfig {
   cardBackground: string
   colorPrimary: string
   colorSecondary: string
+  layout?: {
+    breakpoints?: {
+      desktop?: number
+      largeDesktop?: number
+      mobile?: number
+      tablet?: number
+    }
+    maxWidth?: number
+    spacingScale?: {
+      lg?: string
+      md?: string
+      sm?: string
+      xl?: string
+      xs?: string
+    }
+    borderRadius?: {
+      box?: string
+      button?: string
+    }
+  }
   pageBackground: string
   primary50: string
   primary100: string

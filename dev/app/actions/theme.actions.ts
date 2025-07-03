@@ -109,7 +109,7 @@ const getCachedTheme = cache(
   },
 )
 
-export async function getTheme({ noCache = false } = {}): Promise<{
+export async function getTheme({ noCache = true } = {}): Promise<{
   cssVariables: React.CSSProperties
   fontCSS: string
   themeData: ThemeConfig

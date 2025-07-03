@@ -342,7 +342,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                   ${
                     selectedBreakpoint === index
                       ? 'bg-indigo-50 border-indigo-400 text-indigo-700 shadow-sm'
-                      : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-indigo-200'
+                      : 'bg-card border-gray-200 text-gray-600 hover:bg-gray-50 hover:border-indigo-200'
                   }
                 `}
                 key={breakpoint.name}
@@ -352,7 +352,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 {/* Active indicator */}
                 {selectedBreakpoint === index && (
                   <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-indigo-400 rounded-full flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-card rounded-full"></div>
                   </div>
                 )}
                 <span
@@ -439,7 +439,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
         <div className="grid gap-6">
           {/* H1 */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="h1"
           >
             <div className="flex items-start justify-between mb-4">
@@ -460,7 +460,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* H2 */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="h2"
           >
             <div className="flex items-start justify-between mb-4">
@@ -481,7 +481,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* H3 */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="h3"
           >
             <div className="flex items-start justify-between mb-4">
@@ -502,7 +502,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* H4 */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="h4"
           >
             <div className="flex items-start justify-between mb-4">
@@ -523,7 +523,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Paragraph */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="p"
           >
             <div className="flex items-start justify-between mb-4">
@@ -544,7 +544,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Blockquote */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="blockquote"
           >
             <div className="flex items-start justify-between mb-4">
@@ -565,7 +565,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Small */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="small"
           >
             <div className="flex items-start justify-between mb-4">
@@ -586,7 +586,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Muted */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="muted"
           >
             <div className="flex items-start justify-between mb-4">
@@ -607,7 +607,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Lead */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="lead"
           >
             <div className="flex items-start justify-between mb-4">
@@ -628,7 +628,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Large */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="large"
           >
             <div className="flex items-start justify-between mb-4">
@@ -649,7 +649,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
 
           {/* Inline Code */}
           <div
-            className="border border-gray-200 rounded-xl p-6 bg-white shadow-sm hover:shadow-md transition-shadow duration-200"
+            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
             id="inline-code"
           >
             <div className="flex items-start justify-between mb-4">

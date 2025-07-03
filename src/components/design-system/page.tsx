@@ -337,7 +337,7 @@ const LayoutContent = () => {
                 Container Width
               </label>
               <input
-                className="w-full p-2 border rounded bg-card text-card"
+                className="w-full p-2 border rounded bg-card text-on-card"
                 id="container-width"
                 readOnly
                 type="text"
@@ -358,7 +358,7 @@ const LayoutContent = () => {
                   Mobile
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-mobile"
                   readOnly
                   type="text"
@@ -374,7 +374,7 @@ const LayoutContent = () => {
                   Tablet
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-tablet"
                   readOnly
                   type="text"
@@ -390,7 +390,7 @@ const LayoutContent = () => {
                   Desktop
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-desktop"
                   readOnly
                   type="text"
@@ -406,7 +406,7 @@ const LayoutContent = () => {
                   Large Desktop
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-large-desktop"
                   readOnly
                   type="text"
@@ -428,7 +428,7 @@ const LayoutContent = () => {
                   XS
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-xs"
                   readOnly
                   type="text"
@@ -441,7 +441,7 @@ const LayoutContent = () => {
                   SM
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-sm"
                   readOnly
                   type="text"
@@ -454,7 +454,7 @@ const LayoutContent = () => {
                   MD
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-md"
                   readOnly
                   type="text"
@@ -467,7 +467,7 @@ const LayoutContent = () => {
                   LG
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-lg"
                   readOnly
                   type="text"
@@ -480,7 +480,7 @@ const LayoutContent = () => {
                   XL
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-card text-card"
+                  className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-xl"
                   readOnly
                   type="text"
@@ -686,8 +686,8 @@ const Page = ({ themeData }: { themeData: ThemeConfig }) => {
               {links.map((link) => (
                 <SidebarLink
                   className={cn(
-                    activeTab === link.id && 'bg-card text-card',
-                    'hover:bg-card hover:text-card',
+                    activeTab === link.id && 'bg-card text-on-card',
+                    'hover:bg-card hover:text-on-card',
                   )}
                   key={link.id}
                   link={link}

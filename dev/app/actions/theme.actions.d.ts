@@ -1,8 +1,12 @@
 import type * as React from 'react';
 import type { ThemeConfig } from '../../../src/types';
-export declare function getTheme(): Promise<{
+export declare function getTheme({ noCache }?: {
+    noCache?: boolean | undefined;
+}): Promise<{
     cssVariables: React.CSSProperties;
     fontCSS: string;
     themeData: ThemeConfig;
 }>;
-export declare function getClientTheme(): Promise<ThemeConfig>;
+export declare function getClientTheme({ noCache }?: {
+    noCache?: boolean | undefined;
+}): Promise<ThemeConfig>;

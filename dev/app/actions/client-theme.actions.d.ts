@@ -1,1 +1,3 @@
-export declare function getClientTheme(): Promise<import("../../../src/types").ThemeConfig>;
+export declare function getClientTheme({ noCache }?: {
+    noCache?: boolean | undefined;
+}): Promise<import("../../../src/types").ThemeConfig>;

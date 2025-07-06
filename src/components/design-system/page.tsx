@@ -498,26 +498,26 @@ const LayoutContent = () => {
                   Box Border Radius
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-green-50 text-center font-mono"
+                  className="w-full p-2 border rounded bg-card text-center font-mono"
                   id="border-radius-box"
                   readOnly
                   type="text"
                   value={themeData?.layout?.borderRadius?.box || '0.5rem'}
                 />
-                <div className="text-xs text-gray-400">Border radius for boxes</div>
+                <div className="text-xs text-on-card">Border radius for boxes</div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium" htmlFor="border-radius-button">
                   Button Border Radius
                 </label>
                 <input
-                  className="w-full p-2 border rounded bg-green-50 text-center font-mono"
+                  className="w-full p-2 border rounded bg-card text-center font-mono"
                   id="border-radius-button"
                   readOnly
                   type="text"
                   value={themeData?.layout?.borderRadius?.button || '9999px'}
                 />
-                <div className="text-xs text-gray-400">Border radius for buttons</div>
+                <div className="text-xs text-on-card">Border radius for buttons</div>
               </div>
             </div>
           </section>

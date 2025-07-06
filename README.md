@@ -78,7 +78,7 @@ bg-card             // Card/component background
 bg-page             // Page background
 text-on-primary     // Text on primary backgrounds
 text-on-secondary   // Text on secondary backgrounds
-text-on-cardard           // Text on card backgrounds
+text-on-card           // Text on card backgrounds
 text-on-page        // Text on page background
 
 // Color Scales (50-950)
@@ -227,7 +227,7 @@ The plugin automatically generates complete color scales (50-950) from your prim
   Primary Button
 </button>
 
-<div className="bg-card text-on-cardard p-4 rounded">
+<div className="bg-card text-on-card p-4 rounded">
   Card Content
 </div>
 
@@ -242,12 +242,12 @@ The plugin automatically generates complete color scales (50-950) from your prim
 
 // Page layout example
 <div className="bg-page text-on-page min-h-screen">
-  <header className="bg-card text-on-cardard p-4">
+  <header className="bg-card text-on-card p-4">
     <h1>Website Header</h1>
   </header>
   
   <main className="bg-page text-on-page p-6">
-    <div className="bg-card text-on-cardard p-4 rounded">
+    <div className="bg-card text-on-card p-4 rounded">
       Main content area
     </div>
   </main>
@@ -464,7 +464,7 @@ export default async function Page() {
   const themeData = await getThemeFromPayload(payload, 'theme')
   
   return (
-    <div className="bg-card text-on-cardard">
+    <div className="bg-card text-on-card">
       <TypographyH1 themeData={themeData}>
         Welcome to My Site
       </TypographyH1>
@@ -494,7 +494,7 @@ const MyComponent = () => {
   if (!themeData) return <div>Loading...</div>
 
   return (
-    <div className="bg-card text-on-cardard">
+    <div className="bg-card text-on-card">
       <TypographyH1 themeData={themeData}>
         Welcome to My Site
       </TypographyH1>
@@ -691,7 +691,7 @@ interface TypographyProps {
   Primary Action
 </button>
 
-<div className="bg-card text-on-cardard">
+<div className="bg-card text-on-card">
   Card Content
 </div>
 

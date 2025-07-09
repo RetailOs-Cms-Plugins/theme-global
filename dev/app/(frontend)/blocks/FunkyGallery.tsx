@@ -116,9 +116,9 @@ const FunkyGallery: React.FC = () => {
                   <button
                     aria-label="Play video"
                     className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors duration-200"
+                    onClick={() => handlePlay(idx)}
                     style={{ zIndex: 2 }}
                     tabIndex={-1}
-                    onClick={() => handlePlay(idx)}
                   >
                     <svg
                       fill="none"

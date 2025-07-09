@@ -118,6 +118,7 @@
     "chroma-js": "^3.1.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.18.1",
+    "gsap": "^3.13.0",
     "postcss": "^8.5.4",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.8"

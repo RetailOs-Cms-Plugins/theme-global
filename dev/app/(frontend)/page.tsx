@@ -9,6 +9,13 @@ export default function Home() {
         </a>
         .
       </p>
+      <p className="mt-4 text-lg">
+        for blocks go here{' '}
+        <a className="text-blue-600 underline" href="/blocks">
+          /blocks
+        </a>
+        .
+      </p>
     </main>
   )
 }

@@ -110,9 +110,8 @@ export function generateFontCSS(selectedFont: string, fallbackFonts: string[]): 
   // 2. Local Fonts - Only add @font-face if files exist
   if (fontDef.source.type === 'local' && fontDef.source.files) {
     // Check if fonts actually exist in public directory
-    const publicDir = process.cwd().includes('dev')
-      ? path.join(process.cwd(), 'public')
-      : path.join(process.cwd(), 'dev/public')
+    // For the plugin, fonts should be in the consuming project's public directory
+    const publicDir = path.join(process.cwd(), 'public')
 
     const woff2Path = fontDef.source.files.woff2?.replace('/fonts/', '')
     const woffPath = fontDef.source.files.woff?.replace('/fonts/', '')

@@ -5,12 +5,12 @@ import React, { useCallback, useState } from 'react'
 
 import type { ThemeConfig } from '../../types'
 
-import { cn } from '../../../dev/app/lib/utils'
-import { Sidebar, SidebarBody, SidebarLink } from '../../../dev/app/ui/sidebar'
+import { cn } from '../../utils/cn'
 import { getFontDefinition } from '../../utils/typography/font-definitions'
 import { TypographyPreview } from '../theme'
 import { ThemeProvider, useTheme } from '../theme/ThemeProvider'
 import { TypographyH1, TypographyH3, TypographyP } from '../theme/typography'
+import { Sidebar, SidebarBody, SidebarLink } from '../ui/sidebar'
 
 type Direction = 'auto' | 'ltr' | 'rtl'
 

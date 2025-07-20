@@ -3,10 +3,10 @@ import type { JSONFieldClient } from 'payload'
 
 import React, { useState } from 'react'
 
-import type { ThemeConfig } from '../../types/theme.types.js'
+import type { ThemeConfig } from '../../types/theme.types'
 import type { TailwindTheme } from '../../utils/color-palette/color-palette'
 
-import { ColorInput, TypographySelector } from '../../components/theme/index.js'
+import { ColorInput, TypographySelector } from '../../components/theme/index'
 import { generateColorScale, TAILWIND_THEMES } from '../../utils/color-palette/color-palette'
 import styles from './Component.module.css'
 

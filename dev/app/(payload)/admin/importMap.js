@@ -1,5 +1,5 @@
-import { default as default_e0b1a43b095d9c690e494009fe7f5179 } from '../../../../src/components/theme/simple-color-input'
+import { ColorPickerComponent as ColorPickerComponent_9385f045e69c179ddb3612d4a657a74b } from '@retailos-ai/cms-general-custom-fields'
 
 export const importMap = {
-  "../src/components/theme/simple-color-input#default": default_e0b1a43b095d9c690e494009fe7f5179
+  "@retailos-ai/cms-general-custom-fields#ColorPickerComponent": ColorPickerComponent_9385f045e69c179ddb3612d4a657a74b
 }

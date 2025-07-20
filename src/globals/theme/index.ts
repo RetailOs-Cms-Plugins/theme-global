@@ -1,8 +1,8 @@
 import type { GlobalConfig } from 'payload'
 
+import { ColorPickerField } from '@retailos-ai/cms-general-custom-fields'
 import { revalidateTag } from 'next/cache'
 
-import colorPicker from '../../fields/color-picker'
 import ThemeConfigEditView from './Component'
 
 export const themeGlobal: GlobalConfig = {
@@ -30,69 +30,109 @@ export const themeGlobal: GlobalConfig = {
                 {
                   type: 'row',
                   fields: [
-                    colorPicker({
-                      name: 'colorPrimary',
-                      defaultValue: '#a855f7',
-                      label: 'Primary (Semantic)',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
-                    colorPicker({
-                      name: 'textOnPrimary',
-                      defaultValue: '#ffffff',
-                      label: 'Text on Primary',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
+                    ColorPickerField(
+                      {
+                        name: 'colorPrimary',
+                        defaultValue: '#a855f7',
+                        label: 'Primary (Semantic)',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
+                    ColorPickerField(
+                      {
+                        name: 'textOnPrimary',
+                        defaultValue: '#ffffff',
+                        label: 'Text on Primary',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
                   ],
                 },
                 {
                   type: 'row',
                   fields: [
-                    colorPicker({
-                      name: 'colorSecondary',
-                      defaultValue: '#0ea5e9',
-                      label: 'Secondary (Semantic)',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
-                    colorPicker({
-                      name: 'textOnSecondary',
-                      defaultValue: '#ffffff',
-                      label: 'Text on Secondary',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
+                    ColorPickerField(
+                      {
+                        name: 'colorSecondary',
+                        defaultValue: '#0ea5e9',
+                        label: 'Secondary (Semantic)',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
+                    ColorPickerField(
+                      {
+                        name: 'textOnSecondary',
+                        defaultValue: '#ffffff',
+                        label: 'Text on Secondary',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
                   ],
                 },
                 {
                   type: 'row',
                   fields: [
-                    colorPicker({
-                      name: 'cardBackground',
-                      defaultValue: '#faf5ff',
-                      label: 'Card Background',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
-                    colorPicker({
-                      name: 'textOnCard',
-                      defaultValue: '#3b0764',
-                      label: 'Text on Card',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
+                    ColorPickerField(
+                      {
+                        name: 'cardBackground',
+                        defaultValue: '#faf5ff',
+                        label: 'Card Background',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
+                    ColorPickerField(
+                      {
+                        name: 'textOnCard',
+                        defaultValue: '#3b0764',
+                        label: 'Text on Card',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
                   ],
                 },
                 {
                   type: 'row',
                   fields: [
-                    colorPicker({
-                      name: 'pageBackground',
-                      defaultValue: '#ffffff',
-                      label: 'Page Background',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
-                    colorPicker({
-                      name: 'textOnPage',
-                      defaultValue: '#000000',
-                      label: 'Text on Page',
-                      path: '../src/components/theme/simple-color-input',
-                    }),
+                    ColorPickerField(
+                      {
+                        name: 'pageBackground',
+                        defaultValue: '#ffffff',
+                        label: 'Page Background',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
+                    ColorPickerField(
+                      {
+                        name: 'textOnPage',
+                        defaultValue: '#000000',
+                        label: 'Text on Page',
+                      },
+                      {
+                        allowEmpty: false,
+                        enableGradient: false,
+                      },
+                    ),
                   ],
                 },
               ],

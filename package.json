@@ -108,6 +108,7 @@
   },
   "registry": "https://registry.npmjs.org/",
   "dependencies": {
+    "@retailos-ai/cms-general-custom-fields": "^1.2.0",
     "@tabler/icons-react": "^3.34.0",
     "@tailwindcss/postcss": "^4.1.8",
     "chroma-js": "^3.1.2",

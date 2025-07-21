@@ -348,6 +348,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
                 key={breakpoint.name}
                 onClick={() => setSelectedBreakpoint(index)}
                 title={`${breakpoint.name} (${breakpoint.description})`}
+                type="button"
               >
                 {/* Active indicator */}
                 {selectedBreakpoint === index && (

@@ -6,7 +6,6 @@ interface FontHeadProps {
 
 export function FontHead({ fontName }: FontHeadProps) {
   const fontDef = getFontDefinition(fontName)
-  console.log('🚀 ~ font-head.tsx:9 ~ FontHead ~ fontDef:', fontDef)
 
   if (!fontDef) {
     return null

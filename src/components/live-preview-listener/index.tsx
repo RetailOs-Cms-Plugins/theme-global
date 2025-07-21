@@ -9,7 +9,7 @@ export const LivePreviewListener = () => {
 
   return (
     <PayloadLivePreview
-      refresh={router.refresh}
+      refresh={() => router.refresh()}
       serverURL={process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'}
     />
   )

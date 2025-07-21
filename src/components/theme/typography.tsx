@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 
 import { useCurrentBreakpoint } from '../../utils/typography/useCurrentBreakpoint'
-import { useResponsiveTypography } from '../../utils/typography/useResponsiveValue'
 import { useTheme } from './ThemeProvider'
 
 // Font loading best practice: Preload fonts in your layout or _document for best performance.

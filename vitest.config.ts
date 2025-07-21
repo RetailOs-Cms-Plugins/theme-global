@@ -6,10 +6,20 @@ export default defineConfig({
     jsx: 'automatic',
   },
   resolve: {
-    alias: {
-      '@': resolve(__dirname, './src'),
-      '@/tests': resolve(__dirname, './tests'),
-    },
+    alias: [
+      { 
+        find: '@',
+        replacement: resolve(__dirname, 'src')
+      },
+      {
+        find: '@/tests',
+        replacement: resolve(__dirname, 'tests'),
+      },
+      {
+        find: /^.+\.(s?[ac]ss)$/,
+        replacement: resolve(__dirname, 'tests/styleMock.ts')
+      },
+    ],
   },
   test: {
     coverage: {
@@ -25,6 +35,7 @@ export default defineConfig({
         },
       },
     },
+    css: false,
     environment: 'jsdom',
     exclude: ['node_modules', 'dist', 'build'],
     globals: true,

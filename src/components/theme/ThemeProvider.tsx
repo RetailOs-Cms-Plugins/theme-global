@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { ThemeConfig } from 'src/types'
+import type { ThemeConfig } from 'src/types'
 
-const ThemeContext = createContext<ThemeConfig | null>(null)
+import React, { createContext, useContext, useEffect, useState } from 'react'
+
+const ThemeContext = createContext<null | ThemeConfig>(null)
 
 export const ThemeProvider = ({
   children,
@@ -10,7 +11,7 @@ export const ThemeProvider = ({
   children: React.ReactNode
   themeData: ThemeConfig
 }) => {
-  const [themeData, setThemeData] = useState<ThemeConfig | null>(null)
+  const [themeData, setThemeData] = useState<null | ThemeConfig>(null)
 
   useEffect(() => {
     setThemeData(propThemeData)

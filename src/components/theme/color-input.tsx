@@ -1,8 +1,7 @@
 'use client'
-import { useField } from '@payloadcms/ui'
 import React, { useEffect, useState } from 'react'
 
-import type { ColorInputProps } from '../../types/index.js'
+import type { ColorInputProps } from '../../types/index'
 
 import styles from './color-input.module.css'
 
@@ -21,7 +20,6 @@ const ColorInput: React.FC<ColorInputProps> = ({
   value = '#000000',
   ...props
 }) => {
-  console.log('🚀 ~ color-input.tsx:24 ~ props:', props)
   const [colorValue, setColorValue] = useState<string>(value)
   const [isValidColor, setIsValidColor] = useState<boolean>(true)
   // Update internal state when external value changes
@@ -93,7 +91,7 @@ const ColorInput: React.FC<ColorInputProps> = ({
   return (
     <div className={styles.colorInputWrapper}>
       {label && (
-        <label className={styles.colorInputLabel} htmlFor={name}>
+        <label className={styles.colorInputLabel} htmlFor={name} id={`${name}-label`}>
           {label}
           {required && <span className={styles.requiredAsterisk}> *</span>}
         </label>
@@ -104,6 +102,7 @@ const ColorInput: React.FC<ColorInputProps> = ({
         <input
           aria-describedby={description ? `${name}-description` : undefined}
           aria-invalid={!isValidColor || !!error}
+          aria-labelledby={label ? `${name}-label` : undefined}
           className={`${styles.colorTextInput} ${!isValidColor ? styles.error : ''} ${disabled ? styles.disabled : ''}`}
           disabled={disabled}
           id={name}

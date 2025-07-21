@@ -147,6 +147,7 @@ export const MobileSidebar = ({ children, className, ...props }: React.Component
                   aria-label="Close sidebar"
                   className="absolute left-10 top-10 z-50 text-neutral-800  p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-full"
                   onClick={() => setOpen(false)}
+                  type="button"
                 >
                   <IconX />
                 </button>

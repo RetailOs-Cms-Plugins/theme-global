@@ -337,6 +337,7 @@ const LayoutContent = () => {
                 Container Width
               </label>
               <input
+                aria-label="Container Width"
                 className="w-full p-2 border rounded bg-card text-on-card"
                 id="container-width"
                 readOnly
@@ -358,6 +359,7 @@ const LayoutContent = () => {
                   Mobile
                 </label>
                 <input
+                  aria-label="Mobile Breakpoint"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-mobile"
                   readOnly
@@ -374,6 +376,7 @@ const LayoutContent = () => {
                   Tablet
                 </label>
                 <input
+                  aria-label="Tablet Breakpoint"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-tablet"
                   readOnly
@@ -390,6 +393,7 @@ const LayoutContent = () => {
                   Desktop
                 </label>
                 <input
+                  aria-label="Desktop Breakpoint"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-desktop"
                   readOnly
@@ -406,6 +410,7 @@ const LayoutContent = () => {
                   Large Desktop
                 </label>
                 <input
+                  aria-label="Large Desktop Breakpoint"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="breakpoint-large-desktop"
                   readOnly
@@ -428,6 +433,7 @@ const LayoutContent = () => {
                   XS
                 </label>
                 <input
+                  aria-label="Extra Small Spacing"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-xs"
                   readOnly
@@ -441,6 +447,7 @@ const LayoutContent = () => {
                   SM
                 </label>
                 <input
+                  aria-label="Small Spacing"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-sm"
                   readOnly
@@ -454,6 +461,7 @@ const LayoutContent = () => {
                   MD
                 </label>
                 <input
+                  aria-label="Medium Spacing"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-md"
                   readOnly
@@ -467,6 +475,7 @@ const LayoutContent = () => {
                   LG
                 </label>
                 <input
+                  aria-label="Large Spacing"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-lg"
                   readOnly
@@ -480,6 +489,7 @@ const LayoutContent = () => {
                   XL
                 </label>
                 <input
+                  aria-label="Extra Large Spacing"
                   className="w-full p-2 border rounded bg-card text-on-card"
                   id="spacing-xl"
                   readOnly
@@ -498,6 +508,7 @@ const LayoutContent = () => {
                   Box Border Radius
                 </label>
                 <input
+                  aria-label="Box Border Radius"
                   className="w-full p-2 border rounded bg-card text-center font-mono"
                   id="border-radius-box"
                   readOnly
@@ -511,6 +522,7 @@ const LayoutContent = () => {
                   Button Border Radius
                 </label>
                 <input
+                  aria-label="Button Border Radius"
                   className="w-full p-2 border rounded bg-card text-center font-mono"
                   id="border-radius-button"
                   readOnly

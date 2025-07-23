@@ -12,8 +12,6 @@ import { ThemeProvider, useTheme } from '../theme/ThemeProvider'
 import { TypographyH1, TypographyH3, TypographyP } from '../theme/typography'
 import { Sidebar, SidebarBody, SidebarLink } from '../ui/sidebar'
 
-type Direction = 'auto' | 'ltr' | 'rtl'
-
 const PRIMITIVE_PRIMARY = [
   { name: '--primary-50', label: 'Primary 50' },
   { name: '--primary-100', label: 'Primary 100' },
@@ -147,34 +145,8 @@ const ColorsContent = () => {
 }
 
 const TypographyContent = () => {
-  // const [themeData, setThemeData] = useState<any>(null)
   const [activeLink, setActiveLink] = useState<string>('')
   const themeData = useTheme()
-
-  // useEffect(() => {
-  //   async function fetchTheme() {
-  //     try {
-  //       const data = await getClientTheme()
-  //       setThemeData(data)
-  //     } catch (error) {
-  //       console.error('Error fetching theme:', error)
-  //     }
-  //   }
-
-  //   // Fetch theme on mount
-  //   void fetchTheme()
-
-  //   // Listen for theme updates
-  //   const handleThemeUpdate = () => {
-  //     void fetchTheme()
-  //   }
-
-  //   window.addEventListener('theme-update', handleThemeUpdate)
-
-  //   return () => {
-  //     window.removeEventListener('theme-update', handleThemeUpdate)
-  //   }
-  // }, [])
 
   const getFontLabel = useCallback(
     (value: string | undefined): null | string => {
@@ -196,28 +168,6 @@ const TypographyContent = () => {
     },
     [themeData],
   )
-
-  const getFontFamily = (type: 'body' | 'heading') => {
-    const fontMap = {
-      body: themeData?.typography?.fontBody,
-      heading: themeData?.typography?.fontHeading,
-    }
-    const value = fontMap[type]
-    if (!value) {
-      return undefined
-    }
-
-    const fontDef = getFontDefinition(value)
-    if (fontDef) {
-      return `"${fontDef.displayName}", system-ui, sans-serif`
-    }
-
-    return value // Fallback for custom fonts
-  }
-
-  const getTextDirection = (): Direction => {
-    return themeData?.typography?.direction || 'auto'
-  }
 
   const typographyLinks = [
     { href: '#h1', label: 'h1' },
@@ -628,32 +578,6 @@ export const LogoIcon = () => {
   )
 }
 
-const MainContent = () => {
-  return (
-    <div className="flex flex-1">
-      <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700 ">
-        <h1 className="text-3xl font-bold mb-8">Theme Configuration</h1>
-        <div className="flex gap-2">
-          {[...new Array(4)].map((_, idx) => (
-            <div
-              className="h-32 w-full animate-pulse rounded-lg"
-              key={'first-array-demo-1' + idx}
-            />
-          ))}
-        </div>
-        <div className="flex flex-1 gap-2">
-          {[...new Array(2)].map((_, idx) => (
-            <div
-              className="h-full w-full animate-pulse rounded-lg"
-              key={'second-array-demo-1' + idx}
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
 const Page = ({ themeData }: { themeData: ThemeConfig }) => {
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('colors')
@@ -708,17 +632,6 @@ const Page = ({ themeData }: { themeData: ThemeConfig }) => {
               ))}
             </div>
           </div>
-          {/* <div className="mt-auto">
-            <SidebarLink
-              link={{
-                href: '#',
-                icon: (
-                  <div className="h-7 w-7 shrink-0 rounded-full bg-neutral-700 dark:bg-neutral-200" />
-                ),
-                label: 'Theme Settings',
-              }}
-            />
-          </div> */}
         </SidebarBody>
       </Sidebar>
 

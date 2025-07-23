@@ -17,14 +17,6 @@ export const ThemeProvider = ({
     setThemeData(propThemeData)
   }, [propThemeData])
 
-  // useEffect(() => {
-  //   // Fetch theme data from the API endpoint
-  //   fetch('/api/globals/theme-config?depth=0&fallback-locale=null')
-  //     .then((res) => res.json())
-  //     .then((data) => setThemeData(data))
-  //     .catch(console.error)
-  // }, [])
-
   return <ThemeContext.Provider value={themeData}>{children}</ThemeContext.Provider>
 }
 

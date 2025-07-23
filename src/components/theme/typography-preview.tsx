@@ -6,7 +6,6 @@ import {
   getFontSize as getResponsiveFontSize,
   getLineHeight as getResponsiveLineHeight,
 } from '../../utils/typography/getResponsiveValue'
-import { useResponsiveValue } from '../../utils/typography/useResponsiveValue'
 import {
   TypographyBlockquote,
   TypographyH1,
@@ -57,18 +56,14 @@ const BREAKPOINTS = [
 ]
 
 interface TypographyPreviewProps {
-  bodyFont?: string
-  headingFont?: string
   themeData?: any
 }
 
-const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPreviewProps) => {
+const TypographyPreview = ({themeData }: TypographyPreviewProps) => {
   const [selectedBreakpoint, setSelectedBreakpoint] = useState(0)
-  const { getFontSize: getWindowFontSize, getLineHeight: getWindowLineHeight } =
-    useResponsiveValue()
 
   // Custom functions that use the selected breakpoint instead of window breakpoint
-  const getFontSize = (obj: Record<string, any> | undefined): string => {
+  const getFontSize = (obj: Record<string, unknown> | undefined): string => {
     const breakpoints = ['largeDesktop', 'desktop', 'tablet', 'mobile']
     const breakpoint = breakpoints[selectedBreakpoint]
 
@@ -76,7 +71,7 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
     return result
   }
 
-  const getLineHeight = (obj: Record<string, any> | undefined): string => {
+  const getLineHeight = (obj: Record<string, unknown> | undefined): string => {
     const breakpoints = ['largeDesktop', 'desktop', 'tablet', 'mobile']
     const breakpoint = breakpoints[selectedBreakpoint]
 
@@ -104,24 +99,6 @@ const TypographyPreview = ({ bodyFont, headingFont, themeData }: TypographyPrevi
       .split('-')
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ')
-  }
-
-  const getFontFamily = (type: 'body' | 'heading') => {
-    const fontMap = {
-      body: themeData?.typography?.fontBody,
-      heading: themeData?.typography?.fontHeading,
-    }
-    const value = fontMap[type]
-    if (!value) {
-      return undefined
-    }
-
-    const fontDef = getFontDefinition(value)
-    if (fontDef) {
-      return `"${fontDef.displayName}", system-ui, sans-serif`
-    }
-
-    return value // Fallback for custom fonts
   }
 
   const getDirectionalText = (type: 'blockquote' | 'heading' | 'paragraph') => {

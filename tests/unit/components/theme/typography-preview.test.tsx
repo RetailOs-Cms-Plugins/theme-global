@@ -13,13 +13,6 @@ vi.mock('../../../../src/utils/typography/getResponsiveValue', () => ({
   getLineHeight: vi.fn(() => '1.5'),
 }))
 
-vi.mock('../../../../src/utils/typography/useResponsiveValue', () => ({
-  useResponsiveValue: vi.fn(() => ({
-    getFontSize: vi.fn(() => '1rem'),
-    getLineHeight: vi.fn(() => '1.5'),
-  })),
-}))
-
 // Mock Typography components
 vi.mock('../../../../src/components/theme/typography', () => ({
   TypographyBlockquote: ({ children }: { children: React.ReactNode }) => <blockquote data-testid="blockquote">{children}</blockquote>,

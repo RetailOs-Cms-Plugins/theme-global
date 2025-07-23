@@ -231,8 +231,6 @@ const TypographyContent = () => {
               <div>
                 <TypographyH3 themeData={themeData}>Typography Scale</TypographyH3>
                 <TypographyPreview
-                  bodyFont={themeData?.typography?.fontBody}
-                  headingFont={themeData?.typography?.fontHeading}
                   themeData={themeData}
                 />
               </div>

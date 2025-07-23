@@ -45,7 +45,6 @@ export class FontLoader {
   }
 
   async loadFont(fontName: string): Promise<void> {
-    console.log('🚀 ~ font-loader.ts:70 ~ FontLoader ~ loadFont ~ fontName:', fontName)
     if (this.loadedFonts.has(fontName)) {
       return
     }
@@ -83,7 +82,6 @@ export function generateFontVariables(
   }
 
   const fontStack = [fontDef.displayName, ...fallbackFonts].join(', ')
-  console.log('🚀 ~ font-loader.ts:86 ~ fontStack:', fontStack)
 
   return {
     '--theme-font-direction': fontDef.supports.scripts.includes('hebrew') ? 'rtl' : 'ltr',

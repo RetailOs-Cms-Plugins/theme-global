@@ -18,7 +18,6 @@ const ColorInput: React.FC<ColorInputProps> = ({
   onChange,
   required = false,
   value = '#000000',
-  ...props
 }) => {
   const [colorValue, setColorValue] = useState<string>(value)
   const [isValidColor, setIsValidColor] = useState<boolean>(true)

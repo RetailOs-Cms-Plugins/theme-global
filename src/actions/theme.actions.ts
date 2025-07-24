@@ -5,11 +5,11 @@ import config from '@payload-config'
 import { unstable_cache as cache } from 'next/cache'
 import { getPayload } from 'payload'
 
-import type { ThemeConfig } from '../../../src/types'
+import type { ThemeConfig } from '../types'
 
-import { generateColorScale } from '../../../src/utils/color-palette/color-palette'
-import { getFontDefinition } from '../../../src/utils/typography/font-definitions'
-import { getGoogleFontsUrl } from '../../../src/utils/typography/font-loader'
+import { generateColorScale } from '../utils/color-palette/color-palette'
+import { getFontDefinition } from '../utils/typography/font-definitions'
+import { getGoogleFontsUrl } from '../utils/typography/font-loader'
 
 // Helper to create CSS variables from theme
 function createCssVariables(theme: ThemeConfig): React.CSSProperties {

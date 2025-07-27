@@ -574,7 +574,7 @@ export const LogoIcon = () => {
   )
 }
 
-const Page = ({ themeData }: { themeData: ThemeConfig }) => {
+const DesignSystemComponent = ({ themeData }: { themeData: ThemeConfig }) => {
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('colors')
 
@@ -642,4 +642,4 @@ const Page = ({ themeData }: { themeData: ThemeConfig }) => {
   )
 }
 
-export default Page
+export default DesignSystemComponent

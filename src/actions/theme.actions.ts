@@ -1,7 +1,7 @@
 'use server'
+import type { SanitizedConfig} from 'payload';
 import type * as React from 'react'
 
-import config from '@payload-config'
 import { unstable_cache as cache } from 'next/cache'
 import { getPayload } from 'payload'
 
@@ -80,7 +80,7 @@ function createCssVariables(theme: ThemeConfig): React.CSSProperties {
 
 // Cached theme fetching and processing
 const getCachedTheme = cache(
-  async () => {
+  async ({ config }: { config: Promise<SanitizedConfig> | SanitizedConfig }) => {
     console.log('🔄 Fetching and processing theme...')
     const payload = await getPayload({ config })
     const rawTheme = (await payload.findGlobal({ slug: 'theme-config' })) as unknown as ThemeConfig
@@ -109,7 +109,7 @@ const getCachedTheme = cache(
   },
 )
 
-export async function getTheme({ noCache = true } = {}): Promise<{
+export async function getTheme({ config, noCache = true }: { config: Promise<SanitizedConfig> | SanitizedConfig; noCache?: boolean }): Promise<{
   cssVariables: React.CSSProperties
   fontCSS: string
   themeData: ThemeConfig
@@ -128,10 +128,10 @@ export async function getTheme({ noCache = true } = {}): Promise<{
       themeData: rawTheme,
     }
   }
-  return getCachedTheme()
+  return getCachedTheme({ config })
 }
 
-export async function getClientTheme({ noCache = false } = {}) {
-  const { themeData } = await getTheme({ noCache })
+export async function getClientTheme({ config, noCache = false }: { config: Promise<SanitizedConfig> | SanitizedConfig; noCache?: boolean }) {
+  const { themeData } = await getTheme({ config, noCache })
   return themeData
 }

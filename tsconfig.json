@@ -8,14 +8,17 @@
     "strict": true,
     "esModuleInterop": true,
     "module": "ESNext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "emitDeclarationOnly": true,
+    "declaration": true,
     "target": "ES2022",
     "composite": true,
+    "outDir": "./dist",
+    "declarationDir": "./dist",
     "plugins": [
       {
         "name": "next"

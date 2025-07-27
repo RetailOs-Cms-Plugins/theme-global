@@ -230,9 +230,7 @@ const TypographyContent = () => {
             <section className="space-y-8">
               <div>
                 <TypographyH3 themeData={themeData}>Typography Scale</TypographyH3>
-                <TypographyPreview
-                  themeData={themeData}
-                />
+                <TypographyPreview themeData={themeData} />
               </div>
             </section>
           </div>
@@ -604,7 +602,7 @@ const Page = ({ themeData }: { themeData: ThemeConfig }) => {
   return (
     <div
       className={cn(
-        'mx-auto flex w-full flex-1 flex-col rounded-md border border-neutral-200 md:flex-row dark:border-neutral-700',
+        'mx-auto flex w-full flex-1 rounded-md border border-neutral-200 flex-row dark:border-neutral-700',
         'min-h-screen',
       )}
       style={{
@@ -633,7 +631,7 @@ const Page = ({ themeData }: { themeData: ThemeConfig }) => {
         </SidebarBody>
       </Sidebar>
 
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto w-full">
         <ThemeProvider themeData={themeData}>
           {activeTab === 'colors' && <ColorsContent />}
           {activeTab === 'typography' && <TypographyContent />}

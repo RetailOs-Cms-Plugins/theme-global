@@ -87,10 +87,7 @@ export const DesktopSidebar = ({
         animate={{
           width: animate ? (open ? '300px' : '60px') : '300px',
         }}
-        className={cn(
-          'h-full px-4 py-4 flex sticky top-0 w-[300px] shrink-0',
-          className,
-        )}
+        className={cn('h-full px-4 py-4 flex sticky top-0 w-[300px] shrink-0', className)}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
         style={{
@@ -111,7 +108,7 @@ export const MobileSidebar = ({ children, className, ...props }: React.Component
     <>
       <div
         className={cn(
-          'h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full',
+          'h-10 px-4 py-4 flex-row hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full absolute top-0 left-0',
         )}
         {...props}
       >

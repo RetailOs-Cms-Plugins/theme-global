@@ -112,27 +112,46 @@ bg-secondary-950    // Darkest secondary
 ### 1. Install the Package
 
 ```bash
-npm install theme-global
+npm install @retailos-ai/cms-theme-global
 # or
-yarn add theme-global
+yarn add @retailos-ai/cms-theme-global
 # or
-pnpm add theme-global
+pnpm add @retailos-ai/cms-theme-global
 ```
 
 ### 2. Add to Payload Config
 
 ```tsx
-// payload.config.ts
-import { buildConfig } from 'payload/config'
-import { themeGlobal } from 'theme-global'
+// payload.config.ts (or into plugins file)
+import { themeGlobalPlugin } from '@retailos-ai/cms-theme-global'
 
 export default buildConfig({
-  globals: [
-    themeGlobal,
+  plugins: [
+    themeGlobalPlugin({
+      enabled: true,
+    }),
     // ... other globals
   ],
   // ... rest of config
 })
+```
+
+### 3. Create a Folder design-system & page file
+```tsx
+// app/(frontent)/design-system/page.tsx
+
+import config from '@payload-config'
+import { Suspense } from 'react'
+import { DesignSystemPage, getTheme } from '@retailos-ai/cms-theme-global/client'
+
+export default async function Page() {
+  const themeData = await getTheme({ config })
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DesignSystemPage themeData={themeData.themeData} />
+    </Suspense>
+  )
+}
 ```
 
 ### 3. Set Up CSS Variables
@@ -141,7 +160,14 @@ Add the theme CSS to your global styles:
 
 ```css
 /* globals.css */
-@import 'theme-global/styles';
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@retailos-ai/cms-theme-global/styles";
+@config "../../tailwind.config.mjs";
+
+/* 
+...other imports or styles 
+*/
 ```
 
 ### 4. Configure Theme Provider (Optional)
@@ -149,12 +175,29 @@ Add the theme CSS to your global styles:
 For client-side components, wrap your app with the theme provider:
 
 ```tsx
-// app/layout.tsx
-import { ThemeProvider } from 'theme-global/components/theme'
+// app/(frontent)/layout.tsx
+import config from '@payload-config'
+import { FontHead, getTheme } from '@retailos-ai/cms-theme-global/client'
+import { ThemeProvider } from '@retailos-ai/cms-theme-global/client'
+
 
 export default function RootLayout({ children }) {
+  const { cssVariables, fontCSS, themeData } = await getTheme({ config })
+  const { fontBody, fontHeading } = themeData.typography || {}
+
   return (
-    <html>
+    <html
+      className="font-family"
+      lang="en" 
+      suppressHydrationWarning
+      dir={(cssVariables as Record<string, string>)['--theme-font-direction'] || 'ltr'}
+      style={cssVariables}
+    >
+      <head>
+        {fontBody && <FontHead fontName={fontBody} />}
+        {fontHeading && <FontHead fontName={fontHeading} />}ß
+        {fontCSS && <style dangerouslySetInnerHTML={{ __html: fontCSS }} />}
+      </head>
       <body>
         <ThemeProvider>
           {children}
@@ -1015,16 +1058,16 @@ git clone https://github.com/your-org/theme-global.git
 cd theme-global
 
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm dev
 
 # Run tests
-npm test
+pnpm test
 
 # Build for production
-npm run build
+pnpm build
 ```
 
 ### Code Style

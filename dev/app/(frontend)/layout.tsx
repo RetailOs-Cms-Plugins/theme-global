@@ -1,5 +1,5 @@
 import config from '@payload-config'
-import { FontHead, getTheme } from 'theme-global/client'
+import { FontHead, getTheme, ThemeProvider } from 'theme-global/client'
 
 import './global.css'
 
@@ -20,7 +20,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {fontHeading && <FontHead fontName={fontHeading} />}
         {fontCSS && <style dangerouslySetInnerHTML={{ __html: fontCSS }} />}
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider themeData={themeData}>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

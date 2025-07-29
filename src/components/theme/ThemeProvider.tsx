@@ -1,3 +1,5 @@
+'use client'
+
 import type { ThemeConfig } from 'src/types'
 
 import React, { createContext, useContext, useEffect, useState } from 'react'

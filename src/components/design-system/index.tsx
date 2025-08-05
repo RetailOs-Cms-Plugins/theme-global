@@ -10,7 +10,7 @@ import { cn } from '../../utils/cn'
 import { getFontDefinition } from '../../utils/typography/font-definitions'
 import { TypographyPreview } from '../theme'
 import { ThemeProvider, useTheme } from '../theme/ThemeProvider'
-import { TypographyH1, TypographyH3, TypographyP } from '../theme/typography'
+import { Typography } from '../theme/typography'
 import { Sidebar, SidebarBody, SidebarLink } from '../ui/sidebar'
 
 const PRIMITIVE_PRIMARY = [
@@ -96,7 +96,7 @@ const ColorsContent = () => {
   return (
     <div className="flex flex-1">
       <div className="flex h-full w-full flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700">
-        <TypographyH1>Color System</TypographyH1>
+        <Typography tagType="h1">Color System</Typography>
 
         {/* Semantic */}
         <section>
@@ -205,32 +205,32 @@ const TypographyContent = () => {
     <div className="flex flex-1">
       <div className="relative flex h-full w-full flex-1">
         <div className="flex-1 flex-col gap-4 rounded-tl-2xl border border-neutral-200 p-4 md:p-10 dark:border-neutral-700 overflow-y-auto">
-          <TypographyH1 themeData={themeData}>Typography</TypographyH1>
+          <Typography tagType="h1" themeData={themeData}>Typography</Typography>
 
           <div className="space-y-12">
             <section>
-              <TypographyH3 className="mt-4" themeData={themeData}>
+              <Typography className="mt-4" tagType="h3" themeData={themeData}>
                 Selected Font Families
-              </TypographyH3>
+              </Typography>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                 <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                  <TypographyH3 themeData={themeData}>Body Font</TypographyH3>
-                  <TypographyP className="mt-1 text-2xl" themeData={themeData}>
+                  <Typography tagType="h3" themeData={themeData}>Body Font</Typography>
+                  <Typography className="mt-1 text-2xl" tagType="p" themeData={themeData}>
                     {getFontLabel(themeData?.typography?.fontBody) || 'Inter'}
-                  </TypographyP>
+                  </Typography>
                 </div>
                 <div className="p-4 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                  <TypographyH3 themeData={themeData}>Heading Font</TypographyH3>
-                  <TypographyP className="mt-1 text-2xl" themeData={themeData}>
+                  <Typography tagType="h3" themeData={themeData}>Heading Font</Typography>
+                  <Typography className="mt-1 text-2xl" tagType="p" themeData={themeData}> 
                     {getFontLabel(themeData?.typography?.fontHeading) || 'Poppins'}
-                  </TypographyP>
+                  </Typography>
                 </div>
               </div>
             </section>
 
             <section className="space-y-8">
               <div>
-                <TypographyH3 themeData={themeData}>Typography Scale</TypographyH3>
+                <Typography tagType="h3" themeData={themeData}>Typography Scale</Typography>
                 <TypographyPreview themeData={themeData} />
               </div>
             </section>

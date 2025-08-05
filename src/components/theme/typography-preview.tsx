@@ -6,19 +6,7 @@ import {
   getFontSize as getResponsiveFontSize,
   getLineHeight as getResponsiveLineHeight,
 } from '../../utils/typography/getResponsiveValue'
-import {
-  TypographyBlockquote,
-  TypographyH1,
-  TypographyH2,
-  TypographyH3,
-  TypographyH4,
-  TypographyInlineCode,
-  TypographyLarge,
-  TypographyLead,
-  TypographyMuted,
-  TypographyP,
-  TypographySmall,
-} from './typography'
+import { Typography } from './typography'
 
 const BREAKPOINTS = [
   {
@@ -290,6 +278,83 @@ const TypographyPreview = ({ themeData }: TypographyPreviewProps) => {
   const selectedBreakpointName: (typeof breakpointNames)[number] =
     breakpointNames[selectedBreakpoint]
 
+  const DirectionalData = {
+    h1: getDirectionalText('heading'),
+    h3: getDirectionalText('heading'),
+    p: getDirectionalText('paragraph'),
+    small: getDirectionalText('paragraph'),
+  }
+
+  const TypographyScale = [
+    {
+        id: 'h1',
+        getDirectionalText: getDirectionalText('heading'),
+        getElementTypographyInfo: getElementTypographyInfo('h1'),
+        title: 'Main Heading',
+      },
+      {
+        id: 'h2',
+        getDirectionalText: getDirectionalText('heading'),
+        getElementTypographyInfo: getElementTypographyInfo('h2'),
+        title: 'Secondary Heading',
+      },
+      {
+        id: 'h3',
+        getDirectionalText: getDirectionalText('heading'),
+        getElementTypographyInfo: getElementTypographyInfo('h3'),
+        title: 'Third Heading',
+      },
+      {
+        id: 'h4',
+        getDirectionalText: getDirectionalText('heading'),
+        getElementTypographyInfo: getElementTypographyInfo('h4'),
+        title: 'Fourth Heading',
+      },
+      {
+        id: 'p',
+        getDirectionalText: getDirectionalText('paragraph'),
+        getElementTypographyInfo: getElementTypographyInfo('p'),
+        title: 'Body Text',
+    },
+    {
+        id: 'blockquote',
+        getDirectionalText: getDirectionalText('blockquote'),
+        getElementTypographyInfo: getElementTypographyInfo('blockquote'),
+        title: 'Blockquote',
+    },
+    {
+      id: 'small',
+      getDirectionalText: getDirectionalText('paragraph'),
+      getElementTypographyInfo: getElementTypographyInfo('small'),
+      title: 'Small Text',
+    },
+    {
+      id: 'muted',
+      getDirectionalText: getDirectionalText('paragraph'),
+      getElementTypographyInfo: getElementTypographyInfo('muted'),
+      title: 'Muted Text',
+    },
+    {
+      id: 'lead',
+      getDirectionalText: getLeadParagraphText(),
+      getElementTypographyInfo: getElementTypographyInfo('lead'),
+      title: 'Lead Paragraph',
+    },
+    {
+      id: 'large',
+      getDirectionalText: getLargeTextExample(),
+      getElementTypographyInfo: getElementTypographyInfo('large'),
+      title: 'Large Text',
+    },
+    {
+      id: 'inline-code',
+      getDirectionalText: 'const example = "code snippet"',
+      getElementTypographyInfo: getElementTypographyInfo('code'),
+      tagType: 'code',
+      title: 'Code',
+    },
+  ]
+
   return (
     <div className="space-y-8">
       {/* Responsive Preview Controls */}
@@ -385,18 +450,11 @@ const TypographyPreview = ({ themeData }: TypographyPreviewProps) => {
               <div className="space-y-3" id="typography-preview">
                 {/* Sample Content for Preview */}
                 <div>
-                  <TypographyH1 breakpoint={selectedBreakpointName} themeData={themeData}>
-                    {getDirectionalText('heading')}
-                  </TypographyH1>
-                  <TypographyH3 breakpoint={selectedBreakpointName} themeData={themeData}>
-                    {getDirectionalText('heading')}
-                  </TypographyH3>
-                  <TypographyP breakpoint={selectedBreakpointName} themeData={themeData}>
-                    {getDirectionalText('paragraph')}
-                  </TypographyP>
-                  <TypographySmall breakpoint={selectedBreakpointName} themeData={themeData}>
-                    {getDirectionalText('paragraph')}
-                  </TypographySmall>
+                  { Object.entries(DirectionalData).map(([key, value]) => (
+                    <Typography breakpoint={selectedBreakpointName} key={key} tagType={key as keyof typeof DirectionalData} themeData={themeData}>
+                      {value}
+                    </Typography>
+                  ))}
                 </div>
               </div>
             </div>
@@ -415,236 +473,32 @@ const TypographyPreview = ({ themeData }: TypographyPreviewProps) => {
           Typography Scale
         </h4>
         <div className="grid gap-6">
-          {/* H1 */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="h1"
-          >
+          {TypographyScale.map((item) => (
+            <div
+              className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
+              id={item.id}
+              key={item.id}
+            >
             <div className="flex items-start justify-between mb-4">
               <div className="flex flex-col">
                 <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  h1
+                  {item.id}
                 </span>
-                <span className="text-sm text-gray-600">Main Heading</span>
+                <span className="text-sm text-gray-600">{item.title}</span>
               </div>
               <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('h1')}
+                {item.getElementTypographyInfo}
               </span>
             </div>
-            <TypographyH1 breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('heading')}
-            </TypographyH1>
-          </div>
-
-          {/* H2 */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="h2"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  h2
-                </span>
-                <span className="text-sm text-gray-600">Secondary Heading</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('h2')}
-              </span>
+            <Typography 
+              breakpoint={selectedBreakpointName} 
+              tagType={(item.tagType || item.id) as "blockquote" | "code" | "h1" | "h2" | "h3" | "h4" | "large" | "lead" | "muted" | "p" | "small"}
+              themeData={themeData}
+            >
+              {item.getDirectionalText}
+            </Typography>
             </div>
-            <TypographyH2 breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('heading')}
-            </TypographyH2>
-          </div>
-
-          {/* H3 */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="h3"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  h3
-                </span>
-                <span className="text-sm text-gray-600">Third Heading</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('h3')}
-              </span>
-            </div>
-            <TypographyH4 breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('heading')}
-            </TypographyH4>
-          </div>
-
-          {/* H4 */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="h4"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  h4
-                </span>
-                <span className="text-sm text-gray-600">Fourth Heading</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('h4')}
-              </span>
-            </div>
-            <TypographyH4 breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('heading')}
-            </TypographyH4>
-          </div>
-
-          {/* Paragraph */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="p"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  p
-                </span>
-                <span className="text-sm text-gray-600">Body Text</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('p')}
-              </span>
-            </div>
-            <TypographyP breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('paragraph')}
-            </TypographyP>
-          </div>
-
-          {/* Blockquote */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="blockquote"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  blockquote
-                </span>
-                <span className="text-sm text-gray-600">Quote Text</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('blockquote')}
-              </span>
-            </div>
-            <TypographyBlockquote breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('blockquote')}
-            </TypographyBlockquote>
-          </div>
-
-          {/* Small */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="small"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  small
-                </span>
-                <span className="text-sm text-gray-600">Small Text</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('small')}
-              </span>
-            </div>
-            <TypographySmall breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('paragraph')}
-            </TypographySmall>
-          </div>
-
-          {/* Muted */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="muted"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  muted
-                </span>
-                <span className="text-sm text-gray-600">Muted Text</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('muted')}
-              </span>
-            </div>
-            <TypographyMuted breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getDirectionalText('paragraph')}
-            </TypographyMuted>
-          </div>
-
-          {/* Lead */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="lead"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  lead
-                </span>
-                <span className="text-sm text-gray-600">Lead Paragraph</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('lead')}
-              </span>
-            </div>
-            <TypographyLead breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getLeadParagraphText()}
-            </TypographyLead>
-          </div>
-
-          {/* Large */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="large"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  large
-                </span>
-                <span className="text-sm text-gray-600">Large Text</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('large')}
-              </span>
-            </div>
-            <TypographyLarge breakpoint={selectedBreakpointName} themeData={themeData}>
-              {getLargeTextExample()}
-            </TypographyLarge>
-          </div>
-
-          {/* Inline Code */}
-          <div
-            className="border border-gray-200 rounded-xl p-6 bg-card shadow-sm hover:shadow-md transition-shadow duration-200"
-            id="inline-code"
-          >
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex flex-col">
-                <span className="font-mono text-xs text-gray-500 uppercase tracking-wide mb-1">
-                  code
-                </span>
-                <span className="text-sm text-gray-600">Inline Code</span>
-              </div>
-              <span className="flex items-center gap-2 px-4 py-2 font-medium rounded-lg transition-all duration-200 text-sm text-on-card bg-card">
-                {getElementTypographyInfo('code')}
-              </span>
-            </div>
-            <TypographyInlineCode breakpoint={selectedBreakpointName} themeData={themeData}>
-              const example = "code snippet"
-            </TypographyInlineCode>
-          </div>
+          ))}
         </div>
       </section>
     </div>

@@ -11,16 +11,4 @@ export { FontHead } from '../components/theme/font-head'
 export { ThemeProvider } from '../components/theme/ThemeProvider'
 
 // Typography
-export {
-    TypographyBlockquote,
-    TypographyH1,
-    TypographyH2,
-    TypographyH3,
-    TypographyH4,
-    TypographyInlineCode,
-    TypographyLarge,
-    TypographyLead,
-    TypographyMuted,
-    TypographyP,
-    TypographySmall,
-  } from '../components/theme/typography'
+export { Typography } from '../components/theme/typography'

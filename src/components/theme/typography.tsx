@@ -67,8 +67,6 @@ const TypographyData: Record<TypographyProps['tagType'], { classes: string, tag:
 // Helper function to get typography styles from theme with responsive breakpoints
 const getTypographyStyles = (element: TypographyProps['tagType'], themeData: any) => {
   const elementConfig = themeData?.typography?.[element]
-  console.log('element', element)
-  console.log('elementConfig', elementConfig)
 
   // Check if we have responsive breakpoint data
   const hasResponsiveFontSize =

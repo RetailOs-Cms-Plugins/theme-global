@@ -59,7 +59,7 @@ interface TypographyPreviewProps {
   themeData?: any
 }
 
-const TypographyPreview = ({themeData }: TypographyPreviewProps) => {
+const TypographyPreview = ({ themeData }: TypographyPreviewProps) => {
   const [selectedBreakpoint, setSelectedBreakpoint] = useState(0)
 
   // Custom functions that use the selected breakpoint instead of window breakpoint

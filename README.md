@@ -137,6 +137,7 @@ export default buildConfig({
 ```
 
 ### 3. Create a Folder design-system & page file
+
 ```tsx
 // app/(frontent)/design-system/page.tsx
 
@@ -323,19 +324,7 @@ import {
   // Code & Quotes
   TypographyInlineCode,
   TypographyBlockquote,
-  
-  // Lists
-  TypographyList,
-  TypographyListItem,
-  
-  // Tables
-  TypographyTable,
-  TypographyTableHeader,
-  TypographyTableBody,
-  TypographyTableRow,
-  TypographyTableCell,
-  TypographyTableHeaderCell,
-} from 'theme-global/components/theme/typography'
+
 ```
 
 ### Basic Usage
@@ -470,17 +459,20 @@ The plugin provides a consistent spacing system:
 Access your theme settings in the Payload admin panel:
 
 ### 1. Website Colors Tab
+
 - Configure semantic colors (primary, secondary, backgrounds, text colors)
 - Real-time color preview with contrast validation
 - Automatic color scale generation
 
 ### 2. Typography Tab
+
 - Set font families for body and headings
 - Configure responsive typography for each element
 - Set text direction (LTR/RTL/Auto)
 - Live typography preview across all breakpoints
 
 ### 3. Layout & Spacing Tab
+
 - Control container width
 - Configure spacing scales
 
@@ -1006,6 +998,7 @@ import { TypographyPreview } from 'theme-global/components'
 #### Breaking Changes
 
 1. **Class Name Changes**
+
    ```tsx
    // Old
    className="bg-color-primary"
@@ -1015,6 +1008,7 @@ import { TypographyPreview } from 'theme-global/components'
    ```
 
 2. **Typography Component Changes**
+
    ```tsx
    // Old
    <TypographyH1 theme={themeData}>
@@ -1024,6 +1018,7 @@ import { TypographyPreview } from 'theme-global/components'
    ```
 
 3. **API Changes**
+
    ```tsx
    // Old
    import { getTheme } from 'theme-global'
@@ -1091,6 +1086,7 @@ pnpm build
 ### [2.0.0] - 2024-01-15
 
 #### Added
+
 - Semantic color system with automatic scale generation
 - Responsive typography with 4 breakpoints
 - Multi-language font support (English & Hebrew)
@@ -1099,12 +1095,14 @@ pnpm build
 - TypeScript support throughout
 
 #### Changed
+
 - Renamed color classes for better semantics
 - Updated typography component API
 - Improved performance with better caching
 - Enhanced admin panel interface
 
 #### Fixed
+
 - Color scale generation issues
 - Responsive typography breakpoint detection
 - Font loading performance
@@ -1113,6 +1111,7 @@ pnpm build
 ### [1.0.0] - 2023-12-01
 
 #### Added
+
 - Initial release
 - Basic color management
 - Simple typography system

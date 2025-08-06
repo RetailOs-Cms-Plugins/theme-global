@@ -145,7 +145,7 @@ export function Typography({
         tagType,
         themeData
       ),
-    [themeData],
+    [themeData, tagType],
   )
 
   if (!themeData) {

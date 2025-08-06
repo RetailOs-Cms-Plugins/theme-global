@@ -10,83 +10,92 @@ export const typography: Tab = {
               type: 'collapsible',
               fields: [
                 {
-                  name: 'fontBody',
-                  type: 'select',
-                  admin: {
-                    description: 'Font family for body text',
-                  },
-                  defaultValue: 'inter',
-                  label: 'Body Font',
-                  options: [
-                    // Hebrew Fonts
-                    { label: 'Alef (Google)', value: 'alef' },
-                    { label: 'Almoni Tzar Bold', value: 'almoni-tzar-bold' },
-                    { label: 'Asimon Hebrew', value: 'asimon-hebrew' },
-                    { label: 'Assistant (Google)', value: 'assistant' },
-                    { label: 'Frank Ruhl Libre (Google)', value: 'frank-ruhl-libre' },
-                    { label: 'Heebo (Google)', value: 'heebo' },
-                    { label: 'Miriam Libre (Google)', value: 'miriam-libre' },
-                    { label: 'Noto Rashi Hebrew (Google)', value: 'noto-rashi-hebrew' },
-                    { label: 'Noto Sans Hebrew (Google)', value: 'noto-sans-hebrew' },
-                    { label: 'Noto Serif Hebrew (Google)', value: 'noto-serif-hebrew' },
-                    { label: 'Ploni Regular', value: 'ploni-regular' },
-                    { label: 'Rubik (Google)', value: 'rubik' },
-                    { label: 'Secular One (Google)', value: 'secular-one' },
-                    { label: 'Suez One (Google)', value: 'suez-one' },
-  
-                    // English Fonts
-                    { label: 'DM Sans (Google)', value: 'dm-sans' },
-                    { label: 'Epilogue (Google)', value: 'epilogue' },
-                    { label: 'Inter (Google)', value: 'inter' },
-                    { label: 'Jost (Google)', value: 'jost' },
-                    { label: 'Lexend (Google)', value: 'lexend' },
-                    { label: 'Manrope (Google)', value: 'manrope' },
-                    { label: 'Mulish (Google)', value: 'mulish' },
-                    { label: 'Nunito (Google)', value: 'nunito' },
-                    { label: 'Poppins (Google)', value: 'poppins' },
-                    { label: 'Public Sans (Google)', value: 'public-sans' },
-                    { label: 'Sora (Google)', value: 'sora' },
-                  ],
-                },
-                {
-                  name: 'fontHeading',
-                  type: 'select',
-                  admin: {
-                    description: 'Font family for headings',
-                  },
-                  defaultValue: 'poppins',
-                  label: 'Heading Font',
-                  options: [
-                    // Hebrew Fonts
-                    { label: 'Alef (Google)', value: 'alef' },
-                    { label: 'Almoni Tzar Bold', value: 'almoni-tzar-bold' },
-                    { label: 'Asimon Hebrew', value: 'asimon-hebrew' },
-                    { label: 'Assistant (Google)', value: 'assistant' },
-                    { label: 'Frank Ruhl Libre (Google)', value: 'frank-ruhl-libre' },
-                    { label: 'Heebo (Google)', value: 'heebo' },
-                    { label: 'Miriam Libre (Google)', value: 'miriam-libre' },
-                    { label: 'Noto Rashi Hebrew (Google)', value: 'noto-rashi-hebrew' },
-                    { label: 'Noto Sans Hebrew (Google)', value: 'noto-sans-hebrew' },
-                    { label: 'Noto Serif Hebrew (Google)', value: 'noto-serif-hebrew' },
-                    { label: 'Ploni Regular', value: 'ploni-regular' },
-                    { label: 'Rubik (Google)', value: 'rubik' },
-                    { label: 'Secular One (Google)', value: 'secular-one' },
-                    { label: 'Suez One (Google)', value: 'suez-one' },
-  
-                    // English Fonts
-                    { label: 'DM Sans (Google)', value: 'dm-sans' },
-                    { label: 'Epilogue (Google)', value: 'epilogue' },
-                    { label: 'Inter (Google)', value: 'inter' },
-                    { label: 'Jost (Google)', value: 'jost' },
-                    { label: 'Lexend (Google)', value: 'lexend' },
-                    { label: 'Manrope (Google)', value: 'manrope' },
-                    { label: 'Mulish (Google)', value: 'mulish' },
-                    { label: 'Nunito (Google)', value: 'nunito' },
-                    { label: 'Poppins (Google)', value: 'poppins' },
-                    { label: 'Public Sans (Google)', value: 'public-sans' },
-                    { label: 'Sora (Google)', value: 'sora' },
-                  ],
-                },
+                  type: 'row',
+                  fields: [
+                    {
+                      name: 'fontBody',
+                      type: 'select',
+                      admin: {
+                        description: 'Font family for body text',
+                        width: '50%',
+                      },
+                      defaultValue: 'inter',
+                      label: 'Body Font',
+                      options: [
+                        // Hebrew Fonts
+                        { label: 'Alef (Google)', value: 'alef' },
+                        { label: 'Almoni Tzar Bold', value: 'almoni-tzar-bold' },
+                        { label: 'Asimon Hebrew', value: 'asimon-hebrew' },
+                        { label: 'Assistant (Google)', value: 'assistant' },
+                        { label: 'Frank Ruhl Libre (Google)', value: 'frank-ruhl-libre' },
+                        { label: 'Heebo (Google)', value: 'heebo' },
+                        { label: 'Miriam Libre (Google)', value: 'miriam-libre' },
+                        { label: 'Noto Rashi Hebrew (Google)', value: 'noto-rashi-hebrew' },
+                        { label: 'Noto Sans Hebrew (Google)', value: 'noto-sans-hebrew' },
+                        { label: 'Noto Serif Hebrew (Google)', value: 'noto-serif-hebrew' },
+                        { label: 'Ploni Regular', value: 'ploni-regular' },
+                        { label: 'Rubik (Google)', value: 'rubik' },
+                        { label: 'Secular One (Google)', value: 'secular-one' },
+                        { label: 'Suez One (Google)', value: 'suez-one' },
+      
+                        // English Fonts
+                        { label: 'DM Sans (Google)', value: 'dm-sans' },
+                        { label: 'Epilogue (Google)', value: 'epilogue' },
+                        { label: 'Inter (Google)', value: 'inter' },
+                        { label: 'Jost (Google)', value: 'jost' },
+                        { label: 'Lexend (Google)', value: 'lexend' },
+                        { label: 'Manrope (Google)', value: 'manrope' },
+                        { label: 'Mulish (Google)', value: 'mulish' },
+                        { label: 'Nunito (Google)', value: 'nunito' },
+                        { label: 'Poppins (Google)', value: 'poppins' },
+                        { label: 'Public Sans (Google)', value: 'public-sans' },
+                        { label: 'Sora (Google)', value: 'sora' },
+                      ],
+                      required: true,
+                    },
+                    {
+                      name: 'fontHeading',
+                      type: 'select',
+                      admin: {
+                        description: 'Font family for headings',
+                        width: '50%',
+                      },
+                      defaultValue: 'poppins',
+                      label: 'Heading Font',
+                      options: [
+                        // Hebrew Fonts
+                        { label: 'Alef (Google)', value: 'alef' },
+                        { label: 'Almoni Tzar Bold', value: 'almoni-tzar-bold' },
+                        { label: 'Asimon Hebrew', value: 'asimon-hebrew' },
+                        { label: 'Assistant (Google)', value: 'assistant' },
+                        { label: 'Frank Ruhl Libre (Google)', value: 'frank-ruhl-libre' },
+                        { label: 'Heebo (Google)', value: 'heebo' },
+                        { label: 'Miriam Libre (Google)', value: 'miriam-libre' },
+                        { label: 'Noto Rashi Hebrew (Google)', value: 'noto-rashi-hebrew' },
+                        { label: 'Noto Sans Hebrew (Google)', value: 'noto-sans-hebrew' },
+                        { label: 'Noto Serif Hebrew (Google)', value: 'noto-serif-hebrew' },
+                        { label: 'Ploni Regular', value: 'ploni-regular' },
+                        { label: 'Rubik (Google)', value: 'rubik' },
+                        { label: 'Secular One (Google)', value: 'secular-one' },
+                        { label: 'Suez One (Google)', value: 'suez-one' },
+      
+                        // English Fonts
+                        { label: 'DM Sans (Google)', value: 'dm-sans' },
+                        { label: 'Epilogue (Google)', value: 'epilogue' },
+                        { label: 'Inter (Google)', value: 'inter' },
+                        { label: 'Jost (Google)', value: 'jost' },
+                        { label: 'Lexend (Google)', value: 'lexend' },
+                        { label: 'Manrope (Google)', value: 'manrope' },
+                        { label: 'Mulish (Google)', value: 'mulish' },
+                        { label: 'Nunito (Google)', value: 'nunito' },
+                        { label: 'Poppins (Google)', value: 'poppins' },
+                        { label: 'Public Sans (Google)', value: 'public-sans' },
+                        { label: 'Sora (Google)', value: 'sora' },
+                      ],
+                      required: true,
+                    },
+                  ]
+                }
               ],
               label: 'Font Families',
             },
@@ -100,6 +109,7 @@ export const typography: Tab = {
                 { label: 'Left to Right', value: 'ltr' },
                 { label: 'Right to Left', value: 'rtl' },
               ],
+              required: true,
             },
             {
               type: 'collapsible',
@@ -121,6 +131,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '5rem',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -128,6 +139,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '4rem',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -135,6 +147,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '3rem',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -142,6 +155,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2rem',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -161,6 +175,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -168,6 +183,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -175,6 +191,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -182,6 +199,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.1',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -208,6 +226,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '4rem',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -215,6 +234,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '3rem',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -222,6 +242,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2.5rem',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -229,6 +250,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2rem',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -248,6 +270,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -255,6 +278,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -262,6 +286,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -269,6 +294,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.1',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -295,6 +321,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '3rem',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -302,6 +329,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2.5rem',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -309,6 +337,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2rem',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -316,6 +345,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.5rem',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -335,6 +365,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -342,6 +373,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -349,6 +381,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -356,6 +389,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.1',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -382,6 +416,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2.5rem',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -389,6 +424,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '2rem',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -396,6 +432,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.5rem',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -403,6 +440,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2rem',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -422,6 +460,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -429,6 +468,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -436,6 +476,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.2',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -443,6 +484,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.1',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -469,6 +511,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.5rem',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -476,6 +519,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.25rem',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -483,6 +527,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1rem',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -490,6 +535,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '0.9rem',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -509,6 +555,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.5',
                               label: 'Large Desktop',
+                              required: true,
                             },
                             {
                               name: 'desktop',
@@ -516,6 +563,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.5',
                               label: 'Desktop',
+                              required: true,
                             },
                             {
                               name: 'tablet',
@@ -523,6 +571,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.4',
                               label: 'Tablet',
+                              required: true,
                             },
                             {
                               name: 'mobile',
@@ -530,6 +579,7 @@ export const typography: Tab = {
                               admin: { width: '25%' },
                               defaultValue: '1.3',
                               label: 'Mobile',
+                              required: true,
                             },
                           ],
                         },
@@ -558,6 +608,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.125rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -567,9 +618,43 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.75rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'Blockquote',
+                    },
+                    {
+                      name: 'muted',
+                      type: 'group',
+                      admin: {
+                        description: 'Muted text typography settings',
+                        width: '50%',
+                      },
+                      fields: [
+                        {
+                          name: 'fontSize',
+                          type: 'text',
+                          admin: {
+                            description: 'Font size for muted text',
+                            width: '50%',
+                          },
+                          defaultValue: '0.875rem',
+                          label: 'Font Size',
+                          required: true,
+                        },
+                        {
+                          name: 'lineHeight',
+                          type: 'text',
+                          admin: {
+                            description: 'Line height for muted text',
+                            width: '50%',
+                          },
+                          defaultValue: '1.25rem',
+                          label: 'Line Height',
+                          required: true,
+                        },
+                      ],
+                      label: 'Muted',
                     },
                   ],
                 },
@@ -592,6 +677,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -601,6 +687,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.5rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'Table',
@@ -621,6 +708,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -630,6 +718,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.75rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'List',
@@ -655,6 +744,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '0.875rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -664,6 +754,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.25rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'Inline Code',
@@ -684,6 +775,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.25rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -693,6 +785,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.75rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'Lead',
@@ -718,6 +811,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.125rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -727,6 +821,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.75rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'Large',
@@ -747,6 +842,7 @@ export const typography: Tab = {
                           },
                           defaultValue: '0.875rem',
                           label: 'Font Size',
+                          required: true,
                         },
                         {
                           name: 'lineHeight',
@@ -756,43 +852,10 @@ export const typography: Tab = {
                           },
                           defaultValue: '1.25rem',
                           label: 'Line Height',
+                          required: true,
                         },
                       ],
                       label: 'Small',
-                    },
-                  ],
-                },
-                {
-                  type: 'row',
-                  fields: [
-                    {
-                      name: 'muted',
-                      type: 'group',
-                      admin: {
-                        description: 'Muted text typography settings',
-                        width: '50%',
-                      },
-                      fields: [
-                        {
-                          name: 'fontSize',
-                          type: 'text',
-                          admin: {
-                            description: 'Font size for muted text',
-                          },
-                          defaultValue: '0.875rem',
-                          label: 'Font Size',
-                        },
-                        {
-                          name: 'lineHeight',
-                          type: 'text',
-                          admin: {
-                            description: 'Line height for muted text',
-                          },
-                          defaultValue: '1.25rem',
-                          label: 'Line Height',
-                        },
-                      ],
-                      label: 'Muted',
                     },
                   ],
                 },

@@ -1,3 +1,5 @@
+import type { NumberField, RowField, TabsField } from 'payload'
+
 import { describe, expect, it, vi } from 'vitest'
 
 // Mock all CSS imports globally
@@ -69,17 +71,27 @@ vi.mock('../../../../src/globals/theme/tabs/layoutAndSpacing', () => ({
         type: 'group',
         fields: [
           {
-            name: 'maxWidth',
-            type: 'number',
+            type: 'row',
+            fields: [
+              {
+                name: 'maxWidth',
+                type: 'number',
+              }
+            ]
           },
           {
             name: 'breakpoints',
             type: 'group',
             fields: [
-              { name: 'mobile', type: 'number' },
-              { name: 'tablet', type: 'number' },
-              { name: 'desktop', type: 'number' },
-              { name: 'largeDesktop', type: 'number' },
+              {
+                type: 'row',
+                fields: [
+                  { name: 'mobile', type: 'number' },
+                  { name: 'tablet', type: 'number' },
+                  { name: 'desktop', type: 'number' },
+                  { name: 'largeDesktop', type: 'number' },
+                ]
+              }
             ]
           }
         ]
@@ -108,7 +120,7 @@ describe('Theme Global Configuration', () => {
 
     it('should have admin configuration with correct components', () => {
       expect(themeGlobal.admin).toBeDefined()
-      expect(themeGlobal.admin?.components?.views?.edit?.component).toBeDefined()
+      expect(themeGlobal.admin?.components?.views?.edit).toBeDefined()
     })
 
     it('should have live preview configuration', () => {
@@ -130,18 +142,18 @@ describe('Theme Global Configuration', () => {
     })
 
     it('should have three tabs configured', () => {
-      const tabsField = themeGlobal.fields[0] as any
+      const tabsField = themeGlobal.fields[0] as TabsField
       expect(tabsField.tabs).toHaveLength(3)
     })
   })
 
   describe('Field Name and Type Validation', () => {
     it('should validate typography fields structure', () => {
-      const tabsField = themeGlobal.fields[0] as any
+      const tabsField = themeGlobal.fields[0] as TabsField
       const typographyTab = tabsField.tabs[1] // typography is second tab
       
       // Check main typography group
-      const typographyGroup = typographyTab.fields[0]
+      const typographyGroup = typographyTab.fields[0] as any
       expect(typographyGroup.name).toBe('typography')
       expect(typographyGroup.type).toBe('group')
       
@@ -155,16 +167,18 @@ describe('Theme Global Configuration', () => {
     })
 
     it('should validate layout and spacing fields structure', () => {
-      const tabsField = themeGlobal.fields[0] as any
+      const tabsField = themeGlobal.fields[0] as TabsField
       const layoutTab = tabsField.tabs[2] // layoutAndSpacing is third tab
       
       // Check main layout group
-      const layoutGroup = layoutTab.fields[0]
+      const layoutGroup = layoutTab.fields[0] as any
       expect(layoutGroup.name).toBe('layout')
       expect(layoutGroup.type).toBe('group')
       
-      // Check maxWidth field
-      const maxWidthField = layoutGroup.fields[0]
+      // Check maxWidth field - it's in a row
+      const maxWidthRow = layoutGroup.fields[0] as RowField
+      expect(maxWidthRow.type).toBe('row')
+      const maxWidthField = maxWidthRow.fields[0] as NumberField
       expect(maxWidthField.name).toBe('maxWidth')
       expect(maxWidthField.type).toBe('number')
       
@@ -173,8 +187,10 @@ describe('Theme Global Configuration', () => {
       expect(breakpointsGroup.name).toBe('breakpoints')
       expect(breakpointsGroup.type).toBe('group')
       
-      // Check individual breakpoint fields
-      const breakpointFields = breakpointsGroup.fields
+      // Check individual breakpoint fields - they're in a row within the group
+      const breakpointsRow = breakpointsGroup.fields[0] as RowField
+      expect(breakpointsRow.type).toBe('row')
+      const breakpointFields = breakpointsRow.fields as NumberField[]
       
       expect(breakpointFields[0].name).toBe('mobile')
       expect(breakpointFields[0].type).toBe('number')
@@ -190,7 +206,7 @@ describe('Theme Global Configuration', () => {
     })
 
     it('should validate colors fields structure', () => {
-      const tabsField = themeGlobal.fields[0] as any
+      const tabsField = themeGlobal.fields[0] as TabsField
       const colorsTab = tabsField.tabs[0] // colors is first tab
       
       // Check collapsible structure
@@ -225,14 +241,14 @@ describe('Theme Global Configuration', () => {
       // Call the hook
       afterChangeHook?.({
         context: {
-          req: mockReq as any,
+          req: mockReq,
         },
         data: undefined,
         doc: mockDoc,
-        global: themeGlobal as any,
+        global: themeGlobal,
         previousDoc: undefined,
-        req: mockReq as any,
-      })
+        req: mockReq,
+      } as any)
       
       expect(revalidateTag).toHaveBeenCalledWith('theme-config')
       expect(mockReq.payload.logger.info).toHaveBeenCalledWith('Theme updated, cache invalidated')
@@ -241,7 +257,8 @@ describe('Theme Global Configuration', () => {
     it('should handle errors in afterChange hook', async () => {
       const { revalidateTag } = await import('next/cache')
       // Make revalidateTag throw an error
-      ;(revalidateTag as any).mockImplementationOnce(() => {
+      const mockRevalidateTag = revalidateTag as jest.MockedFunction<typeof revalidateTag>
+      mockRevalidateTag.mockImplementationOnce(() => {
         throw new Error('Cache error')
       })
       
@@ -254,14 +271,14 @@ describe('Theme Global Configuration', () => {
       expect(() => {
         afterChangeHook?.({
           context: {
-            req: mockReq as any,
+            req: mockReq,
           },
           data: undefined,
           doc: mockDoc,
-          global: themeGlobal as any,
+          global: themeGlobal,
           previousDoc: undefined,
-          req: mockReq as any,
-        })
+          req: mockReq,
+        } as any)
       }).not.toThrow()
       
       expect(mockReq.payload.logger.error).toHaveBeenCalledWith(

@@ -15,13 +15,16 @@ vi.mock('chroma-js', () => {
   const chromaMock = vi.fn((color: string) => ({
     hex: () => color.startsWith('#') ? color : '#6b7280'
   }))
-  
   // Add scale method to chroma
-  chromaMock.scale = vi.fn(() => ({
+  const scale = vi.fn(() => ({
     mode: vi.fn(() => ({
       colors: vi.fn(() => mockColors)
     }))
   }))
+  Object.defineProperty(chromaMock, 'scale', {
+    configurable: true,
+    value: scale
+  })
   
   return {
     default: chromaMock,

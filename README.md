@@ -163,6 +163,7 @@ bg-secondary-950    // Darkest secondary
 ```
 
 ### Typography Components Quick Reference
+
 ### Available Components
 
 ```tsx
@@ -171,7 +172,7 @@ import { Typography } from '@retailos-ai/cms-theme-global/client'
 // Headings
 <Typography tagType="h1" themeData={themeData}>Heading (h1)</Typography>
 <Typography tagType="h2" themeData={themeData}>Heading (h2)</Typography>
-<Typography tagType="h3" themeData={themeData}>Heqading (h3)</Typography>
+<Typography tagType="h3" themeData={themeData}>Heading (h3)</Typography>
 <Typography tagType="h4" themeData={themeData}>Heading (h4)</Typography>
 <Typography tagType="h4" themeData={themeData}>Heading (h5)</Typography>
 <Typography tagType="h4" themeData={themeData}>Heading (h6)</Typography>

@@ -1,5 +1,6 @@
 import config from '@payload-config'
-import { FontHead, getTheme, ThemeProvider } from 'theme-global/client'
+import { FontHead, ThemeProvider } from 'theme-global/client'
+import { getTheme } from 'theme-global/rsc'
 
 import './global.css'
 

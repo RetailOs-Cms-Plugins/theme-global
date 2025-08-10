@@ -1,4 +1,5 @@
 'use server'
+
 import type { SanitizedConfig} from 'payload';
 import type * as React from 'react'
 
@@ -129,9 +130,4 @@ export async function getTheme({ config, noCache = true }: { config: Promise<San
     }
   }
   return getCachedTheme({ config })
-}
-
-export async function getClientTheme({ config, noCache = false }: { config: Promise<SanitizedConfig> | SanitizedConfig; noCache?: boolean }) {
-  const { themeData } = await getTheme({ config, noCache })
-  return themeData
 }

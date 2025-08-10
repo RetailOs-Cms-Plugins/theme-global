@@ -1,5 +1,3 @@
-'use client'
-
 // Breakpoint definitions (matching the layout settings)
 const BREAKPOINTS = {
   desktop: 1024,

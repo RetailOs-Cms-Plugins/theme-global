@@ -1,6 +1,3 @@
-// Theme Actions
-export { getTheme } from '../actions/theme.actions'
-
 // Design System Page
 export { default as DesignSystemPage } from '../components/page'
 
@@ -12,3 +9,6 @@ export { ThemeProvider } from '../components/theme/ThemeProvider'
 
 // Typography
 export { Typography } from '../components/theme/typography'
+
+// Theme Loader
+export { default as ThemeLoader } from '../components/theme-loader'

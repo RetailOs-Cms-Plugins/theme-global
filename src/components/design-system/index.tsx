@@ -1,6 +1,5 @@
 'use client'
 
-import { IconLayoutGrid, IconPalette, IconTypography } from '@tabler/icons-react'
 import React, { useState } from 'react'
 
 import type { ThemeConfig } from '../../types'
@@ -8,6 +7,7 @@ import type { ThemeConfig } from '../../types'
 import { cn } from '../../utils/cn'
 import { ThemeProvider } from '../theme/ThemeProvider'
 import { Sidebar, SidebarBody, SidebarLink } from '../ui/sidebar'
+import { designSystemLinks } from './links'
 import { Logo } from './Logo'
 import ColorsContent from './tabs/ColorsContent'
 import LayoutContent from './tabs/LayoutContent'
@@ -16,27 +16,6 @@ import TypographyContent from './tabs/TypographyContent'
 const DesignSystemComponent = ({ themeData }: { themeData: ThemeConfig }) => {
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('colors')
-
-  const links = [
-    {
-      id: 'colors',
-      href: '#colors',
-      icon: <IconPalette className="h-5 w-5 shrink-0 text-text-on-page" />,
-      label: 'Colors',
-    },
-    {
-      id: 'typography',
-      href: '#typography',
-      icon: <IconTypography className="h-5 w-5 shrink-0 text-text-on-page" />,
-      label: 'Typography',
-    },
-    {
-      id: 'layout',
-      href: '#layout',
-      icon: <IconLayoutGrid className="h-5 w-5 shrink-0 text-text-on-page" />,
-      label: 'Layout & Spacing',
-    },
-  ]
 
   return (
     <div
@@ -54,7 +33,7 @@ const DesignSystemComponent = ({ themeData }: { themeData: ThemeConfig }) => {
           <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
             <Logo isOpen={open} />
             <div className="mt-8 flex flex-col gap-2">
-              {links.map((link) => (
+              {designSystemLinks.map((link) => (
                 <SidebarLink
                   className={cn(
                     activeTab === link.id && 'bg-card text-on-card',

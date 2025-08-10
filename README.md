@@ -70,15 +70,15 @@ export default buildConfig({
 
 ```tsx
 // app/(frontent)/design-system/page.tsx
-
 import config from '@payload-config'
 import { Suspense } from 'react'
-import { DesignSystemPage, getTheme } from '@retailos-ai/cms-theme-global/client'
+import { DesignSystemPage, ThemeLoader } from '@retailos-ai/cms-theme-global/client'
+import { getTheme } from '@retailos-ai/cms-theme-global/rsc'
 
 export default async function Page() {
   const themeData = await getTheme({ config })
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<ThemeLoader />}>
       <DesignSystemPage themeData={themeData.themeData} />
     </Suspense>
   )
@@ -108,7 +108,8 @@ For client-side components, wrap your app with the theme provider:
 ```tsx
 // app/(frontent)/layout.tsx
 import config from '@payload-config'
-import { FontHead, getTheme, ThemeProvider } from '@retailos-ai/cms-theme-global/client'
+import { FontHead, ThemeProvider } from '@retailos-ai/cms-theme-global/client'
+import { getTheme } from '@retailos-ai/cms-theme-global/rsc'
 
 
 export default function RootLayout({ children }) {

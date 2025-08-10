@@ -165,25 +165,6 @@ describe('theme.actions', () => {
     })
   })
 
-  describe('getClientTheme', () => {
-    it('should return only theme data', async () => {
-      const { getClientTheme } = await import('../../../src/actions/theme.actions')
-      
-      const result = await getClientTheme({ config: mockConfig })
-
-      expect(result).toEqual(mockThemeConfig)
-      expect(mockPayload.findGlobal).toHaveBeenCalledWith({ slug: 'theme-config' })
-    })
-
-    it('should pass noCache parameter correctly', async () => {
-      const { getClientTheme } = await import('../../../src/actions/theme.actions')
-      
-      await getClientTheme({ config: mockConfig, noCache: true })
-
-      expect(mockPayload.findGlobal).toHaveBeenCalledWith({ slug: 'theme-config' })
-    })
-  })
-
   describe('error handling', () => {
     it('should handle payload errors gracefully', async () => {
       mockPayload.findGlobal.mockRejectedValue(new Error('Payload error'))

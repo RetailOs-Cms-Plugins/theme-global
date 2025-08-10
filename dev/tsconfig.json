@@ -19,7 +19,9 @@
       "@/*": ["app/*"],
       "@payload-config": ["./payload.config.ts"],
       "theme-global": ["../src/index.ts"],
-      "theme-global/client": ["../src/exports/client.ts"]
+      "theme-global/client": ["../src/exports/client.ts"],
+      "theme-global/rsc": ["../src/exports/rsc.ts"],
+      "theme-global/styles": ["../src/styles/globalTheme.css"]
     },
     "noEmit": true,
     "emitDeclarationOnly": false

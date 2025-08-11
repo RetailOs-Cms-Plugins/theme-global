@@ -1,23 +1,58 @@
 {
   "name": "@retailos-ai/cms-theme-global",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
+  "description": "theme for retailos-ai cms",
+  "keywords": [
+    "payload",
+    "cms",
+    "theme",
+    "plugin"
+  ],
   "license": "MIT",
   "type": "module",
+  "private": false,
+  "main": "./src/index.ts",
+  "types": "./src/index.d.ts",
   "exports": {
     ".": {
       "import": "./src/index.ts",
-      "types": "./src/index.ts",
+      "types": "./src/index.d.ts",
       "default": "./src/index.ts"
     },
     "./client": {
       "import": "./src/exports/client.ts",
-      "types": "./src/exports/client.ts",
+      "types": "./src/exports/client.d.ts",
       "default": "./src/exports/client.ts"
+    },
+    "./styles": "./src/styles/globalTheme.css",
+    "./rsc": {
+      "import": "./src/exports/rsc.ts",
+      "types": "./src/exports/rsc.d.ts",
+      "default": "./src/exports/rsc.ts"
     }
   },
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./client": {
+        "import": "./dist/exports/client.js",
+        "types": "./dist/exports/client.d.ts",
+        "default": "./dist/exports/client.js"
+      },
+      "./styles": "./dist/styles/globalTheme.css",
+      "./rsc": {
+        "import": "./dist/exports/rsc.js",
+        "types": "./dist/exports/rsc.d.ts",
+        "default": "./dist/exports/rsc.js"
+      }
+    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "files": [
     "dist"
   ],
@@ -34,72 +69,77 @@
     "lint": "eslint",
     "lint:fix": "eslint ./src --fix",
     "prepublishOnly": "pnpm clean && pnpm build",
-    "test": "jest"
+    "test": "vitest",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run tests/unit",
+    "test:unit:watch": "vitest tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:integration:watch": "vitest tests/integration",
+    "test:e2e": "vitest run tests/e2e",
+    "test:e2e:watch": "vitest tests/e2e",
+    "test:all": "vitest run tests/unit tests/integration tests/e2e",
+    "changeset": "changeset",
+    "changeset:add": "changeset add",
+    "changeset:status": "changeset status",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "release:dry-run": "changeset publish --dry-run"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@payloadcms/db-mongodb": "3.29.0",
-    "@payloadcms/db-postgres": "3.29.0",
-    "@payloadcms/db-sqlite": "3.29.0",
+    "@changesets/cli": "^2.29.5",
+    "@eslint/eslintrc": "^3.3.1",
+    "@payloadcms/db-mongodb": "3.50.0",
+    "@payloadcms/db-postgres": "3.50.0",
+    "@payloadcms/db-sqlite": "3.50.0",
     "@payloadcms/eslint-config": "3.9.0",
-    "@payloadcms/live-preview-react": "3.29.0",
-    "@payloadcms/next": "3.29.0",
-    "@payloadcms/richtext-lexical": "3.29.0",
-    "@payloadcms/ui": "3.29.0",
+    "@payloadcms/live-preview-react": "3.50.0",
+    "@payloadcms/next": "3.50.0",
+    "@payloadcms/richtext-lexical": "3.50.0",
+    "@payloadcms/ui": "3.50.0",
     "@swc-node/register": "1.10.9",
-    "@swc/cli": "0.6.0",
-    "@swc/jest": "^0.2.37",
+    "@swc/cli": "0.7.7",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/chroma-js": "^3.1.1",
-    "@types/jest": "29.5.12",
-    "@types/node": "^22.5.4",
-    "@types/react": "19.1.0",
-    "@types/react-dom": "19.1.2",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.15",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "copyfiles": "2.4.1",
     "cross-env": "^7.0.3",
-    "eslint": "^9.23.0",
-    "eslint-config-next": "15.3.0",
+    "eslint": "^9.30.0",
+    "eslint-config-next": "15.3.4",
     "graphql": "^16.8.1",
-    "jest": "29.7.0",
+    "happy-dom": "^18.0.1",
+    "jsdom": "^26.1.0",
     "mongodb-memory-server": "^10.1.2",
-    "next": "15.3.0",
+    "next": "15.3.4",
     "open": "^10.1.0",
-    "payload": "3.29.0",
-    "prettier": "^3.4.2",
+    "payload": "3.50.0",
+    "prettier": "^3.6.2",
     "qs-esm": "7.0.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "rimraf": "3.0.2",
-    "sharp": "0.32.6",
-    "sort-package-json": "^2.10.0",
-    "typescript": "5.7.3"
+    "rimraf": "6.0.1",
+    "sharp": "0.34.2",
+    "sort-package-json": "^3.3.1",
+    "typescript": "5.8.3",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
-    "payload": "^3.29.0"
+    "payload": "^3.50.0"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0",
     "pnpm": "^9 || ^10"
-  },
-  "publishConfig": {
-    "exports": {
-      ".": {
-        "import": "./dist/index.js",
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "./client": {
-        "import": "./dist/exports/client.js",
-        "types": "./dist/exports/client.d.ts",
-        "default": "./dist/exports/client.js"
-      },
-      "./rsc": {
-        "import": "./dist/exports/rsc.js",
-        "types": "./dist/exports/rsc.d.ts",
-        "default": "./dist/exports/rsc.js"
-      }
-    },
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -108,11 +148,11 @@
   },
   "registry": "https://registry.npmjs.org/",
   "dependencies": {
-    "@retailos-ai/cms-general-custom-fields": "^1.2.0",
+    "@retailos-ai/cms-general-custom-fields": "^3.0.1",
     "@tabler/icons-react": "^3.34.0",
-    "@tailwindcss/postcss": "^4.1.8",
     "chroma-js": "^3.1.2",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.0",
     "framer-motion": "^12.18.1",
     "gsap": "^3.13.0",
     "postcss": "^8.5.4",

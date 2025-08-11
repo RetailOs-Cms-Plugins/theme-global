@@ -1,5 +1,6 @@
-import type { Config, GlobalConfig } from 'payload'
+import type { Config, Endpoint, GlobalConfig, PayloadRequest } from 'payload'
 
+// import { Page } from './components/design-system/page'
 import { themeGlobal } from './globals/theme'
 import { copyPluginFontsToProject } from './utils/typography/copy-fonts'
 
@@ -29,12 +30,26 @@ export interface ThemeGlobalPluginOptions extends Omit<GlobalConfig, 'fields' | 
   globalSlug?: string
 }
 
+// const themeConfigEndpoint: Endpoint = {
+//   handler: (req: PayloadRequest): Promise<Response> | Response => {
+//     return new Response(`<div>Hello, world!</div>`, {
+//       headers: { 'Content-Type': 'text/html' },
+//     })
+//   },
+//   method: 'get',
+//   path: '/theme-config',
+// }
+
 export const themeGlobalPlugin =
   (pluginOptions: ThemeGlobalPluginOptions) =>
   (incomingConfig: Config): Config => {
     const config = {
       ...incomingConfig,
       access: pluginOptions.access,
+      // endpoints: [
+      //   ...(incomingConfig.endpoints || []),
+      //   themeConfigEndpoint,
+      // ],
       globals: [{ ...themeGlobal, slug: pluginOptions.globalSlug || 'theme-config' }],
     }
 

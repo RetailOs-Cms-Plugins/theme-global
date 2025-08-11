@@ -35,6 +35,10 @@ export interface ThemeConfig {
   colorPrimary: string
   colorSecondary: string
   layout?: {
+    borderRadius?: {
+      box?: string
+      button?: string
+    }
     breakpoints?: {
       desktop?: number
       largeDesktop?: number
@@ -48,10 +52,6 @@ export interface ThemeConfig {
       sm?: string
       xl?: string
       xs?: string
-    }
-    borderRadius?: {
-      box?: string
-      button?: string
     }
   }
   pageBackground: string

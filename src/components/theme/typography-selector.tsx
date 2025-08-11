@@ -5,9 +5,9 @@ import type {
   FontFamilyOption,
   TypographyConfig,
   TypographySelectorProps,
-} from '../../types/index.js'
+} from '../../types/index'
 
-import { allFonts } from '../../utils/typography/font-definitions.js'
+import { allFonts } from '../../utils/typography/font-definitions'
 import styles from './typography-selector.module.css'
 
 // Default typography configuration
@@ -179,6 +179,7 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
           </select>
           {isCustomBodyFont && (
             <input
+              aria-label="Custom font family"
               className={`${styles.customFontInput} ${disabled ? styles.disabled : ''}`}
               disabled={disabled}
               onChange={handleCustomFontChange('fontBody')}
@@ -211,6 +212,7 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
           </select>
           {isCustomHeadingFont && (
             <input
+              aria-label="Custom font family"
               className={`${styles.customFontInput} ${disabled ? styles.disabled : ''}`}
               disabled={disabled}
               onChange={handleCustomFontChange('fontHeading')}
@@ -255,6 +257,7 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
                     </label>
                     <div className={styles.inputGroup}>
                       <input
+                        aria-label="Font size"
                         disabled={disabled}
                         id={`${name}-${element}-font-size`}
                         onChange={handleElementChange(element as keyof TypographyConfig)(
@@ -267,6 +270,7 @@ const TypographySelector: React.FC<TypographySelectorProps> = ({
                         }
                       />
                       <input
+                        aria-label="Line height"
                         disabled={disabled}
                         id={`${name}-${element}-line-height`}
                         onChange={handleElementChange(element as keyof TypographyConfig)(

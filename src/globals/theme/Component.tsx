@@ -3,10 +3,10 @@ import type { JSONFieldClient } from 'payload'
 
 import React, { useState } from 'react'
 
-import type { ThemeConfig } from '../../types/theme.types.js'
+import type { ThemeConfig } from '../../types/theme.types'
 import type { TailwindTheme } from '../../utils/color-palette/color-palette'
 
-import { ColorInput, TypographySelector } from '../../components/theme/index.js'
+import { ColorInput, TypographySelector } from '../../components/theme/index'
 import { generateColorScale, TAILWIND_THEMES } from '../../utils/color-palette/color-palette'
 import styles from './Component.module.css'
 
@@ -137,7 +137,7 @@ const ThemeSelector: React.FC<{
         onChange={(e) => onChange(e.target.value as TailwindTheme)}
         value={value}
       >
-        {Object.entries(TAILWIND_THEMES).map(([key, theme]) => (
+        {Object.entries(TAILWIND_THEMES).map(([key]) => (
           <option key={key} value={key}>
             {key.charAt(0).toUpperCase() + key.slice(1)}
           </option>
@@ -155,8 +155,7 @@ const ThemeComponent: React.FC<ThemeComponentProps> = ({
   disabled = false,
   errors,
   onChange,
-  value = DEFAULT_THEME,
-  ...props
+  value = DEFAULT_THEME
 }) => {
   const [activeTab, setActiveTab] = useState<'colors' | 'typography'>('colors')
   const [currentTheme, setCurrentTheme] = useState<TailwindTheme>('default')

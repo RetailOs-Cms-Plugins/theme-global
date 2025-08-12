@@ -95,9 +95,3 @@ async function listCopiedFiles(dir: string): Promise<void> {
     console.log('Could not list copied files:', error)
   }
 }
-
-// Export a test function
-export async function testFontCopying(): Promise<void> {
-  console.log('🧪 Testing font copying process...')
-  await copyPluginFontsToProject()
-}

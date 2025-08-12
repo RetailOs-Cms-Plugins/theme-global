@@ -2,7 +2,6 @@ import type { GlobalConfig } from 'payload'
 
 import { revalidateTag } from 'next/cache'
 
-import ThemeConfigEditView from './Component'
 import { colors } from './tabs/colors'
 import { layoutAndSpacing } from './tabs/layoutAndSpacing'
 import { typography } from './tabs/typography'
@@ -10,11 +9,6 @@ import { typography } from './tabs/typography'
 export const themeGlobal: GlobalConfig = {
   slug: 'theme',
   admin: {
-    components: {
-      views: {
-        edit: { component: ThemeConfigEditView as any },
-      },
-    },
     livePreview: {
       url: '/design-system',
     },

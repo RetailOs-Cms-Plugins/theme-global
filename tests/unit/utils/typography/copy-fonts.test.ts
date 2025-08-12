@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { describe, expect, it, vi } from 'vitest'
 
-import { copyPluginFontsToProject, testFontCopying } from '../../../../src/utils/typography/copy-fonts.js'
+import { copyPluginFontsToProject } from '../../../../src/utils/typography/copy-fonts.js'
 
 // Mock dependencies
 vi.mock('fs', () => ({
@@ -90,17 +90,6 @@ describe('Copy Fonts Utils', () => {
       })
 
       await expect(copyPluginFontsToProject()).rejects.toThrow('File system error')
-    })
-  })
-
-  describe('testFontCopying', () => {
-    it('should call copyPluginFontsToProject and log test message', async () => {
-      mockFs.existsSync.mockReturnValue(true)
-      mockFs.promises.readdir.mockResolvedValue([])
-
-      await testFontCopying()
-
-      expect(mockFs.promises.mkdir).toHaveBeenCalled()
     })
   })
 }) 

@@ -118,11 +118,6 @@ describe('Theme Global Configuration', () => {
       expect(themeGlobal.slug).toBe('theme')
     })
 
-    it('should have admin configuration with correct components', () => {
-      expect(themeGlobal.admin).toBeDefined()
-      expect(themeGlobal.admin?.components?.views?.edit).toBeDefined()
-    })
-
     it('should have live preview configuration', () => {
       expect(themeGlobal.admin?.livePreview?.url).toBe('/design-system')
     })

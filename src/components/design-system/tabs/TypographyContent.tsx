@@ -12,7 +12,6 @@ export default function TypographyContent() {
   
     const getFontLabel = useCallback(
       (value: string | undefined): null | string => {
-        console.log('🚀 ~ page.tsx:179 ~ getFontLabel ~ value:', value)
         if (!value) {
           return null
         }

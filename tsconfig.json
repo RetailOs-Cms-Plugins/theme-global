@@ -28,6 +28,7 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.tsx",
+    "./src/**/*.css",
     "./dev/next-env.d.ts",
     "vitest.config.ts",
     "tests/**/*"

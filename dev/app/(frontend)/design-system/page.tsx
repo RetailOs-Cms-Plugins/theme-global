@@ -1,7 +1,7 @@
 import config from '@payload-config'
+import { DesignSystemPage, ThemeLoader } from '@retailos-ai/cms-theme-global/client'
+import { getTheme } from '@retailos-ai/cms-theme-global/rsc'
 import { Suspense } from 'react'
-import { DesignSystemPage, ThemeLoader } from 'theme-global/client'
-import { getTheme } from 'theme-global/rsc'
 
 export default async function Page() {
   const themeData = await getTheme({ config })

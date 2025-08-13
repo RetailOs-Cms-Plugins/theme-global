@@ -1,6 +1,6 @@
 {
   "name": "@retailos-ai/cms-theme-global",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "theme for retailos-ai cms",
   "keywords": [
     "payload",
@@ -11,24 +11,27 @@
   "license": "MIT",
   "type": "module",
   "private": false,
-  "main": "./src/index.ts",
-  "types": "./src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.ts",
-      "types": "./src/index.d.ts",
-      "default": "./src/index.ts"
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
     "./client": {
-      "import": "./src/exports/client.ts",
-      "types": "./src/exports/client.d.ts",
-      "default": "./src/exports/client.ts"
+      "import": "./dist/exports/client.js",
+      "types": "./dist/exports/client.d.ts",
+      "default": "./dist/exports/client.js"
     },
-    "./styles": "./src/styles/globalTheme.css",
+    "./globalTheme.css": {
+      "import": "./dist/styles/globalTheme.css",
+      "default": "./dist/styles/globalTheme.css"
+    },
     "./rsc": {
-      "import": "./src/exports/rsc.ts",
-      "types": "./src/exports/rsc.d.ts",
-      "default": "./src/exports/rsc.ts"
+      "import": "./dist/exports/rsc.js",
+      "types": "./dist/exports/rsc.d.ts",
+      "default": "./dist/exports/rsc.js"
     }
   },
   "publishConfig": {
@@ -43,7 +46,10 @@
         "types": "./dist/exports/client.d.ts",
         "default": "./dist/exports/client.js"
       },
-      "./styles": "./dist/styles/globalTheme.css",
+      "./globalTheme.css": {
+        "import": "./dist/styles/globalTheme.css",
+        "default": "./dist/styles/globalTheme.css"
+      },
       "./rsc": {
         "import": "./dist/exports/rsc.js",
         "types": "./dist/exports/rsc.d.ts",

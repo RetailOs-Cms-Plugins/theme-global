@@ -1,6 +1,6 @@
 import config from '@payload-config'
-import { FontHead, ThemeProvider } from 'theme-global/client'
-import { getTheme } from 'theme-global/rsc'
+import { FontHead, ThemeProvider } from '@retailos-ai/cms-theme-global/client'
+import { getTheme } from '@retailos-ai/cms-theme-global/rsc'
 
 import './global.css'
 

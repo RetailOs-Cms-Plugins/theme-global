@@ -93,9 +93,8 @@ Add the theme CSS to your global styles:
 /* globals.css */
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "@retailos-ai/cms-theme-global/styles";
+@import "../../node_modules/@retailos-ai/cms-theme-global/dist/styles/globalTheme.css";
 @config "../../tailwind.config.mjs";
-
 /* 
 ...other imports or styles 
 */
@@ -130,7 +129,7 @@ export default function RootLayout({ children }) {
         {fontCSS && <style dangerouslySetInnerHTML={{ __html: fontCSS }} />}
       </head>
       <body>
-        <ThemeProvider>
+        <ThemeProvider themeData={themeData}>
           {children}
         </ThemeProvider>
       </body>

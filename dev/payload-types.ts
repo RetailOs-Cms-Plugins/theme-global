@@ -59,481 +59,746 @@ export type SupportedTimezones =
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
   | 'Pacific/Auckland'
-  | 'Pacific/Fiji'
+  | 'Pacific/Fiji';
 
 export interface Config {
   auth: {
-    users: UserAuthOperations
-  }
-  blocks: {}
+    users: UserAuthOperations;
+  };
+  blocks: {};
   collections: {
-    posts: Post
-    media: Media
-    users: User
-    'payload-locked-documents': PayloadLockedDocument
-    'payload-preferences': PayloadPreference
-    'payload-migrations': PayloadMigration
-  }
-  collectionsJoins: {}
+    posts: Post;
+    media: Media;
+    users: User;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
   collectionsSelect: {
-    posts: PostsSelect<false> | PostsSelect<true>
-    media: MediaSelect<false> | MediaSelect<true>
-    users: UsersSelect<false> | UsersSelect<true>
-    'payload-locked-documents':
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>
-  }
+    posts: PostsSelect<false> | PostsSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+  };
   db: {
-    defaultIDType: number
-  }
+    defaultIDType: number;
+  };
   globals: {
-    'theme-config': ThemeConfig
-  }
+    'theme-config': ThemeConfig;
+  };
   globalsSelect: {
-    'theme-config': ThemeConfigSelect<false> | ThemeConfigSelect<true>
-  }
-  locale: null
+    'theme-config': ThemeConfigSelect<false> | ThemeConfigSelect<true>;
+  };
+  locale: null;
   user: User & {
-    collection: 'users'
-  }
+    collection: 'users';
+  };
   jobs: {
-    tasks: unknown
-    workflows: unknown
-  }
+    tasks: unknown;
+    workflows: unknown;
+  };
 }
 export interface UserAuthOperations {
   forgotPassword: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   login: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   registerFirstUser: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
   unlock: {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
 export interface Post {
-  id: number
-  updatedAt: string
-  createdAt: string
+  id: number;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
-  id: number
-  updatedAt: string
-  createdAt: string
-  url?: string | null
-  thumbnailURL?: string | null
-  filename?: string | null
-  mimeType?: string | null
-  filesize?: number | null
-  width?: number | null
-  height?: number | null
-  focalX?: number | null
-  focalY?: number | null
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
-  id: number
-  updatedAt: string
-  createdAt: string
-  email: string
-  resetPasswordToken?: string | null
-  resetPasswordExpiration?: string | null
-  salt?: string | null
-  hash?: string | null
-  loginAttempts?: number | null
-  lockUntil?: string | null
-  password?: string | null
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: number
+  id: number;
   document?:
     | ({
-        relationTo: 'posts'
-        value: number | Post
+        relationTo: 'posts';
+        value: number | Post;
       } | null)
     | ({
-        relationTo: 'media'
-        value: number | Media
+        relationTo: 'media';
+        value: number | Media;
       } | null)
     | ({
-        relationTo: 'users'
-        value: number | User
-      } | null)
-  globalSlug?: string | null
+        relationTo: 'users';
+        value: number | User;
+      } | null);
+  globalSlug?: string | null;
   user: {
-    relationTo: 'users'
-    value: number | User
-  }
-  updatedAt: string
-  createdAt: string
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: number
+  id: number;
   user: {
-    relationTo: 'users'
-    value: number | User
-  }
-  key?: string | null
+    relationTo: 'users';
+    value: number | User;
+  };
+  key?: string | null;
   value?:
     | {
-        [k: string]: unknown
+        [k: string]: unknown;
       }
     | unknown[]
     | string
     | number
     | boolean
-    | null
-  updatedAt: string
-  createdAt: string
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: number
-  name?: string | null
-  batch?: number | null
-  updatedAt: string
-  createdAt: string
+  id: number;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
-  updatedAt?: T
-  createdAt?: T
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-  updatedAt?: T
-  createdAt?: T
-  url?: T
-  thumbnailURL?: T
-  filename?: T
-  mimeType?: T
-  filesize?: T
-  width?: T
-  height?: T
-  focalX?: T
-  focalY?: T
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  updatedAt?: T
-  createdAt?: T
-  email?: T
-  resetPasswordToken?: T
-  resetPasswordExpiration?: T
-  salt?: T
-  hash?: T
-  loginAttempts?: T
-  lockUntil?: T
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
-  document?: T
-  globalSlug?: T
-  user?: T
-  updatedAt?: T
-  createdAt?: T
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences_select".
  */
 export interface PayloadPreferencesSelect<T extends boolean = true> {
-  user?: T
-  key?: T
-  value?: T
-  updatedAt?: T
-  createdAt?: T
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-migrations_select".
  */
 export interface PayloadMigrationsSelect<T extends boolean = true> {
-  name?: T
-  batch?: T
-  updatedAt?: T
-  createdAt?: T
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "theme-config".
  */
 export interface ThemeConfig {
-  id: number
-  /**
-   * Input field background color
-   */
-  primary50?: string | null
-  primary100?: string | null
-  primary200?: string | null
-  primary300?: string | null
-  primary400?: string | null
-  primary500?: string | null
-  primary600?: string | null
-  primary700?: string | null
-  primary800?: string | null
-  primary900?: string | null
-  primary950?: string | null
-  secondary50?: string | null
-  secondary100?: string | null
-  secondary200?: string | null
-  secondary300?: string | null
-  secondary400?: string | null
-  secondary500?: string | null
-  secondary600?: string | null
-  secondary700?: string | null
-  secondary800?: string | null
-  secondary900?: string | null
-  secondary950?: string | null
-  colorPrimary?: string | null
-  textOnPrimary?: string | null
-  colorSecondary?: string | null
-  textOnSecondary?: string | null
-  cardBackground?: string | null
-  textOnCard?: string | null
-  pageBackground?: string | null
-  textOnPage?: string | null
-  typography?: {
+  id: number;
+  colorPrimary?: string | null;
+  textOnPrimary?: string | null;
+  colorSecondary?: string | null;
+  textOnSecondary?: string | null;
+  cardBackground?: string | null;
+  textOnCard?: string | null;
+  pageBackground?: string | null;
+  textOnPage?: string | null;
+  typography: {
     /**
      * Font family for body text
      */
-    fontBody?:
-      | (
-          | 'asimon-hebrew'
-          | 'frank-ruhl-libre'
-          | 'noto-sans-hebrew'
-          | 'noto-serif-hebrew'
-          | 'noto-rashi-hebrew'
-          | 'heebo'
-          | 'rubik'
-          | 'assistant'
-          | 'secular-one'
-          | 'suez-one'
-          | 'alef'
-          | 'miriam-libre'
-          | 'inter'
-          | 'manrope'
-          | 'dm-sans'
-          | 'nunito'
-          | 'epilogue'
-          | 'mulish'
-          | 'lexend'
-          | 'public-sans'
-          | 'jost'
-          | 'sora'
-          | 'poppins'
-        )
-      | null
+    fontBody:
+      | 'alef'
+      | 'almoni-tzar-bold'
+      | 'asimon-hebrew'
+      | 'assistant'
+      | 'frank-ruhl-libre'
+      | 'heebo'
+      | 'miriam-libre'
+      | 'noto-rashi-hebrew'
+      | 'noto-sans-hebrew'
+      | 'noto-serif-hebrew'
+      | 'ploni-regular'
+      | 'rubik'
+      | 'secular-one'
+      | 'suez-one'
+      | 'dm-sans'
+      | 'epilogue'
+      | 'inter'
+      | 'jost'
+      | 'lexend'
+      | 'manrope'
+      | 'mulish'
+      | 'nunito'
+      | 'poppins'
+      | 'public-sans'
+      | 'sora';
     /**
      * Font family for headings
      */
-    fontHeading?:
-      | (
-          | 'asimon-hebrew'
-          | 'frank-ruhl-libre'
-          | 'noto-sans-hebrew'
-          | 'noto-serif-hebrew'
-          | 'noto-rashi-hebrew'
-          | 'heebo'
-          | 'rubik'
-          | 'assistant'
-          | 'secular-one'
-          | 'suez-one'
-          | 'alef'
-          | 'miriam-libre'
-          | 'inter'
-          | 'manrope'
-          | 'dm-sans'
-          | 'nunito'
-          | 'epilogue'
-          | 'mulish'
-          | 'lexend'
-          | 'public-sans'
-          | 'jost'
-          | 'sora'
-          | 'poppins'
-        )
-      | null
+    fontHeading:
+      | 'alef'
+      | 'almoni-tzar-bold'
+      | 'asimon-hebrew'
+      | 'assistant'
+      | 'frank-ruhl-libre'
+      | 'heebo'
+      | 'miriam-libre'
+      | 'noto-rashi-hebrew'
+      | 'noto-sans-hebrew'
+      | 'noto-serif-hebrew'
+      | 'ploni-regular'
+      | 'rubik'
+      | 'secular-one'
+      | 'suez-one'
+      | 'dm-sans'
+      | 'epilogue'
+      | 'inter'
+      | 'jost'
+      | 'lexend'
+      | 'manrope'
+      | 'mulish'
+      | 'nunito'
+      | 'poppins'
+      | 'public-sans'
+      | 'sora';
+    direction: 'auto' | 'ltr' | 'rtl';
+    h1: {
+      fontSize: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+      lineHeight: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+    };
+    h2: {
+      fontSize: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+      lineHeight: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+    };
+    h3: {
+      fontSize: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+      lineHeight: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+    };
+    h4: {
+      fontSize: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+      lineHeight: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+    };
+    p: {
+      fontSize: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+      lineHeight: {
+        largeDesktop: string;
+        desktop: string;
+        tablet: string;
+        mobile: string;
+      };
+    };
     /**
-     * Font family for monospace text (code)
+     * Blockquote typography settings
      */
-    fontMono?:
-      | ('fira-code' | 'jetbrains-mono' | 'source-code-pro' | 'ibm-plex-mono' | 'roboto-mono')
-      | null
+    blockquote: {
+      /**
+       * Font size for blockquotes
+       */
+      fontSize: string;
+      /**
+       * Line height for blockquotes
+       */
+      lineHeight: string;
+    };
     /**
-     * Extra small text size
+     * Muted text typography settings
      */
-    textXs?: string | null
+    muted: {
+      /**
+       * Font size for muted text
+       */
+      fontSize: string;
+      /**
+       * Line height for muted text
+       */
+      lineHeight: string;
+    };
     /**
-     * Small text size
+     * Table typography settings
      */
-    textSm?: string | null
+    table: {
+      /**
+       * Font size for tables
+       */
+      fontSize: string;
+      /**
+       * Line height for tables
+       */
+      lineHeight: string;
+    };
     /**
-     * Base text size
+     * List typography settings
      */
-    textBase?: string | null
+    list: {
+      /**
+       * Font size for lists
+       */
+      fontSize: string;
+      /**
+       * Line height for lists
+       */
+      lineHeight: string;
+    };
     /**
-     * Large text size
+     * Inline code typography settings
      */
-    textLg?: string | null
+    inlineCode: {
+      /**
+       * Font size for inline code
+       */
+      fontSize: string;
+      /**
+       * Line height for inline code
+       */
+      lineHeight: string;
+    };
     /**
-     * Extra large text size
+     * Lead paragraph typography settings
      */
-    textXl?: string | null
+    lead: {
+      /**
+       * Font size for lead paragraphs
+       */
+      fontSize: string;
+      /**
+       * Line height for lead paragraphs
+       */
+      lineHeight: string;
+    };
     /**
-     * 2X large text size
+     * Large text typography settings
      */
-    text2xl?: string | null
+    large: {
+      /**
+       * Font size for large text
+       */
+      fontSize: string;
+      /**
+       * Line height for large text
+       */
+      lineHeight: string;
+    };
     /**
-     * 3X large text size
+     * Small text typography settings
      */
-    text3xl?: string | null
+    small: {
+      /**
+       * Font size for small text
+       */
+      fontSize: string;
+      /**
+       * Line height for small text
+       */
+      lineHeight: string;
+    };
+  };
+  layout: {
     /**
-     * 4X large text size
+     * Set the max-width for the main container. (e.g., 1360)
      */
-    text4xl?: string | null
-    direction?: ('auto' | 'ltr' | 'rtl') | null
-  }
-  spacing?: {
-    /**
-     * Extra small spacing
-     */
-    spacingXs?: string | null
-    /**
-     * Small spacing
-     */
-    spacingSm?: string | null
-    /**
-     * Medium spacing
-     */
-    spacingMd?: string | null
-    /**
-     * Large spacing
-     */
-    spacingLg?: string | null
-    /**
-     * Extra large spacing
-     */
-    spacingXl?: string | null
-  }
-  updatedAt?: string | null
-  createdAt?: string | null
+    maxWidth: number;
+    breakpoints: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+      largeDesktop: number;
+    };
+    spacingScale: {
+      xs: string;
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
+    };
+    borderRadius: {
+      /**
+       * Border radius for boxes (e.g., 0.5rem)
+       */
+      box: string;
+      /**
+       * Border radius for buttons (e.g., 9999px for pill shape)
+       */
+      button: string;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "theme-config_select".
  */
 export interface ThemeConfigSelect<T extends boolean = true> {
-  primary50?: T
-  primary100?: T
-  primary200?: T
-  primary300?: T
-  primary400?: T
-  primary500?: T
-  primary600?: T
-  primary700?: T
-  primary800?: T
-  primary900?: T
-  primary950?: T
-  secondary50?: T
-  secondary100?: T
-  secondary200?: T
-  secondary300?: T
-  secondary400?: T
-  secondary500?: T
-  secondary600?: T
-  secondary700?: T
-  secondary800?: T
-  secondary900?: T
-  secondary950?: T
-  colorPrimary?: T
-  textOnPrimary?: T
-  colorSecondary?: T
-  textOnSecondary?: T
-  cardBackground?: T
-  textOnCard?: T
-  pageBackground?: T
-  textOnPage?: T
+  colorPrimary?: T;
+  textOnPrimary?: T;
+  colorSecondary?: T;
+  textOnSecondary?: T;
+  cardBackground?: T;
+  textOnCard?: T;
+  pageBackground?: T;
+  textOnPage?: T;
   typography?:
     | T
     | {
-        fontBody?: T
-        fontHeading?: T
-        fontMono?: T
-        textXs?: T
-        textSm?: T
-        textBase?: T
-        textLg?: T
-        textXl?: T
-        text2xl?: T
-        text3xl?: T
-        text4xl?: T
-        direction?: T
-      }
-  spacing?:
+        fontBody?: T;
+        fontHeading?: T;
+        direction?: T;
+        h1?:
+          | T
+          | {
+              fontSize?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+              lineHeight?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+            };
+        h2?:
+          | T
+          | {
+              fontSize?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+              lineHeight?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+            };
+        h3?:
+          | T
+          | {
+              fontSize?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+              lineHeight?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+            };
+        h4?:
+          | T
+          | {
+              fontSize?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+              lineHeight?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+            };
+        p?:
+          | T
+          | {
+              fontSize?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+              lineHeight?:
+                | T
+                | {
+                    largeDesktop?: T;
+                    desktop?: T;
+                    tablet?: T;
+                    mobile?: T;
+                  };
+            };
+        blockquote?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        muted?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        table?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        list?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        inlineCode?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        lead?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        large?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+        small?:
+          | T
+          | {
+              fontSize?: T;
+              lineHeight?: T;
+            };
+      };
+  layout?:
     | T
     | {
-        spacingXs?: T
-        spacingSm?: T
-        spacingMd?: T
-        spacingLg?: T
-        spacingXl?: T
-      }
-  updatedAt?: T
-  createdAt?: T
-  globalType?: T
+        maxWidth?: T;
+        breakpoints?:
+          | T
+          | {
+              mobile?: T;
+              tablet?: T;
+              desktop?: T;
+              largeDesktop?: T;
+            };
+        spacingScale?:
+          | T
+          | {
+              xs?: T;
+              sm?: T;
+              md?: T;
+              lg?: T;
+              xl?: T;
+            };
+        borderRadius?:
+          | T
+          | {
+              box?: T;
+              button?: T;
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
-  [k: string]: unknown
+  [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

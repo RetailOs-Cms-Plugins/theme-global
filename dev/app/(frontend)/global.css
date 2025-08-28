@@ -1,4 +1,4 @@
 @import "tailwindcss";
-@import "@retailos-ai/cms-theme-global/styles";
+@import "@retailos-ai/cms-theme-global/globalTheme.css";
 
 /* other imports or styles */

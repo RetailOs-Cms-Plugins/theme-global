@@ -36,10 +36,11 @@ export const themeGlobalPlugin =
     const config = {
       ...incomingConfig,
       access: pluginOptions.access,
-      globals: [{ ...themeGlobal, slug: pluginOptions.globalSlug || 'theme-config' }],
     }
 
-    if (pluginOptions.enabled === false) {
+    config.globals = [...(config.globals || []), themeGlobal]
+
+    if (pluginOptions.enabled === false) { 
       return incomingConfig
     }
 

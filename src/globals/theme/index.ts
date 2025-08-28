@@ -7,7 +7,7 @@ import { layoutAndSpacing } from './tabs/layoutAndSpacing'
 import { typography } from './tabs/typography'
 
 export const themeGlobal: GlobalConfig = {
-  slug: 'theme',
+  slug: 'theme-config',
   admin: {
     livePreview: {
       url: '/design-system',

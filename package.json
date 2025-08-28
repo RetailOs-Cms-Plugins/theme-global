@@ -71,7 +71,7 @@
     "dev": "payload run ./dev/server.ts",
     "dev:generate-importmap": "pnpm dev:payload generate:importmap",
     "dev:generate-types": "pnpm dev:payload generate:types",
-    "dev:payload": "cross-env PAYLOAD_CONFIG_PATH=./dev/payload.config.ts NODE_OPTIONS='--loader ./css-loader.mjs --no-warnings' payload",
+    "dev:payload": "cross-env PAYLOAD_CONFIG_PATH=./dev/payload.config.ts NODE_OPTIONS='--loader ./dev/css-loader.mjs --no-warnings' payload",
     "lint": "eslint",
     "lint:fix": "eslint ./src --fix",
     "prepublishOnly": "pnpm clean && pnpm build",
@@ -154,7 +154,7 @@
   },
   "registry": "https://registry.npmjs.org/",
   "dependencies": {
-    "@retailos-ai/cms-general-custom-fields": "^3.1.0",
+    "@retailos-ai/cms-general-custom-fields": "^3.1.1",
     "@tabler/icons-react": "^3.34.0",
     "chroma-js": "^3.1.2",
     "clsx": "^2.1.1",

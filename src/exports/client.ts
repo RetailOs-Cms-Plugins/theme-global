@@ -5,7 +5,7 @@ export { default as DesignSystemPage } from '../components/page'
 export { FontHead } from '../components/theme/font-head'
 
 // Theme Provider
-export { ThemeProvider } from '../components/theme/ThemeProvider'
+export { ThemeProvider, useTheme } from '../components/theme/ThemeProvider'
 
 // Typography
 export { Typography } from '../components/theme/typography'

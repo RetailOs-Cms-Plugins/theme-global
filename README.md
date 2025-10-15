@@ -59,7 +59,6 @@ export default buildConfig({
   plugins: [
     themeGlobalPlugin({
       enabled: true,
-      enableLivePreview: true,
     }),
     // ... other globals
   ],

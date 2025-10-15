@@ -51,6 +51,7 @@ export default buildConfig({
   plugins: [
     themeGlobalPlugin({
       enabled: true,
+      enableLivePreview: true,
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || 'test-secret_key',

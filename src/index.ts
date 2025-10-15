@@ -5,9 +5,6 @@ import { themeGlobal } from './globals/theme'
 import { copyPluginFontsToProject } from './utils/typography/copy-fonts'
 
 export interface ThemeGlobalPluginOptions extends Omit<GlobalConfig, 'fields' | 'slug'> {
-  /**
-   * Default theme values
-   */
   defaultTheme?: {
     primaryColor?: string
     secondaryColor?: string
@@ -16,12 +13,16 @@ export interface ThemeGlobalPluginOptions extends Omit<GlobalConfig, 'fields' | 
       fontSize?: string
     }
   }
-
   /**
    * Enable or disable plugin
    * @default true
    */
   enabled?: boolean
+
+  /**
+   * Default theme values
+   */
+  enableLivePreview?: boolean
 
   /**
    * Customize the global slug
@@ -38,7 +39,7 @@ export const themeGlobalPlugin =
       access: pluginOptions.access,
     }
 
-    config.globals = [...(config.globals || []), themeGlobal]
+    config.globals = [...(config.globals || []), themeGlobal({ enableLivePreview: pluginOptions.enableLivePreview })]
 
     if (pluginOptions.enabled === false) { 
       return incomingConfig

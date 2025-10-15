@@ -6,22 +6,22 @@ import { colors } from './tabs/colors'
 import { layoutAndSpacing } from './tabs/layoutAndSpacing'
 import { typography } from './tabs/typography'
 
-export const themeGlobal: GlobalConfig = {
+export const themeGlobal = (options?: {
+  enableLivePreview?: boolean
+}): GlobalConfig => ({
   slug: 'theme-config',
-  admin: {
-    livePreview: {
-      url: '/design-system',
+  ...(options?.enableLivePreview && {
+    admin: {
+      livePreview: {
+        url: '/design-system',
+      },
     },
-  },
+  }),
   fields: [
     {
       type: 'tabs',
       label: 'Theme Configuration',
-      tabs: [
-        colors,
-        typography,
-        layoutAndSpacing,
-      ],
+      tabs: [colors, typography, layoutAndSpacing],
     },
   ],
   hooks: {
@@ -36,4 +36,4 @@ export const themeGlobal: GlobalConfig = {
       },
     ],
   },
-}
+})

@@ -1,5 +1,3 @@
-import 'dotenv/config'
-
 import type { NextServerOptions } from 'next/dist/server/next.js'
 
 import { createServer } from 'http'
@@ -15,6 +13,7 @@ const opts: NextServerOptions = {
   dir: dirname,
 }
 
+// @ts-expect-error next types do not import
 const app = next(opts)
 const handle = app.getRequestHandler()
 

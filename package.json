@@ -1,6 +1,6 @@
 {
   "name": "@retailos-ai/cms-theme-global",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "theme for retailos-ai cms",
   "keywords": [
     "payload",
@@ -154,7 +154,7 @@
   },
   "registry": "https://registry.npmjs.org/",
   "dependencies": {
-    "@retailos-ai/cms-general-custom-fields": "^3.1.1",
+    "@retailos-ai/cms-general-custom-fields": "^4.4.1",
     "@tabler/icons-react": "^3.34.0",
     "chroma-js": "^3.1.2",
     "clsx": "^2.1.1",

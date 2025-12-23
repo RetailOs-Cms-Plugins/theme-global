@@ -1,3 +1,5 @@
+export type Breakpoint = 'desktop' | 'largeDesktop' | 'mobile' | 'tablet'
+
 export interface FontFamilyOption {
   label: string
   value: string
@@ -78,3 +80,24 @@ export interface FontDefinition {
   }
   weights: number[]
 }
+
+export type TypographyProps = {
+  breakpoint?: Breakpoint
+  children: React.ReactNode
+  className?: string
+  dir?: 'auto' | 'ltr' | 'rtl'
+  style?: React.CSSProperties
+  tagType:
+    | 'blockquote'
+    | 'code'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'large'
+    | 'lead'
+    | 'muted'
+    | 'p'
+    | 'small'
+  themeData?: any // Add theme data prop
+} & React.HTMLAttributes<HTMLElement>

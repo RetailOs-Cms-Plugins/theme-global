@@ -6,7 +6,7 @@ export const mockExternalDependencies = () => {
     ColorPickerField: vi.fn((config) => ({
       ...config,
       type: 'text', // Mock as text field
-    }))
+    })),
   }))
 
   vi.mock('next/cache', () => ({
@@ -31,13 +31,13 @@ export const mockTabConfigurations = () => {
               fields: [
                 { name: 'colorPrimary', type: 'text', defaultValue: '#a855f7' },
                 { name: 'textOnPrimary', type: 'text', defaultValue: '#ffffff' },
-              ]
-            }
-          ]
-        }
+              ],
+            },
+          ],
+        },
       ],
-      label: 'Colors'
-    }
+      label: 'Colors',
+    },
   }))
 
   vi.mock('../../../../src/globals/theme/tabs/typography', () => ({
@@ -54,15 +54,16 @@ export const mockTabConfigurations = () => {
                   name: 'fontBody',
                   type: 'select',
                   defaultValue: 'inter',
+                  enumName: 'theme_font_body',
                   label: 'Body Font',
-                }
-              ]
-            }
-          ]
-        }
+                },
+              ],
+            },
+          ],
+        },
       ],
-      label: 'Typography'
-    }
+      label: 'Typography',
+    },
   }))
 
   vi.mock('../../../../src/globals/theme/tabs/layoutAndSpacing', () => ({
@@ -86,13 +87,13 @@ export const mockTabConfigurations = () => {
                 { name: 'tablet', type: 'number', defaultValue: 768 },
                 { name: 'desktop', type: 'number', defaultValue: 1024 },
                 { name: 'largeDesktop', type: 'number', defaultValue: 1280 },
-              ]
-            }
-          ]
-        }
+              ],
+            },
+          ],
+        },
       ],
-      label: 'Layout & Spacing'
-    }
+      label: 'Layout & Spacing',
+    },
   }))
 }
 
@@ -102,12 +103,12 @@ export const createMockRequest = () => ({
     logger: {
       error: vi.fn(),
       info: vi.fn(),
-    }
-  }
+    },
+  },
 })
 
 // Initialize all mocks
 export const initializeThemeGlobalMocks = () => {
   mockExternalDependencies()
   mockTabConfigurations()
-} 
+}

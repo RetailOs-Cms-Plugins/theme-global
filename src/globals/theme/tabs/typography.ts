@@ -20,6 +20,7 @@ export const typography: Tab = {
                     width: '50%',
                   },
                   defaultValue: 'inter',
+                  enumName: 'theme_font_body',
                   label: 'Body Font',
                   options: [
                     // Hebrew Fonts
@@ -61,6 +62,7 @@ export const typography: Tab = {
                     width: '50%',
                   },
                   defaultValue: 'poppins',
+                  enumName: 'theme_font_heading',
                   label: 'Heading Font',
                   options: [
                     // Hebrew Fonts
@@ -103,6 +105,7 @@ export const typography: Tab = {
           name: 'direction',
           type: 'select',
           defaultValue: 'auto',
+          enumName: 'theme_direction',
           label: 'Language Direction',
           options: [
             { label: 'Auto (based on font)', value: 'auto' },

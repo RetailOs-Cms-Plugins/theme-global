@@ -2,28 +2,39 @@
 
 import { useEffect, useState } from 'react'
 
-const getBreakpoint = () => {
+interface BreakpointProps {
+  desktop?: number
+  largeDesktop?: number
+  mobile?: number
+  tablet?: number
+}
+
+const getBreakpoint = (props: BreakpointProps) => {
+  const { desktop = 1024, largeDesktop = 1280, tablet = 768 } = props || {}
+
   if (typeof window === 'undefined') {
     return 'desktop'
   }
+
   const width = window.innerWidth
-  if (width < 768) {
-    return 'mobile'
-  }
-  if (width < 1024) {
+
+  if (width >= tablet) {
     return 'tablet'
   }
-  if (width < 1920) {
+  if (width >= desktop) {
     return 'desktop'
   }
-  return 'largeDesktop'
+  if (width >= largeDesktop) {
+    return 'largeDesktop'
+  }
+  return 'mobile'
 }
 
-export function useCurrentBreakpoint() {
-  const [breakpoint, setBreakpoint] = useState(getBreakpoint())
+export function useCurrentBreakpoint(props: BreakpointProps) {
+  const [breakpoint, setBreakpoint] = useState(getBreakpoint(props))
 
   useEffect(() => {
-    const onResize = () => setBreakpoint(getBreakpoint())
+    const onResize = () => setBreakpoint(getBreakpoint(props))
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])

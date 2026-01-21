@@ -132,7 +132,7 @@ export function Typography({
 }: TypographyProps): null | React.ReactElement {
   const contextThemeData = useTheme()
   const themeData = propThemeData || contextThemeData
-  const currentBreakpoint = useCurrentBreakpoint()
+  const currentBreakpoint = useCurrentBreakpoint(themeData?.layout?.breakpoints)
   const breakpoint = propBreakpoint || currentBreakpoint
   const {
     baseClassName,

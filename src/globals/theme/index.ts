@@ -6,9 +6,7 @@ import { colors } from './tabs/colors'
 import { layoutAndSpacing } from './tabs/layoutAndSpacing'
 import { typography } from './tabs/typography'
 
-export const themeGlobal = (options?: {
-  enableLivePreview?: boolean
-}): GlobalConfig => ({
+export const themeGlobal = (options?: { enableLivePreview?: boolean }): GlobalConfig => ({
   slug: 'theme-config',
   ...(options?.enableLivePreview && {
     admin: {
@@ -21,11 +19,7 @@ export const themeGlobal = (options?: {
     {
       type: 'tabs',
       label: 'Theme Configuration',
-      tabs: [
-        colors,
-        typography,
-        layoutAndSpacing,
-      ],
+      tabs: [colors, typography, layoutAndSpacing],
     },
   ],
   hooks: {
@@ -35,7 +29,9 @@ export const themeGlobal = (options?: {
           revalidateTag('theme-config')
           req.payload.logger.info('Theme updated, cache invalidated')
         } catch (error) {
-          req.payload.logger.error('Failed to revalidate theme cache:', error)
+          req.payload.logger.error(
+            `Failed to revalidate theme cache: ${error instanceof Error ? error.message : String(error)}`,
+          )
         }
       },
     ],

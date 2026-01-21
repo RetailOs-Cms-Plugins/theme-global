@@ -1,3 +1,5 @@
+import type { Payload } from 'payload'
+
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { themeGlobalPlugin } from '@retailos-ai/cms-theme-global'
@@ -45,13 +47,13 @@ export default buildConfig({
   editor: lexicalEditor(),
   email: testEmailAdapter,
   // globals: [themeGlobal],
-  onInit: async (payload) => {
+  onInit: async (payload: Payload) => {
     await seed(payload)
   },
   plugins: [
     themeGlobalPlugin({
       enabled: true,
-      enableLivePreview: true,
+      enableLivePreview: false,
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || 'test-secret_key',

@@ -18,14 +18,14 @@ const getBreakpoint = (props: BreakpointProps) => {
 
   const width = window.innerWidth
 
-  if (width >= tablet) {
-    return 'tablet'
+  if (width >= largeDesktop) {
+    return 'largeDesktop'
   }
   if (width >= desktop) {
     return 'desktop'
   }
-  if (width >= largeDesktop) {
-    return 'largeDesktop'
+  if (width >= tablet) {
+    return 'tablet'
   }
   return 'mobile'
 }

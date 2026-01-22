@@ -24,7 +24,7 @@ const TypographyData: Record<TypographyProps['tagType'], { classes: string; tag:
     tag: 'h1',
   },
   h2: {
-    classes: 'scroll-m-20 border-b pb-2 font-semibold tracking-tight first:mt-0',
+    classes: 'scroll-m-20 font-semibold tracking-tight first:mt-0',
     tag: 'h2',
   },
   h3: {
@@ -69,7 +69,7 @@ export function Typography({
 }: TypographyProps): null | React.ReactElement {
   const contextThemeData = useTheme()
   const themeData = propThemeData || contextThemeData
-  const currentBreakpoint = useCurrentBreakpoint()
+  const currentBreakpoint = useCurrentBreakpoint(themeData?.layout?.breakpoints)
   const breakpoint = propBreakpoint || currentBreakpoint
 
   if (!themeData) {

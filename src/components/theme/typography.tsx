@@ -10,37 +10,31 @@ import { useTheme } from './ThemeProvider'
 // Font loading best practice: Preload fonts in your layout or _document for best performance.
 // Use font-display: swap for Google Fonts.
 
-const TypographyData: Record<TypographyProps['tagType'], { classes: string; tag: string }> = {
+const TypographyData: Record<TypographyProps['tagType'], { classes?: string; tag: string }> = {
   blockquote: {
-    classes: 'mt-6 border-l-2 pl-6 italic',
+    classes: 'border-l-2 pl-6 italic',
     tag: 'p',
   },
   code: {
-    classes: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm',
+    classes: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono',
     tag: 'code',
   },
   h1: {
-    classes: 'scroll-m-20 font-extrabold tracking-tight text-balance',
     tag: 'h1',
   },
   h2: {
-    classes: 'scroll-m-20 font-semibold tracking-tight first:mt-0',
     tag: 'h2',
   },
   h3: {
-    classes: 'scroll-m-20 font-semibold tracking-tight',
     tag: 'h3',
   },
   h4: {
-    classes: 'scroll-m-20 font-semibold tracking-tight',
     tag: 'h4',
   },
   large: {
-    classes: 'text-lg',
     tag: 'div',
   },
   lead: {
-    classes: 'text-xl',
     tag: 'p',
   },
   muted: {
@@ -48,11 +42,9 @@ const TypographyData: Record<TypographyProps['tagType'], { classes: string; tag:
     tag: 'span',
   },
   p: {
-    classes: 'leading-7 [&:not(:first-child)]:mt-6',
     tag: 'p',
   },
   small: {
-    classes: 'text-sm',
     tag: 'small',
   },
 }

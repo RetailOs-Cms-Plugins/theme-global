@@ -1,5 +1,11 @@
 # @retailos-ai/cms-theme-global
 
+## 1.0.12
+
+### Patch Changes
+
+- 029b526: fixing typography classes
+
 ## 1.0.11
 
 ### Patch Changes

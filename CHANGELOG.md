@@ -1,5 +1,11 @@
 # @retailos-ai/cms-theme-global
 
+## 1.0.13
+
+### Patch Changes
+
+- 0a10c24: add new fields for borders & focus
+
 ## 1.0.12
 
 ### Patch Changes

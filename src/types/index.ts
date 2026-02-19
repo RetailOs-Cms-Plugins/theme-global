@@ -31,6 +31,7 @@ export interface TypographyConfig {
 }
 
 export interface ThemeConfig {
+  borders: string
   cardBackground: string
   colorPrimary: string
   colorSecondary: string
@@ -66,6 +67,7 @@ export interface ThemeConfig {
   primary800: string
   primary900: string
   primary950: string
+  rings: string
   secondary50: string
   secondary100: string
   secondary200: string

@@ -351,6 +351,8 @@ export interface ThemeConfig {
   textOnCard?: string | null;
   pageBackground?: string | null;
   textOnPage?: string | null;
+  borders?: string | null;
+  rings?: string | null;
   typography: {
     /**
      * Font family for body text
@@ -631,6 +633,8 @@ export interface ThemeConfigSelect<T extends boolean = true> {
   textOnCard?: T;
   pageBackground?: T;
   textOnPage?: T;
+  borders?: T;
+  rings?: T;
   typography?:
     | T
     | {

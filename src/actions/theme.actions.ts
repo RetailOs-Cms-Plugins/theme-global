@@ -1,6 +1,6 @@
 'use server'
 
-import type { SanitizedConfig} from 'payload';
+import type { SanitizedConfig } from 'payload'
 import type * as React from 'react'
 
 import { unstable_cache as cache } from 'next/cache'
@@ -23,10 +23,12 @@ function createCssVariables(theme: ThemeConfig): React.CSSProperties {
       generateColorScale(theme.colorPrimary, 'primary'),
       generateColorScale(theme.colorSecondary, 'secondary'),
       {
+        '--border': theme.borders,
         '--card-background': theme.cardBackground,
         '--color-primary': theme.colorPrimary,
         '--color-secondary': theme.colorSecondary,
         '--page-background': theme.pageBackground,
+        '--ring': theme.rings,
         '--text-on-card': theme.textOnCard,
         '--text-on-page': theme.textOnPage,
         '--text-on-primary': theme.textOnPrimary,
@@ -110,7 +112,13 @@ const getCachedTheme = cache(
   },
 )
 
-export async function getTheme({ config, noCache = true }: { config: Promise<SanitizedConfig> | SanitizedConfig; noCache?: boolean }): Promise<{
+export async function getTheme({
+  config,
+  noCache = true,
+}: {
+  config: Promise<SanitizedConfig> | SanitizedConfig
+  noCache?: boolean
+}): Promise<{
   cssVariables: React.CSSProperties
   fontCSS: string
   themeData: ThemeConfig

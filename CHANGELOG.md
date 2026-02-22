@@ -1,5 +1,11 @@
 # @retailos-ai/cms-theme-global
 
+## 1.1.0
+
+### Minor Changes
+
+- 0f419f5: fixing bug (global css file) & removed the spacing group fields
+
 ## 1.0.13
 
 ### Patch Changes

@@ -16,13 +16,6 @@ export interface ThemeConfig {
       tablet?: number
     }
     maxWidth?: number
-    spacingScale?: {
-      lg?: string
-      md?: string
-      sm?: string
-      xl?: string
-      xs?: string
-    }
   }
   pageBackground: string
   primary50: string

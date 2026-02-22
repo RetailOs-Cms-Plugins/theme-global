@@ -23,7 +23,7 @@ describe('Layout and Spacing Tab Configuration', () => {
       expect(mainField.label).toBe('Layout')
       expect(mainField.fields).toBeDefined()
       expect(Array.isArray(mainField.fields)).toBe(true)
-      expect(mainField.fields).toHaveLength(4) // maxWidth row, breakpoints group, spacingScale group, borderRadius group
+      expect(mainField.fields).toHaveLength(4) // maxWidth row, breakpoints group, borderRadius group
     })
   })
 
@@ -66,7 +66,7 @@ describe('Layout and Spacing Tab Configuration', () => {
     it('should have mobile breakpoint field', () => {
       const breakpointsRow = breakpointsGroup.fields[0] as RowField
       const mobileField = breakpointsRow.fields[0] as NumberField
-      
+
       expect(mobileField.name).toBe('mobile')
       expect(mobileField.type).toBe('number')
       expect(mobileField.label).toBe('Mobile')
@@ -77,7 +77,7 @@ describe('Layout and Spacing Tab Configuration', () => {
     it('should have tablet breakpoint field', () => {
       const breakpointsRow = breakpointsGroup.fields[0] as RowField
       const tabletField = breakpointsRow.fields[1] as NumberField
-      
+
       expect(tabletField.name).toBe('tablet')
       expect(tabletField.type).toBe('number')
       expect(tabletField.label).toBe('Tablet')
@@ -88,7 +88,7 @@ describe('Layout and Spacing Tab Configuration', () => {
     it('should have desktop breakpoint field', () => {
       const breakpointsRow = breakpointsGroup.fields[0] as RowField
       const desktopField = breakpointsRow.fields[2] as NumberField
-      
+
       expect(desktopField.name).toBe('desktop')
       expect(desktopField.type).toBe('number')
       expect(desktopField.label).toBe('Desktop')
@@ -99,7 +99,7 @@ describe('Layout and Spacing Tab Configuration', () => {
     it('should have largeDesktop breakpoint field', () => {
       const breakpointsRow = breakpointsGroup.fields[0] as RowField
       const largeDesktopField = breakpointsRow.fields[3] as NumberField
-      
+
       expect(largeDesktopField.name).toBe('largeDesktop')
       expect(largeDesktopField.type).toBe('number')
       expect(largeDesktopField.label).toBe('Large Desktop')
@@ -113,7 +113,7 @@ describe('Layout and Spacing Tab Configuration', () => {
         { name: 'mobile', defaultValue: 640 },
         { name: 'tablet', defaultValue: 768 },
         { name: 'desktop', defaultValue: 1024 },
-        { name: 'largeDesktop', defaultValue: 1280 }
+        { name: 'largeDesktop', defaultValue: 1280 },
       ]
 
       breakpointsRow.fields.forEach((field, index) => {
@@ -122,46 +122,6 @@ describe('Layout and Spacing Tab Configuration', () => {
         expect(breakpointField.type).toBe('number')
         expect(breakpointField.defaultValue).toBe(expectedBreakpoints[index].defaultValue)
         expect(breakpointField.required).toBe(true)
-      })
-    })
-  })
-
-  describe('Spacing Scale Section', () => {
-    const layoutGroup = layoutAndSpacing.fields[0] as GroupField
-    const spacingScaleGroup = layoutGroup.fields[2] as GroupField
-
-    it('should have correct group structure', () => {
-      expect(spacingScaleGroup.name).toBe('spacingScale')
-      expect(spacingScaleGroup.type).toBe('group')
-      expect(spacingScaleGroup.label).toBe('Spacing Scale')
-      expect(spacingScaleGroup.fields).toHaveLength(1) // One row with spacing fields
-    })
-
-    it('should have spacing scale row with correct structure', () => {
-      const spacingRow = spacingScaleGroup.fields[0] as RowField
-      expect(spacingRow.type).toBe('row')
-      expect(spacingRow.fields).toHaveLength(5) // xs, sm, md, lg, xl
-    })
-
-    it('should have all spacing scale fields with correct properties', () => {
-      const spacingRow = spacingScaleGroup.fields[0] as RowField
-      const expectedSpacings = [
-        { name: 'xs', defaultValue: '0.25rem', label: 'XS' },
-        { name: 'sm', defaultValue: '0.5rem', label: 'SM' },
-        { name: 'md', defaultValue: '1rem', label: 'MD' },
-        { name: 'lg', defaultValue: '2rem', label: 'LG' },
-        { name: 'xl', defaultValue: '4rem', label: 'XL' }
-      ]
-
-      spacingRow.fields.forEach((field, index) => {
-        const spacingField = field as TextField
-        const expected = expectedSpacings[index]
-        
-        expect(spacingField.name).toBe(expected.name)
-        expect(spacingField.type).toBe('text')
-        expect(spacingField.label).toBe(expected.label)
-        expect(spacingField.defaultValue).toBe(expected.defaultValue)
-        expect(spacingField.required).toBe(true)
       })
     })
   })
@@ -186,7 +146,7 @@ describe('Layout and Spacing Tab Configuration', () => {
     it('should have box border radius field', () => {
       const borderRadiusRow = borderRadiusGroup.fields[0] as RowField
       const boxField = borderRadiusRow.fields[0] as TextField
-      
+
       expect(boxField.name).toBe('box')
       expect(boxField.type).toBe('text')
       expect(boxField.label).toBe('Box Border Radius')
@@ -197,7 +157,7 @@ describe('Layout and Spacing Tab Configuration', () => {
     it('should have button border radius field', () => {
       const borderRadiusRow = borderRadiusGroup.fields[0] as RowField
       const buttonField = borderRadiusRow.fields[1] as TextField
-      
+
       expect(buttonField.name).toBe('button')
       expect(buttonField.type).toBe('text')
       expect(buttonField.label).toBe('Button Border Radius')
@@ -211,23 +171,23 @@ describe('Layout and Spacing Tab Configuration', () => {
       const expectedFieldNames = [
         // Layout fields
         'maxWidth',
-        
+
         // Breakpoint fields
         'mobile',
         'tablet',
         'desktop',
         'largeDesktop',
-        
+
         // Spacing scale fields
         'xs',
         'sm',
         'md',
         'lg',
         'xl',
-        
+
         // Border radius fields
         'box',
-        'button'
+        'button',
       ]
 
       const layoutGroup = layoutAndSpacing.fields[0] as GroupField
@@ -256,10 +216,10 @@ describe('Layout and Spacing Tab Configuration', () => {
         }
       })
 
-      expectedFieldNames.forEach(fieldName => {
+      expectedFieldNames.forEach((fieldName) => {
         expect(collectedFieldNames).toContain(fieldName)
       })
-      
+
       expect(collectedFieldNames).toHaveLength(expectedFieldNames.length)
     })
   })
@@ -280,13 +240,6 @@ describe('Layout and Spacing Tab Configuration', () => {
         expect((field as NumberField).type).toBe('number')
       })
 
-      // Test spacing scale (all text)
-      const spacingScaleGroup = layoutGroup.fields[2] as GroupField
-      const spacingRow = spacingScaleGroup.fields[0] as RowField
-      spacingRow.fields.forEach((field) => {
-        expect((field as TextField).type).toBe('text')
-      })
-
       // Test border radius (all text)
       const borderRadiusGroup = layoutGroup.fields[3] as GroupField
       const borderRadiusRow = borderRadiusGroup.fields[0] as RowField
@@ -301,23 +254,23 @@ describe('Layout and Spacing Tab Configuration', () => {
       const expectedDefaults = {
         // Layout
         maxWidth: 1360,
-        
+
         // Breakpoints
         desktop: 1024,
         largeDesktop: 1280,
         mobile: 640,
         tablet: 768,
-        
+
         // Spacing scale
         lg: '2rem',
         md: '1rem',
         sm: '0.5rem',
         xl: '4rem',
         xs: '0.25rem',
-        
+
         // Border radius
         box: '0.5rem',
-        button: '9999px'
+        button: '9999px',
       }
 
       const layoutGroup = layoutAndSpacing.fields[0] as GroupField
@@ -334,15 +287,6 @@ describe('Layout and Spacing Tab Configuration', () => {
       breakpointsRow.fields.forEach((field, index) => {
         const fieldName = breakpointFields[index] as keyof typeof expectedDefaults
         expect((field as NumberField).defaultValue).toBe(expectedDefaults[fieldName])
-      })
-
-      // Check spacing scale
-      const spacingScaleGroup = layoutGroup.fields[2] as GroupField
-      const spacingRow = spacingScaleGroup.fields[0] as RowField
-      const spacingFields = ['xs', 'sm', 'md', 'lg', 'xl']
-      spacingRow.fields.forEach((field, index) => {
-        const fieldName = spacingFields[index] as keyof typeof expectedDefaults
-        expect((field as TextField).defaultValue).toBe(expectedDefaults[fieldName])
       })
 
       // Check border radius

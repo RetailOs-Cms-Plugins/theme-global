@@ -95,13 +95,6 @@ export const mockThemeConfig: ThemeConfig = {
       tablet: 1024,
     },
     maxWidth: 1360,
-    spacingScale: {
-      lg: '1.5rem',
-      md: '1rem',
-      sm: '0.5rem',
-      xl: '2rem',
-      xs: '0.25rem',
-    },
   },
   pageBackground: '#f8fafc',
   primary50: '#eff6ff',
@@ -144,7 +137,9 @@ export const createMockThemeConfig = (overrides: Partial<ThemeConfig> = {}): The
 /**
  * Creates a mock typography config with optional overrides
  */
-export const createMockTypographyConfig = (overrides: Partial<TypographyConfig> = {}): TypographyConfig => ({
+export const createMockTypographyConfig = (
+  overrides: Partial<TypographyConfig> = {},
+): TypographyConfig => ({
   ...mockTypographyConfig,
   ...overrides,
 })

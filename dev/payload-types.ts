@@ -599,13 +599,6 @@ export interface ThemeConfig {
       desktop: number;
       largeDesktop: number;
     };
-    spacingScale: {
-      xs: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
-    };
     borderRadius: {
       /**
        * Border radius for boxes (e.g., 0.5rem)
@@ -801,15 +794,6 @@ export interface ThemeConfigSelect<T extends boolean = true> {
               tablet?: T;
               desktop?: T;
               largeDesktop?: T;
-            };
-        spacingScale?:
-          | T
-          | {
-              xs?: T;
-              sm?: T;
-              md?: T;
-              lg?: T;
-              xl?: T;
             };
         borderRadius?:
           | T
